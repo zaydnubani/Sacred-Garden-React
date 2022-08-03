@@ -14,9 +14,9 @@ import MerkleTree from 'merkletreejs';
 import keccak256 from 'keccak256';
 
 
-// const MAINNET_CONTRACT_ADDRESS = "0x50333672e81463285Ba9d231E8280575Ebb7F2BD";
+const MAINNET_CONTRACT_ADDRESS = "0x21374d22f169849cfd680241f3f37cd61ac2eea5";
 
-const TESTNET_CONTRACT_ADDRESS = '0x3D938ece3C0D8F83c6964b462Dfcd42a612DaF86'
+// const TESTNET_CONTRACT_ADDRESS = '0x3D938ece3C0D8F83c6964b462Dfcd42a612DaF86'
 
 const Mint = () => {
 
@@ -74,7 +74,7 @@ const Mint = () => {
     // This retrieves the totalSupply of NFTs minted given the specific contract using wallet provider information
     const getMinted = async (provider ) => {
       // This connects the contract to the wallet provider to initialize communication and pass information
-      const sacrdgardn = DeltaFloraGenesis__factory.connect(TESTNET_CONTRACT_ADDRESS, provider);
+      const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider);
       // Returns a promise to await a response from the contract to send it's totalSupply
       return (await sacrdgardn.totalSupply()).toString();
     }
@@ -92,7 +92,7 @@ const Mint = () => {
      // This retrieves the minting price of NFTs minted given the specific contract using wallet provider information
      const getPrice = async (provider ) => {
       // This connects the contract to the wallet provider to initialize communication and pass information
-      const sacrdgardn = DeltaFloraGenesis__factory.connect(TESTNET_CONTRACT_ADDRESS, provider);
+      const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider);
       // Returns a promise to await a response from the contract to send it's mintPrice
       const stage = await sacrdgardn.currentStage();
       return (await sacrdgardn.stages(stage));
@@ -111,7 +111,7 @@ const Mint = () => {
     // This retrieves the minting stage of NFTs minted given the specific contract using wallet provider information
     const getStage = async (provider ) => {
      // This connects the contract to the wallet provider to initialize communication and pass information
-     const sacrdgardn = DeltaFloraGenesis__factory.connect(TESTNET_CONTRACT_ADDRESS, provider);
+     const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider);
      // Returns a promise to await a response from the contract to send it's currentStage
      return (await sacrdgardn.currentStage()).toString();
    }
@@ -134,7 +134,6 @@ const Mint = () => {
     toast.promise(promise, {
       loading: "Please confirm the transaction.",
       success: () => {
-        console.log(`Minting STAGE : ${stage}, Price : ${price}, Onboard ${web3Onboard}, ${setNFTIDs(null)} `)
         setComplete(true)
         return "Mint initiated."
       },
@@ -157,7 +156,7 @@ const Mint = () => {
       try { 
         console.log('Trying to transact')
         // This connects the contract to the wallet provider to initialize communication and pass information
-        const sacrdgardn = DeltaFloraGenesis__factory.connect(TESTNET_CONTRACT_ADDRESS, provider.getSigner());
+        const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider.getSigner());
         // Returns a promise to await a response from the contract to send it's mintPrice
         const stage = await sacrdgardn.currentStage();
         const pricePer = (await sacrdgardn.stages(stage))[2];
@@ -181,8 +180,8 @@ const Mint = () => {
           
         });
       } catch (err) {
-          console.log(err)
-          // throw new Error("Transaction failed to initiate.");
+          // console.log(err)
+          throw new Error("Transaction failed to initiate.");
       
         }
       return true;
@@ -224,39 +223,35 @@ const Mint = () => {
   
   const PrePurchase = () => {
       return (
-        <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-5' style={{backgroundImage: `url('${mint_2100}')`}}>
+      <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-5' style={{backgroundImage: `url('${mint_2100}')`}}>
         <Toaster />
         <div className='container justify-center w-100'>
             <img className='img mint-animation' src={logo_1} alt=""/>
         </div>
 
-        <div className='container direct-col w-75 m-1'>
+        <div className='container direct-col w-75 m-2'>
             <span className='text text-center mint-minted m-1 red'>Mint ΔFLORA NFT</span>
             <span className='text text-center mint-mint red'>
               {minted}/5,555 Minted
             </span>
         </div>
 
-        <div className='container direct-col align-center justify-center w-50 m-2'>
-            <div className='w-75 text-left'>
-              <span className='text red mint-includes'>Each NFT Includes :</span>
-            </div>
-            <div className='mint-member-width text-left w-75'>
-              <ul className='text red mint-member' style={{listStyle: 'none', paddingLeft: 0}}>
-                  <li>| CLAIM | 1 free claim from our SHOP or Marketplace</li>
-                  <li>| DONATION | 10% of initial sale is donated</li>
-                  <li>| PLANT SIMULATION | hold to cultivate</li>
-                  <li>| REFORESTATION | carbon negative impact</li>
-              </ul>
-            </div>
+        <div className='container w-50 m-2'>
+          <div className='container w-50 justify-center align-center text red fs-2'>
+            <span>Pre-sale: </span>
+            <span className='p-lr-1'>0.55 ETH</span>
+          </div>
+          <div className='container w-50 justify-center text red fs-2'>
+            <span>Public sale:</span>
+            <span className='p-lr-1'>.088 ETH</span>
+          </div>   
         </div>
-        <div>
-        </div>
+
         <div className='container direct-col space-evenly align-center w-50'>
           <div className='container align-center space-evenly direct-row w-50'>
           {wallet ? <GoQuantity /> : null }
           </div>
-          <button className='btn text solid-red p-1 mint-button br-5 w-75' 
+          <button className='btn text solid-red p-1 m-2 mint-button br-5 w-75' 
           onClick={() => (wallet? handleMint(quantity) : connect())}
           // onClick={() => (wallet? null : connect())}
 
@@ -328,7 +323,7 @@ const Mint = () => {
   }
 
   return ( 
-    <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-5' style={{backgroundImage: `url('${mint_2100}')`}}>
+    <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-3' style={{backgroundImage: `url('${mint_2100}')`}}>
       { complete ? <PostPurchase /> : <PrePurchase /> }
     </div>
   )

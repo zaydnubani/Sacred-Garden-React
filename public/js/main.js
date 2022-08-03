@@ -33,4 +33,13 @@ for(let i=0; i<main.length;i++){
 
 };
 
+if(window.location.href.indexOf('Mint')>-1){
+
+    const Footer = document.getElementsByClassName('Footer');
+
+    for(let i =0; i < Footer.length ; i++){
+        Footer[i].style = 'display: none';
+    }
+}
+
 

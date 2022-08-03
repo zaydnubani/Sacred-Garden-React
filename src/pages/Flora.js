@@ -40,7 +40,7 @@ const Flora = () => {
     // {{!-- container --}}
     <div className='relative container direct-row align-center wrap space-evenly w-90 h-auto'>
 
-        <div className="container direct-col align-center justify-center text red flora-container nft membership" style={{opacity: "0.25", order: `${Math.floor(Math.random() * 4)}`}}>
+        <div className="container direct-col align-center justify-center text red flora-container nft membership" style={{opacity: "1", order: `${Math.floor(Math.random() * 4)}`}}>
 
             <span className='m-tb-1 flora-member'>
                 ∆FLORA membership NFT
@@ -57,7 +57,7 @@ const Flora = () => {
         </div>
 
         {NFT.map((value) => { return(
-            <div className="nft img" key={value} style={{opacity: '0.25', order: `${Math.floor(Math.random() * NFT.length)}`}}>
+            <div className="nft img" key={value} style={{opacity: '1', order: `${Math.floor(Math.random() * NFT.length)}`}}>
                 <img src={value} alt={value} />
             </div>
         )})}

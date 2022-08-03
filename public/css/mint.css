@@ -1,3 +1,28 @@
+/* xx-small devices (landscape phones, 250px and up) */
+@media screen and (min-width: 250px) {
+  .mint-member-width{
+    width: 100%;
+  }
+    .mint-member{
+    font-size: 3vw;
+  }
+  .mint-includes{
+    font-size: 3vw;
+  }
+  .mint-minted{
+    font-size: 5vw;
+  }
+  .mint-mint{
+    font-size: 3vw;
+  }
+  .mint-animation{
+    max-width: 30%;
+  }
+  .mint-button{
+    font-size: 3.5vw;
+  }
+}
+
 /* Small devices (landscape phones, 360px and up) */
 @media screen and (min-width: 360px) {
   .mint-member-width{
