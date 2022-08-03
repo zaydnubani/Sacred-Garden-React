@@ -240,11 +240,11 @@ const Mint = () => {
         <div className='container w-50 m-2'>
           <div className='container w-50 justify-center align-center text red fs-2'>
             <span>Pre-sale: </span>
-            <span className='p-lr-1'>0.055 ETH</span>
+            <span className='p-lr-1'> 0.055 ETH </span>
           </div>
           <div className='container w-50 justify-center text red fs-2'>
             <span>Public sale:</span>
-            <span className='p-lr-1'>.088 ETH</span>
+            <span className='p-lr-1'> 0.088 ETH </span>
           </div>   
         </div>
 
