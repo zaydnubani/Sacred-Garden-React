@@ -1,0 +1,97 @@
+/* Small devices (landscape phones, 576px and up) */
+@media screen and (min-width: 360px) {
+    .terms span {
+        font-size: 1.5rem;
+    }
+
+    .terms p {
+        font-size: 0.75rem;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media screen and (min-width: 576px) {
+    .terms span {
+        font-size: 1.75rem;
+    }
+
+    .terms p {
+        font-size: 1rem;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media screen and (min-width: 768px) { 
+    .terms span {
+        font-size: 2rem;
+    }
+
+    .terms p {
+        font-size: 1.25rem;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media screen and (min-width: 992px) { 
+    .terms span {
+        font-size: 2.25rem;
+    }
+
+    .terms p {
+        font-size: 1.5rem;
+    }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media screen and (min-width: 1200px) {
+    .terms span {
+        font-size: 2.5rem;
+    }
+
+    .terms p {
+        font-size: 1.75rem;
+    }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media screen and (min-width: 1400px) {
+    .terms span {
+        font-size: 2.75rem;
+    }
+
+    .terms p {
+        font-size: 2rem;
+    }
+}
+
+.terms {
+
+    /* flex layout */
+    display: flex;
+    flex-direction: column;
+
+    /* sizing and spacing */
+    width: 95%;
+    padding: 1%;
+
+    /* styling */
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 700;
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+
+}
+
+.terms span {
+
+    align-self: center;
+
+}
+
+.terms p {
+
+    align-self: flex-start;
+
+}
+

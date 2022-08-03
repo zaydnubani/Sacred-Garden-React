@@ -1,0 +1,264 @@
+<!-- %PUBLIC_URL% -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- {{!-- favicon for tab icon here: --}} -->
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="%PUBLIC_URL%/images/favicon/site.webmanifest">  
+    
+    <!-- {{!-- imported css files here: --}} -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://use.typekit.net/ban0udj.css"> 
+       
+    <!-- {{!-- personal css files here: --}} -->
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/main.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/offcanvas.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/landing.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/team.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/faq.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/flora.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/roadmap.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/terms.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/partners.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/master.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/mint.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/web3.css">
+
+
+
+
+    <!-- {{!-- link to imported fonts here: --}} -->
+   
+    <!-- {{!-- link to social media icons here: --}} -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- {{!-- page title here: --}} -->
+    <title>SACRΞD GARDΞN</title>
+</head>
+
+<main class="container direct-col justify-center align-center br-10 of-hidden">
+    <!-- {{!-- off-canvas nav menu --}} -->
+
+    <!-- {{!-- base frame --}} -->
+    <div class="fixed z-2 b-0 container direct-col align-center space-evenly p-1 h-100 of-x-hidden transition-1 offcanvas canvas-container" style="right: -105%;">
+        <!-- {{!-- logo --}} -->
+        <img class="img logo-canvas" src="%PUBLIC_URL%\images\logos\sacrd_gardn_neon.png" alt="logo">
+        
+        <!-- {{!-- close --}} -->
+        <a href="javascript:void(0)" class="btn absolute close-canvas red text" style="top: 3vh; right: 2vw;text-decoration: none; width: fit-content;">&times;</a>
+
+        <!-- {{!-- links --}} -->
+        <div class="container direct-row wrap w-100 align-center">
+            <a href="/roadmap" class="link grow-2 p-2 m-1 text-center w-auto text white br-10 transition-1 canvas-btn" style="background-color: rgb(90, 29, 87);">Roadmap</a>
+            <a href="/team" class="link grow-2 p-2 m-1 text-center w-auto text white br-10 transition-1 canvas-btn" style="background-color: rgb(255, 90, 0);">Team</a>
+            <a href="/partners" class="link grow-2 p-2 m-1 text-center w-auto text white br-10 transition-1 canvas-btn" style="background-color: rgb(240, 206, 65);">Partners</a>
+            <a href="/faq" class="link grow-2 p-2 m-1 text-center w-auto text white br-10 transition-1 canvas-btn" style="background-color: rgb(225, 0, 68);">FAQ</a>
+            <a href="/flora" class="link grow-2 p-2 m-1 text-center w-auto text white br-10 transition-1 canvas-btn" style="background-color: rgb(167, 0, 76);">Plants</a>
+            <a href="/Mint" class="link grow-2 p-2 m-1 text-center w-auto text white br-10 transition-1 canvas-btn" style="background-color: rgb(255, 90, 0);">△FLORA NFT</a>
+            <a href="https://opensea.io/collection/gardenconservation" class="link grow-2 p-2 m-1 text-center w-auto text white br-10 transition-1 canvas-btn" style="background-color: rgb(90, 29, 87);">Charity</a>
+            <a href="https://my.matterport.com/show/?m=mvHce8tduYB&brand=0&play=1&wh=0" class="link grow-2 p-2 m-1 text-center w-auto text white br-10 transition-1 canvas-btn" style="background-color: rgb(240, 206, 65);">Virtual Garden</a>
+            <!-- <a href="/simulator" class="link" style="background-color: rgb(255, 90, 0);">Simulator</a> -->
+        </div>
+
+        <!-- {{!-- social media --}} -->
+        <div class="container direct-row text-center wrap">
+            <a class="link w-25 transition-1" href='https://discord.gg/jbv7raNcu2'>
+                <img class="img social-canvas" src="%PUBLIC_URL%\images\logos\discord.png">
+            </a>
+            <a class="link w-25 transition-1" href='https://www.instagram.com/sacrdgardn/'>
+                <img class="img social-canvas"src="%PUBLIC_URL%\images\logos\instagram.png">
+            </a>
+            <a class="link w-25 transition-1" href='https://opensea.io/SACRDGARDN'>
+                <img class="img social-canvas"src="%PUBLIC_URL%\images\logos\OpenSea.png">
+            </a>
+            <a class="link w-25 transition-1" href='https://twitter.com/sacrdgardn'>
+                <img class="img social-canvas"src="%PUBLIC_URL%\images\logos\twitter.png">
+            </a>
+        </div>
+
+    </div>
+
+    <!-- top countdown -->
+    <div id='countDown' class="text countdown-main red">
+    </div>
+
+    <!-- {{!-- nav --}} -->
+    <div class="container direct-col space-evenly w-90 h-auto br-10 m-tb-1">
+
+        <div class="container direct-row space-between align-center space-between">
+
+            <!-- {{!-- link to landing --}} -->
+            <a href="/">
+        
+                <!-- {{!-- title --}} -->
+                <div>
+                    <img class="img title-main" src="%PUBLIC_URL%/images/logos/logo.png">
+                </div>
+
+            </a>
+            
+            <!-- {{!-- menu button --}} -->
+            <button id="menu" class="btn h-auto trans-red">
+                <img class="img nav-main" src="%PUBLIC_URL%/images/logos/button.png" alt="button">
+            </button>
+
+        </div>
+   
+    </div>
+
+    <!-- {{!-- route to pages --}} -->
+    <div id="root" class="container justify-center align-center w-100">
+
+    </div>
+
+    <div class="container direct-col justify-center align-center w-90 text-center">
+
+        <!-- {{!-- social media --}} -->
+        <div class="container direct-row align-center justify-center social-main-container h-auto text text-center red social-main-container" style="order:3;">
+
+            <!-- {{!-- links --}} -->
+            <a class="link transition-1 h-auto w-25 m-1" href='https://discord.gg/jbv7raNcu2'>
+
+                <!-- {{!-- media icons --}} -->
+                <img class="img social-main" src="%PUBLIC_URL%\images\logos\discord.png">
+            </a>
+
+            <a class="link transition-1 h-auto w-25 m-1" href='https://www.instagram.com/sacrdgardn/'>
+                <img class="img social-main" src="%PUBLIC_URL%\images\logos\instagram.png">
+            </a>
+            <a class="link transition-1 h-auto w-25 m-1" href='https://opensea.io/SACRDGARDN'>
+                <img class="img social-main" src="%PUBLIC_URL%\images\logos\OpenSea.png">
+            </a>
+            <a class="link transition-1 h-auto w-25 m-1" href='https://twitter.com/sacrdgardn'>
+                <img class="img social-main" src="%PUBLIC_URL%\images\logos\twitter.png">
+            </a>
+            
+        </div>
+
+        <div class="popup fixed z-1 container direct-col justify-center align-center text-center br-10 transition-2 w-75 p-2" style="top: 50%; left: 50%; transform: translate(-50%, -50%);     background-image: url('/images/backgrounds/body/B6.png');
+        ">
+
+            <a href="javascript:void(0)" class="btn link red text fs-5" style="align-self: flex-end;">&times;</a>
+    
+            <span class="m-1 text red signup-popup" style="order: 1;">
+                Sign up for news and early NFT access
+            </span>
+            
+            <div class="container direct-col align-center justify-center form-popup" style="order: 2;">
+                <form action="https://app.convertkit.com/forms/3038011/subscriptions" 
+                class="
+                seva-form 
+                formkit-form 
+                fw-100" method="post" data-sv-form="3038011" data-uid="1b6e2bd4ea" data-format="inline" data-version="5" data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;message&quot;,&quot;success_message&quot;:&quot;Success! Now check your email to confirm your subscription.&quot;,&quot;redirect_url&quot;:&quot;&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;fathom&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:true,&quot;url&quot;:&quot;https://convertkit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;show&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}">
+                    <div data-style="clean">
+                
+                        <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields container direct-row align-center space-between form-popup w-100">
+    
+                            <!-- {{!-- input field container --}} -->
+                            <div class="formkit-field container align-center h-75 ">
+                
+                                <!-- {{!-- input field text field --}} -->
+                                <input class="formkit-input h-100 w-100 p-1 br-10 red text popup-main" name="email_address" aria-label="Email Address" placeholder="Email Address" required="" type="email">
+                
+                            </div>
+                
+                            <!-- {{!-- submit button --}} -->
+                            <button data-element="submit" class="formkit-submit formkit-submit h-100 m-lr-2 p-1 white text btn br-10 w-25 popup-main" style="background-color: rgb(0, 164, 0);">
+                
+                                <!-- {{!-- to be identified --}} -->
+                                <div class="formkit-spinner">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                
+                                <!-- {{!-- submit button text --}} -->
+                                <span class="">Go</span>
+                
+                            </button>            
+                        </div>
+                    </div>
+                </form>
+                <div class="btn solid-red lfg-popup br-10 p-1 m-1">
+                    <a class="link text white" href="https://www.premint.xyz/flora/">
+                
+                        <span class="">I have a wallet LFG</span>
+                
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <span class="m-1 text red signup-main" style="order: 1;">
+            Sign up for news and early NFT access
+        </span>
+        
+        <div class="container direct-col align-center justify-center w-100" style="order: 2;">
+            <form action="https://app.convertkit.com/forms/3038011/subscriptions" 
+            class="
+            seva-form 
+            formkit-form 
+            input-container-main" method="post" data-sv-form="3038011" data-uid="1b6e2bd4ea" data-format="inline" data-version="5" data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;message&quot;,&quot;success_message&quot;:&quot;Success! Now check your email to confirm your subscription.&quot;,&quot;redirect_url&quot;:&quot;&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;fathom&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:true,&quot;url&quot;:&quot;https://convertkit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;show&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}">
+                <div data-style="clean">
+            
+                    <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields container direct-row align-center space-between">
+
+                        <!-- {{!-- input field container --}} -->
+                        <div class="formkit-field container align-center h-75 w-75">
+            
+                            <!-- {{!-- input field text field --}} -->
+                            <input class="formkit-input h-100 w-100 p-1 br-10 red text input-main" name="email_address" aria-label="Email Address" placeholder="Email Address" required="" type="email">
+            
+                        </div>
+            
+                        <!-- {{!-- submit button --}} -->
+                        <button data-element="submit" class="formkit-submit formkit-submit h-100 w-25 m-lr-2 p-1 white text btn br-10 submit-main link transition-1" style="background-color: rgb(0, 164, 0);">
+            
+                            <!-- {{!-- to be identified --}} -->
+                            <div class="formkit-spinner">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+            
+                            <!-- {{!-- submit button text --}} -->
+                            <span>Go</span>
+            
+                        </button>            
+                    </div>
+                </div>
+            </form>
+            <div class="btn solid-red br-10 p-1 lfg-main m-1 link transition-1">
+                <a class="link text white" href="https://www.premint.xyz/flora/">
+
+                    <span>I have a wallet LFG</span>
+            
+                </a>
+            </div>
+        </div>
+
+        <a href="/terms" class="m-1 text red terms-main" style="order: 4;">Terms and Conditions</a>
+
+
+        <div class="text red copyright-main" style="order: 5;">© GARDN LLC</div>
+
+    </div>
+
+    <!-- {{!-- imported scripts here: --}} -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+
+    <!-- {{!-- personal js scripts here: --}} -->
+    <script src="%PUBLIC_URL%/js/main.js" alt="main.js"></script>
+    <script src="%PUBLIC_URL%/js/popup.js" alt="popup.js"></script>
+    <script src="%PUBLIC_URL%/js/countdown.js" alt="countdown.js"></script>
+
+
+</main>
+</html>

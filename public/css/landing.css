@@ -1,0 +1,121 @@
+/* x-small devices (landscape phones, 250px and up) */
+@media screen and (min-width: 250px) { 
+    .landing-bg {
+        max-width: 230%;
+    }
+    .landing-logo {
+        max-width: 55%;
+    }
+
+} 
+
+/* Small devices (landscape phones, 576px and up) */
+@media screen and (min-width: 360px) {
+
+    .landing-bg {
+        max-width: 165%;
+    }
+    .landing-logo {
+        max-width: 35%;
+    }
+} 
+
+/* Small devices (landscape phones, 576px and up) */
+@media screen and (min-width: 576px) {
+    .landing-bg {
+        max-width: 125%;
+    }
+    .landing-logo {
+        max-width: 22.5%;
+    }
+} 
+
+/* Medium devices (tablets, 768px and up) */
+@media screen and (min-width: 768px) { 
+    .landing-bg {
+        max-width: 115%;
+    }
+    .landing-logo {
+        max-width: 20%;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media screen and (min-width: 992px) { 
+    .landing-bg {
+        max-width: 110%;
+    }
+    .landing-logo {
+        max-width: 17.5%;
+    }
+}
+
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media screen and (min-width: 1200px) {
+    .landing-bg {
+        max-width: 107.5%;
+    }
+    .landing-logo {
+        max-width: 17.5%;
+    }
+} 
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media screen and (min-width: 1400px) { 
+    .landing-bg {
+        max-width: 105%;
+    }
+    .landing-logo {
+        max-width: 17.5%;
+    }
+
+}
+
+/* XXX-Large devices (larger desktops, 1800px and up) */
+@media screen and (min-width: 1800px) {
+.landing-bg {
+    max-width: 105%;
+}
+.landing-logo {
+    max-width: 20%;
+}
+}
+
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+    from {
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotating {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.rotating {
+-webkit-animation: rotating 20s linear infinite;
+-moz-animation: rotating 20s linear infinite;
+-ms-animation: rotating 20s linear infinite;
+-o-animation: rotating 20s linear infinite;
+animation: rotating 20s linear infinite;}

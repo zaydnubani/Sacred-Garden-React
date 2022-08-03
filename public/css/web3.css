@@ -1,0 +1,113 @@
+/* Small devices (landscape phones, 360px and up) */
+@media screen and (min-width: 360px) {
+    .web3-planted{
+        font-size: 2.75vw;
+    }
+    .web3-congrats{
+        font-size: 4vw;
+    }
+    .web3-animation{
+        max-width: 40%;
+    }
+    .web3-reveal{
+        font-size: 2.5vw;
+    }
+    .web3-open{
+        font-size: 2.5vw;
+    }
+  } 
+  
+  /* Small devices (landscape phones, 576px and up) */
+  @media screen and (min-width: 576px) {
+    .web3-planted{
+        font-size: 2.75vw;
+    }
+    .web3-congrats{
+        font-size: 4vw;
+    }
+    .web3-animation{
+        max-width: 40%;
+    }
+    .web3-reveal{
+        font-size: 2.5vw;
+    }
+    .web3-open{
+        font-size: 2.5vw;
+    }
+  } 
+  
+  /* Medium devices (tablets, 768px and up) */
+  @media screen and (min-width: 768px) { 
+    .web3-planted{
+        font-size: 2.75vw;
+    }
+    .web3-congrats{
+        font-size: 4vw;
+    }
+    .web3-animation{
+        max-width: 40%;
+    }
+    .web3-reveal{
+        font-size: 2.5vw;
+    }
+    .web3-open{
+        font-size: 2.5vw;
+    }
+  }
+  
+  /* Large devices (desktops, 992px and up) */
+  @media screen and (min-width: 992px) {
+    .web3-planted{
+        font-size: 2.75vw;
+    }
+    .web3-congrats{
+        font-size: 4vw;
+    }
+    .web3-animation{
+        max-width: 40%;
+    }
+    .web3-reveal{
+        font-size: 2.5vw;
+    }
+    .web3-open{
+        font-size: 2.5vw;
+    }
+  }
+  
+  /* X-Large devices (large desktops, 1200px and up) */
+  @media screen and (min-width: 1200px) { 
+    .web3-planted{
+        font-size: 2.75vw;
+    }
+    .web3-congrats{
+        font-size: 4vw;
+    }
+    .web3-animation{
+        max-width: 40%;
+    }
+    .web3-reveal{
+        font-size: 2.5vw;
+    }
+    .web3-open{
+        font-size: 2.5vw;
+    }
+  }
+  
+  /* XX-Large devices (larger desktops, 1400px and up) */
+  @media screen and (min-width: 1400px) { 
+    .web3-planted{
+        font-size: 2.5vw;
+    }
+    .web3-congrats{
+        font-size: 3.5vw;
+    }
+    .web3-animation{
+        max-width: 40%;
+    }
+    .web3-reveal{
+        font-size: 2.25vw;
+    }
+    .web3-open{
+        font-size: 2vw;
+    }
+  }

@@ -1,0 +1,149 @@
+/* Small devices (landscape phones, 360px and up) */
+@media screen and (min-width: 360px) {
+  .mint-member-width{
+    width: 100%;
+  }
+    .mint-member{
+    font-size: 1.75vw;
+  }
+  .mint-includes{
+    font-size: 2.75vw;
+  }
+  .mint-minted{
+    font-size: 4.5vw;
+  }
+  .mint-mint{
+    font-size: 2.75vw;
+  }
+  .mint-animation{
+    max-width: 30%;
+  }
+  .mint-button{
+    font-size: 2.5vw;
+  }
+} 
+
+/* Small devices (landscape phones, 576px and up) */
+@media screen and (min-width: 576px) {
+    .mint-member-width{
+        width: 100%;
+      }
+        .mint-member{
+        font-size: 1.75vw;
+      }
+      .mint-includes{
+        font-size: 2.75vw;
+      }
+      .mint-minted{
+        font-size: 4.5vw;
+      }
+      .mint-mint{
+        font-size: 2.75vw;
+      }
+      .mint-animation{
+        max-width: 30%;
+      }
+      .mint-button{
+        font-size: 2.5vw;
+      }
+} 
+
+/* Medium devices (tablets, 768px and up) */
+@media screen and (min-width: 768px) { 
+    .mint-member-width{
+        width: 100%;
+      }
+        .mint-member{
+        font-size: 1.75vw;
+      }
+      .mint-includes{
+        font-size: 2.75vw;
+      }
+      .mint-minted{
+        font-size: 4.5vw;
+      }
+      .mint-mint{
+        font-size: 2.75vw;
+      }
+      .mint-animation{
+        max-width: 30%;
+      }
+      .mint-button{
+        font-size: 2.5vw;
+      }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media screen and (min-width: 992px) {
+    .mint-member-width{
+        width: 100%;
+      }
+        .mint-member{
+        font-size: 1.75vw;
+      }
+      .mint-includes{
+        font-size: 2.75vw;
+      }
+      .mint-minted{
+        font-size: 4.5vw;
+      }
+      .mint-mint{
+        font-size: 2.75vw;
+      }
+      .mint-animation{
+        max-width: 30%;
+      }
+      .mint-button{
+        font-size: 2.5vw;
+      }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media screen and (min-width: 1200px) { 
+    .mint-member-width{
+        width: 100%;
+      }
+        .mint-member{
+        font-size: 1.75vw;
+      }
+      .mint-includes{
+        font-size: 2.75vw;
+      }
+      .mint-minted{
+        font-size: 4.5vw;
+      }
+      .mint-mint{
+        font-size: 2.75vw;
+      }
+      .mint-animation{
+        max-width: 30%;
+      }
+      .mint-button{
+        font-size: 2.5vw;
+      }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media screen and (min-width: 1400px) { 
+    .mint-member-width{
+        width: 100%;
+      }
+        .mint-member{
+        font-size: 1.76vw;
+      }
+      .mint-includes{
+        font-size: 2.75vw;
+      }
+      .mint-minted{
+        font-size: 4.5vw;
+      }
+      .mint-mint{
+        font-size: 2.75vw;
+      }
+      .mint-animation{
+        max-width: 30%;
+      }
+      .mint-button{
+        font-size: 2.5vw;
+      }
+}

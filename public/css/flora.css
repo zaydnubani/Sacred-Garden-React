@@ -1,0 +1,231 @@
+/* x-small devices (landscape phones, 250px and up) */
+@media screen and (min-width: 250px) {
+    .signup-popup{
+        font-size: 5.5vw;
+    }
+    .form-popup{
+        width: 85%;
+    }
+    .popup-main{
+        font-size: 4vw;
+    }
+    .lfg-popup{
+        width: 85%;
+        font-size: 3.5vw;
+    }
+    .flora-member{
+        font-size: 7vw;
+    }
+    .flora-perk{
+        font-size: 5vw;
+    }
+    .flora-container{
+        width: 100%;
+    }
+} 
+
+/* Small devices (landscape phones, 360px and up) */
+@media screen and (min-width: 360px) {
+    
+    .signup-popup{
+        font-size: 5.5vw;
+    }
+    .form-popup{
+        width: 85%;
+    }
+    .popup-main{
+        font-size: 4vw;
+    }
+    .lfg-popup{
+        width: 85%;
+        font-size: 3.5vw;
+    }
+    .flora-member{
+        font-size: 7vw;
+    }
+    .flora-perk{
+        font-size: 5vw;
+    }
+    .flora-container{
+        width: 100%;
+    }
+ 
+} 
+
+/* Small devices (landscape phones, 576px and up) */
+@media screen and (min-width: 576px) {
+    .signup-popup{
+        font-size: 5.5vw;
+    }
+    .form-popup{
+        width: 85%;
+    }
+    .popup-main{
+        font-size: 4vw;
+    }
+    .lfg-popup{
+        width: 85%;
+        font-size: 3.5vw;
+    }
+    .flora-member{
+        font-size: 5vw;
+    }
+    .flora-perk{
+        font-size: 4vw;
+    }
+    .flora-container{
+        width: 65%;
+    }
+} 
+
+/* Medium devices (tablets, 768px and up) */
+@media screen and (min-width: 768px) { 
+    .signup-popup{
+        font-size: 6.25vw;
+    }
+    .form-popup{
+        width: 85%;
+    }
+    .popup-main{
+        font-size: 4vw;
+    }
+    .lfg-popup{
+        width: 85%;
+        font-size: 3.5vw;
+    }
+    .flora-member{
+        font-size: 3vw;
+    }
+    .flora-perk{
+        font-size: 2.75vw;
+    }
+    .flora-container{
+        width: 45%;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media screen and (min-width: 992px) { 
+    .signup-popup{
+        font-size: 6.25vw;
+    }
+    .form-popup{
+        width: 85%;
+    }
+    .popup-main{
+        font-size: 4vw;
+    }
+    .lfg-popup{
+        width: 85%;
+        font-size: 3.5vw;
+    }
+    .signup-popup{
+        font-size: 6.25vw;
+    }
+    .form-popup{
+        width: 85%;
+    }
+    .popup-main{
+        font-size: 4vw;
+    }
+    .lfg-popup{
+        width: 85%;
+        font-size: 3.5vw;
+    }
+    .flora-member{
+        font-size: 3vw;
+    }
+    .flora-perk{
+        font-size: 2.25vw;
+    }
+    .flora-container{
+        width: 45%;
+    }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media screen and (min-width: 1200px) { 
+    .signup-popup{
+        font-size: 6.25vw;
+    }
+    .form-popup{
+        width: 85%;
+    }
+    .popup-main{
+        font-size: 4vw;
+    }
+    .lfg-popup{
+        width: 85%;
+        font-size: 3.5vw;
+    }
+    .flora-member{
+        font-size: 1.75vw;
+    }
+    .flora-perk{
+        font-size: 1.75vw;
+    }
+    .flora-container{
+        width: 25%;
+    }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media screen and (min-width: 1400px) { 
+    .signup-popup{
+        font-size: 6.25vw;
+    }
+    .form-popup{
+        width: 85%;
+    }
+    .popup-main{
+        font-size: 4vw;
+    }
+    .lfg-popup{
+        width: 85%;
+        font-size: 3.5vw;
+    }
+    .flora-member{
+        font-size: 1.75vw;
+    }
+    .flora-perk{
+        font-size: 1.75vw;
+    }
+    .flora-container{
+        width: 25%;
+    }
+}
+
+
+.popup {
+
+    background-image: url('/images/backgrounds/body/B6.png');
+    
+}
+
+
+
+.nft {
+
+    /* flex layout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    /* sizing and spacing */
+    height: auto;
+
+}
+
+.nft.membership div{
+
+    /* flex layout */
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+
+
