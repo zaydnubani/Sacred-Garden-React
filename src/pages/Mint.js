@@ -134,6 +134,7 @@ const Mint = () => {
     toast.promise(promise, {
       loading: "Please confirm the transaction.",
       success: () => {
+        console.log(`${web3Onboard}, ${price}, ${stage}, ${setNFTIDs}`)
         setComplete(true)
         return "Mint initiated."
       },
