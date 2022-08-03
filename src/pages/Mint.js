@@ -4,19 +4,14 @@ import mint_2100 from '../images/frames/mint_2100.png'
 import logo_1 from '../images/gifs/Logo_1.gif'
 import web from '../images/gifs/web.gif'
 
-import { WinterCheckout } from '@usewinter/checkout';
-import { useConnectWallet, useWallets } from '@web3-onboard/react';
+import { useConnectWallet } from '@web3-onboard/react';
 import initWeb3Onboard from '../services';
 import { DeltaFloraGenesis__factory } from '../ethers-contracts';
 import { ethers } from 'ethers';
 import toast, { Toaster } from 'react-hot-toast';
-// import MerkleTree from 'merkletreejs';
-// import keccak256 from 'keccak256';
 import { TESTNET_LEAVES_DATA } from '../emarald/SG_leaves.js';
 import MerkleTree from 'merkletreejs';
 import keccak256 from 'keccak256';
-import { EtherscanProvider, Provider } from '@ethersproject/providers';
-import { Event } from '@ethersproject/providers/lib/base-provider';
 
 
 // const MAINNET_CONTRACT_ADDRESS = "0x50333672e81463285Ba9d231E8280575Ebb7F2BD";
@@ -32,7 +27,7 @@ const Mint = () => {
   const [web3Onboard, setWeb3Onboard] = useState();
 
   // this is used to clarify if a wallet is present and to connect/disconnect from a wallet
-  const [{ wallet, connecting }, connect, disconnect] = useConnectWallet()  
+  const [{ wallet, connecting }, connect] = useConnectWallet()  
 
   // this sets the connected wallet's providers and references their addresses to be used during transactions
   const [provider, setProvider] = useState();
@@ -139,6 +134,7 @@ const Mint = () => {
     toast.promise(promise, {
       loading: "Please confirm the transaction.",
       success: () => {
+        console.log(`Minting STAGE : ${stage}, Price : ${price}, Onboard ${web3Onboard}, ${setNFTIDs(null)} `)
         setComplete(true)
         return "Mint initiated."
       },
@@ -320,7 +316,7 @@ const Mint = () => {
           {nftID ? <GetIDs /> : <NoIDs />}
 
           <div className='container align-center justify-center text-center w-50 m-1'>
-              <a href="#" className='link solid-red p-2 web3-open text w-50 br-5'>VIEW ON OPENSEA</a>
+              <a href="https://opensea.io/" className='link solid-red p-2 web3-open text w-50 br-5'>VIEW ON OPENSEA</a>
           </div>
 
           <div className='text-center w-25 m-1'>
