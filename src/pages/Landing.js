@@ -28,7 +28,7 @@ const Landing = () => {
             <img className='absolute img m-auto landing-logo' src={sacrd_gardn_neon} alt="logo center page" />
 
         
-            <div className='popup absolute z-2 container align-center direct-col br-5 p-1 transition-2' style={fit}>
+            <div className='popup absolute z-2 container align-center direct-col br-5 p-1 transition-2' style={{top: '50%', left: '50%', transform: 'translate(-50%, -50%)',backgroundImage: "url('/images/backgrounds/body/B6.png')"}}>
                 <div className="container">
                     <span className="text  text-center red live-pop">△FLORA NFT premint is live!</span>
                 </div>

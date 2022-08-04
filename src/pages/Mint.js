@@ -46,8 +46,7 @@ const Mint = () => {
 
   const [nftID, setNFTIDs] = useState();
 
-  // const connectedWallets = useWallets();
-
+  const [winterMint, setWinter] = useState();
 
   // const previouslyConnectedWallets = JSON.parse(
   //   window.localStorage.getItem('connectedWallets')
@@ -124,7 +123,7 @@ const Mint = () => {
     setStage(result)
      console.log(`Current Minting Stage : ${result}`)
    })
- }, [ provider ])
+  }, [ provider ])
 
   // This is the body that handles the purchase between the wallet provider and the contract
   const handleMint = (amount) => {
@@ -194,42 +193,41 @@ const Mint = () => {
   // }
 
   const sendMint = async (amount) => {
-      // retrieves the wallet providers address
-      const address = wallet.accounts[0].address;
-      if (provider && wallet?.accounts[0]){
-        try { 
-          console.log('Trying to transact')
-          // This connects the contract to the wallet provider to initialize communication and pass information
-          const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider.getSigner());
-          // Returns a promise to await a response from the contract to send it's mintPrice
-          const stage = await sacrdgardn.currentStage();
-          const pricePer = (await sacrdgardn.stages(stage))[2];
-  
-          console.log('quanity', amount);
-          console.log('address', address);
-          console.log('price', (pricePer.mul(amount)).toString())
-  
-          await sacrdgardn.publicMint(
-            address,
-            amount,
-            { value: pricePer.mul(amount) }
-          ).then((event) => {
-            console.log(event)
-            
-          });
-        } catch (err) {
-            // console.log(err)
-            throw new Error("Transaction failed to initiate.");
-        
-          }
-        return true;
+    // retrieves the wallet providers address
+    const address = wallet.accounts[0].address;
+    if (provider && wallet?.accounts[0]){
+      try { 
+        console.log('Trying to transact')
+        // This connects the contract to the wallet provider to initialize communication and pass information
+        const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider.getSigner());
+        // Returns a promise to await a response from the contract to send it's mintPrice
+        const stage = await sacrdgardn.currentStage();
+        const pricePer = (await sacrdgardn.stages(stage))[2];
+
+        console.log('quanity', amount);
+        console.log('address', address);
+        console.log('price', (pricePer.mul(amount)).toString())
+
+        await sacrdgardn.publicMint(
+          address,
+          amount,
+          { value: pricePer.mul(amount) }
+        ).then((event) => {
+          console.log(event)
+          
+        });
+      } catch (err) {
+          // console.log(err)
+          throw new Error("Transaction failed to initiate.");
+      
+        }
+      return true;
       }
       else {
-        return false;
-      }
+      return false;
     }
+  }
 
-  
   const inc = () => {
     if (3> quantity & quantity >= 1){
       setQuantity((prev) => prev + 1);
@@ -259,36 +257,37 @@ const Mint = () => {
   }
 
   
-    const PrePurchase = () => {
+  const PrePurchase = () => {
 
-      const [showModal, setModal] = useState();
+    const [showModal, setModal] = useState();
 
-      useEffect(()=>{
-        const winter = document.getElementById('winter')
-        winter.addEventListener('click', () =>{setModal(true)})
-        return window.removeEventListener('click', () =>{setModal(true)})
-      },[])
+    useEffect(()=>{
+      const winter = document.getElementById('winter')
+      winter.addEventListener('click', () =>{setModal(true)})
+      return window.removeEventListener('click', () =>{setModal(true)})
+    },[])
 
-      function handleWindowEvent(event) {
-        if (event.data === "closeWinterCheckoutModal") {
-            // properly close the winter modal so it can be opened again
-            setModal(false)
-        } else if (event.data.name === 'successfulWinterCheckout') {
-        // Successfully checked out. This event contains information 
-        // you can use to continue the flow: 
-        console.log(event.data.transactionhash) // do what you need with the txhash here! 
-        console.log(event.data.email) // email that the user bought an NFT with
-        setComplete(true)
-        }
+    function handleWindowEvent(event) {
+      if (event.data === "closeWinterCheckoutModal") {
+          // properly close the winter modal so it can be opened again
+          setModal(false)
+      } else if (event.data.name === 'successfulWinterCheckout') {
+      // Successfully checked out. This event contains information 
+      // you can use to continue the flow: 
+      console.log(event.data.transactionhash) // do what you need with the txhash here! 
+      console.log(event.data.email) // email that the user bought an NFT with
+      setComplete(true)
+      setWinter(true)
       }
+    }
 
-      useEffect(() => {
-          window.addEventListener("message", handleWindowEvent)
-          return () => window.removeEventListener("message", handleWindowEvent)
-      }, [])
+    useEffect(() => {
+        window.addEventListener("message", handleWindowEvent)
+        return () => window.removeEventListener("message", handleWindowEvent)
+    }, [])
 
 
-      return (
+    return (
       <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-5' style={{backgroundImage: `url('${mint_2100}')`}}>
         <Toaster />
         <div className='container justify-center w-100'>
@@ -339,14 +338,26 @@ const Mint = () => {
       </div>
     )
   }
-
+  
   const GetIDs = () => {
+    
+    const SeedMinted = () => {
+      return(<span className='text red web3-planted'>
+      {minted} Seeds Minted
+      </span>
+      )
+    }
+
+    const MintedWinter = () => {
+      return(<span className='text red web3-planted'>
+      Check your email for confirmation! It might be in your spam folder!
+      </span>)
+    }
+  
     return (
       <div className='container direct-row justify-center m-2 w-75'>
           <div className='w-50 text-center'>
-              <span className='text red web3-planted'>
-                  You Planted Seeds: 
-              </span>
+              {winterMint ? <MintedWinter /> : <SeedMinted />}
           </div>
           <div className='w-50'>
               <ul className='m-0 p-0 web3-planted' style={{listStyle:'none'}}>
@@ -363,9 +374,7 @@ const Mint = () => {
     return(
       <div className='container direct-row justify-center m-2 w-75'>
         <div className='w-100 text-center'>
-            <span className='text red web3-planted'>
-              {minted} Seeds Minted
-            </span>
+            
         </div>
       </div>
     )
