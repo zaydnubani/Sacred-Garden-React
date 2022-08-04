@@ -305,11 +305,11 @@ const Mint = () => {
         <div className='container w-50 m-2'>
           <div className='container w-50 justify-center align-center text red fs-2'>
             <span>Pre-sale: </span>
-            <span className='p-lr-1'> 0.055 ETH </span>
+            <span className='p-lr-1'>.055 ETH </span>
           </div>
           <div className='container w-50 justify-center text red fs-2'>
             <span>Public sale:</span>
-            <span className='p-lr-1'> 0.088 ETH </span>
+            <span className='p-lr-1'>.088 ETH </span>
           </div>   
         </div>
 
@@ -325,7 +325,7 @@ const Mint = () => {
           </button>
         </div>
         <div className='container direct-col space-evenly align-center w-50'>
-          <button id='winter' className='btn text solid-red p-1 m-2 mint-button br-5 w-75'>Mint with card</button>
+          <button id='winter' className='btn text solid-red p-1 m-2 mint-button br-5 w-75'>MINT WITH CARD</button>
         </div>
         <WinterCheckout 
             projectId={6858} 
@@ -388,7 +388,7 @@ const Mint = () => {
           {nftID ? <GetIDs /> : <NoIDs />}
 
           <div className='container align-center justify-center text-center w-50 m-1'>
-              <a href="https://opensea.io/" className='link solid-red p-2 web3-open text w-50 br-5'>VIEW ON OPENSEA</a>
+              <a href="https://opensea.io/collection/deltaflora" className='link solid-red p-2 web3-open text w-50 br-5'>VIEW ON OPENSEA</a>
           </div>
 
           <div className='text-center w-25 m-1'>
