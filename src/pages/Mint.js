@@ -349,9 +349,15 @@ const Mint = () => {
     }
 
     const MintedWinter = () => {
-      return(<span className='text red web3-planted'>
-      Check your email for confirmation! It might be in your spam folder!
-      </span>)
+      return(
+        <span className='text red web3-planted'>
+          Check your email for a message from 
+          <br />
+          orders@usewinter.com
+          <br /> 
+          It might go to spam or promotions.
+        </span>
+      )
     }
   
     return (
@@ -381,36 +387,59 @@ const Mint = () => {
   }
 
   const PostPurchase = () => {
+
+    const popup = () => {
+      const popers = document.getElementById('popers')
+      popers.style = 'display: none; visibility: hidden;'
+    }
     
     return(
       <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-2' style={{backgroundImage: `url('${mint_2100}')`}}>
-          
-          <div className='text-center m-1'>
-              <span className='text red web3-congrats'>CONGRATS!</span>
+
+        <div id='popers' className='fixed z-2 container align-center direct-col br-5 p-1 transition-2 w-75 m-auto t-25' style={{backgroundImage: "url('/images/backgrounds/body/B6.png')"}}>
+          <div className="container">
+                <span className="text  text-center red live-pop">Welcome to the floraverse!</span>
+            </div>
+            <p className="text text-center red message-p">
+              This is your first step into the garden. Your seed will reveal itself on August 11. Stay tuned for info on claiming your gifts, special events and more! 
+            </p>
+            <button onClick={() => {popup()}} className="container justify-center btn link solid-red br-5 w-75">
+                <span className="text mint-p p-2">OKAY</span>
+            </button> 
           </div>
 
-          <div className='container justify-center align-center w-75'>
-              <img className='img web3-animation br-10' src={web} alt=''>
-              </img>
-          </div>
+        <div className='text-center m-1'>
+            <span className='text red web3-congrats'>CONGRATS!</span>
+        </div>
 
-          {nftID ? <GetIDs /> : <NoIDs />}
+        <div className='container justify-center align-center w-75'>
+            <img className='img web3-animation br-10' src={web} alt=''>
+            </img>
+        </div>
 
-          <div className='container align-center justify-center text-center w-50 m-1'>
-              <a href="https://opensea.io/collection/deltaflora" className='link solid-red p-2 web3-open text w-50 br-5'>VIEW ON OPENSEA</a>
-          </div>
+        {nftID ? <GetIDs /> : <NoIDs />}
 
-          <div className='text-center w-25 m-1'>
-              <span className='text red web3-reveal w-100'>REVEAL WILL OCCUR ON AUGUST 11TH</span>
-          </div>
+        <div className='text-center w-50 m-1'>
+            <span className='text red web3-reveal'>
+            Thanks for minting with us!
+            </span>
+        </div>
+
+        <div className='container align-center justify-center text-center w-50 m-1'>
+            <a href="https://opensea.io/collection/deltaflora" className='link solid-red p-2 web3-open text w-50 br-5'>VIEW ON OPENSEA</a>
+        </div>
 
       </div>
     )
   }
 
   return ( 
-    <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-3' style={{backgroundImage: `url('${mint_2100}')`}}>
-      { complete ? <PostPurchase /> : <PrePurchase /> }
+    <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-3' style={{backgroundImage: `url('${mint_2100}')`, height: `${window.innerHeight *1.15}px`}}>
+      { 
+      complete ?
+      <PostPurchase /> 
+      : <PrePurchase />
+      } 
     </div>
   )
 }
