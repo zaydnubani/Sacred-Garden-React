@@ -288,7 +288,7 @@ const Mint = () => {
 
 
     return (
-      <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-5' style={{backgroundImage: `url('${mint_2100}')`}}>
+      <div className='container direct-col justify-center align-center w-100 h-100 bg-p-bot bg-s-100 bg-norepeat p-5'>
         <Toaster />
         <div className='container justify-center w-100'>
             <img className='img mint-animation' src={logo_1} alt=""/>
@@ -302,11 +302,11 @@ const Mint = () => {
         </div>
 
         <div className='container w-50 m-2'>
-          <div className='container w-50 justify-center align-center text red fs-2'>
+          <div className='container direct-col w-50 justify-center align-center text text-center red fs-2 mint-price '>
             <span>Pre-sale: </span>
             <span className='p-lr-1'>.055 ETH </span>
           </div>
-          <div className='container w-50 justify-center text red fs-2'>
+          <div className='container w-50 justify-center text text-center red fs-2 mint-price direct-col'>
             <span>Public sale:</span>
             <span className='p-lr-1'>.088 ETH </span>
           </div>   
@@ -316,15 +316,13 @@ const Mint = () => {
           <div className='container align-center space-evenly direct-row w-50'>
           {wallet ? <GoQuantity /> : null }
           </div>
-          <button className='btn text solid-red p-1 m-2 mint-button br-5 w-75' 
+          <button className='btn text solid-red p-2 m-2 mint-button br-5' 
           onClick={() => (wallet? handleMint(quantity) : connect())}
           // onClick={() => (wallet? null : connect())}
           >
             {connecting ? 'CONNECTING' : wallet ? 'MINT FLORA' : 'CONNECT WALLET'}
           </button>
-        </div>
-        <div className='container direct-col space-evenly align-center w-50'>
-          <button id='winter' className='btn text solid-red p-1 m-2 mint-button br-5 w-75'>MINT WITH CARD</button>
+          <button id='winter' className='btn text solid-red p-2 m-2 mint-button br-5'>MINT WITH CARD</button>
         </div>
         <WinterCheckout 
             projectId={6858} 
@@ -340,31 +338,9 @@ const Mint = () => {
   }
   
   const GetIDs = () => {
-    
-    const SeedMinted = () => {
-      return(<span className='text red web3-planted'>
-      {minted} Seeds Minted
-      </span>
-      )
-    }
-
-    const MintedWinter = () => {
-      return(
-        <span className='text red web3-planted'>
-          Check your email for a message from 
-          <br />
-          orders@usewinter.com
-          <br /> 
-          It might go to spam or promotions.
-        </span>
-      )
-    }
   
     return (
       <div className='container direct-row justify-center m-2 w-75'>
-          <div className='w-50 text-center'>
-              {winterMint ? <MintedWinter /> : <SeedMinted />}
-          </div>
           <div className='w-50'>
               <ul className='m-0 p-0 web3-planted' style={{listStyle:'none'}}>
                   <li className='text red'>#<span className='text' style={{color: 'rgb(240, 206, 65)'}}>202</span> / 5,555</li>
@@ -376,37 +352,49 @@ const Mint = () => {
     )
   }
 
-  const NoIDs = () => {
-    return(
-      <div className='container direct-row justify-center m-2 w-75'>
-        <div className='w-100 text-center'>
-            
-        </div>
-      </div>
-    )
-  }
-
   const PostPurchase = () => {
 
     const popup = () => {
       const popers = document.getElementById('popers')
       popers.style = 'display: none; visibility: hidden;'
     }
+
+    const SeedMinted = () => {
+      return(<span className='text red web3-planted'>
+      {minted} Seeds Minted
+      </span>
+      )
+    }
+
+    const MintedWinter = () => {
+      return(
+        <span className='text red web3-reveal-winter w-90'>
+          Check your email for a message from 
+          <br />
+          orders@usewinter.com
+          <br /> 
+          It might go to spam or promotions.
+        </span>
+      )
+    }
     
     return(
-      <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-2' style={{backgroundImage: `url('${mint_2100}')`}}>
+      <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-2 h-100' style={{backgroundImage: `url('${mint_2100}')`}}>
 
-        <div id='popers' className='fixed z-2 container align-center direct-col br-5 p-1 transition-2 w-75 m-auto t-25' style={{backgroundImage: "url('/images/backgrounds/body/B6.png')"}}>
+        {/* <div id='popers' className='fixed z-2 container align-center direct-col br-5 p-2 transition-2 w-75 m-auto t-25' style={{backgroundImage: "url('/images/backgrounds/body/B6.png')"}}>
           <div className="container">
                 <span className="text  text-center red live-pop">Welcome to the floraverse!</span>
             </div>
-            <p className="text text-center red message-p">
+            <p className="text text-center red message-p web3-reveal-winter w-90">
               This is your first step into the garden. Your seed will reveal itself on August 11. Stay tuned for info on claiming your gifts, special events and more! 
             </p>
+            {winterMint ? 
+            <MintedWinter /> 
+            : null }
             <button onClick={() => {popup()}} className="container justify-center btn link solid-red br-5 w-75">
                 <span className="text mint-p p-2">OKAY</span>
             </button> 
-          </div>
+        </div> */}
 
         <div className='text-center m-1'>
             <span className='text red web3-congrats'>CONGRATS!</span>
@@ -417,7 +405,11 @@ const Mint = () => {
             </img>
         </div>
 
-        {nftID ? <GetIDs /> : <NoIDs />}
+        { nftID ? <GetIDs /> : null }
+
+        <div className='w-75 text-center'>
+          {minted ?  <SeedMinted /> : null }
+        </div>
 
         <div className='text-center w-50 m-1'>
             <span className='text red web3-reveal'>
@@ -425,8 +417,8 @@ const Mint = () => {
             </span>
         </div>
 
-        <div className='container align-center justify-center text-center w-50 m-1'>
-            <a href="https://opensea.io/collection/deltaflora" className='link solid-red p-2 web3-open text w-50 br-5'>VIEW ON OPENSEA</a>
+        <div className='container align-center justify-center text-center w-75 m-1'>
+            <a href="https://opensea.io/collection/deltaflora" className='link solid-red p-2 web3-open text br-5'>VIEW ON OPENSEA</a>
         </div>
 
       </div>
@@ -434,7 +426,7 @@ const Mint = () => {
   }
 
   return ( 
-    <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-3' style={{backgroundImage: `url('${mint_2100}')`, height: `${window.innerHeight *1.15}px`}}>
+    <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-1' style={{backgroundImage: `url('${mint_2100}')`, height: `${window.innerHeight *.9}px`}}>
       { 
       complete ?
       <PostPurchase /> 

@@ -4,16 +4,19 @@
         font-size: 2.75vw;
     }
     .web3-congrats{
-        font-size: 4vw;
+        font-size: 8.75vw;
     }
     .web3-animation{
-        max-width: 40%;
+        max-width: 70%;
     }
     .web3-reveal{
-        font-size: 2.5vw;
+        font-size: 5.5vw;
+    }
+    .web3-reveal-winter{
+        font-size: 4vw;
     }
     .web3-open{
-        font-size: 2.5vw;
+        font-size: 5vw;
     }
   } 
   
@@ -23,16 +26,19 @@
         font-size: 2.75vw;
     }
     .web3-congrats{
-        font-size: 4vw;
+        font-size: 7vw;
     }
     .web3-animation{
-        max-width: 40%;
+        max-width: 60%;
     }
     .web3-reveal{
-        font-size: 2.5vw;
+        font-size: 3.5vw;
+    }
+    .web3-reveal-winter{
+        font-size: 4vw;
     }
     .web3-open{
-        font-size: 2.5vw;
+        font-size: 3.5vw;
     }
   } 
   
@@ -42,16 +48,19 @@
         font-size: 2.75vw;
     }
     .web3-congrats{
-        font-size: 4vw;
+        font-size: 6.5vw;
     }
     .web3-animation{
-        max-width: 40%;
+        max-width: 50%;
     }
     .web3-reveal{
-        font-size: 2.5vw;
+        font-size: 3.25vw;
+    }
+    .web3-reveal-winter{
+        font-size: 4vw;
     }
     .web3-open{
-        font-size: 2.5vw;
+        font-size: 3.25vw;
     }
   }
   
@@ -61,16 +70,19 @@
         font-size: 2.75vw;
     }
     .web3-congrats{
-        font-size: 4vw;
+        font-size: 5.5vw;
     }
     .web3-animation{
-        max-width: 40%;
+        max-width: 37.5%;
     }
     .web3-reveal{
-        font-size: 2.5vw;
+        font-size: 2.75vw;
+    }
+    .web3-reveal-winter{
+        font-size: 4vw;
     }
     .web3-open{
-        font-size: 2.5vw;
+        font-size: 3vw;
     }
   }
   
@@ -80,13 +92,16 @@
         font-size: 2.75vw;
     }
     .web3-congrats{
-        font-size: 4vw;
+        font-size: 5vw;
     }
     .web3-animation{
-        max-width: 40%;
+        max-width: 37.5%;
     }
     .web3-reveal{
-        font-size: 2.5vw;
+        font-size: 2.25vw;
+    }
+    .web3-reveal-winter{
+        font-size: 4vw;
     }
     .web3-open{
         font-size: 2.5vw;
@@ -96,18 +111,21 @@
   /* XX-Large devices (larger desktops, 1400px and up) */
   @media screen and (min-width: 1400px) { 
     .web3-planted{
-        font-size: 2.5vw;
+        font-size: 2.75vw;
     }
     .web3-congrats{
-        font-size: 3.5vw;
+        font-size: 4.25vw;
     }
     .web3-animation{
-        max-width: 40%;
+        max-width: 30%;
     }
     .web3-reveal{
-        font-size: 2vw;
+        font-size: 1.75vw;
+    }
+    .web3-reveal-winter{
+        font-size: 4vw;
     }
     .web3-open{
-        font-size: 2vw;
+        font-size: 2.25vw;
     }
   }
