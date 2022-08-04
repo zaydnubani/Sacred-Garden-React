@@ -381,7 +381,7 @@ const Mint = () => {
     return(
       <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-2 h-100' style={{backgroundImage: `url('${mint_2100}')`}}>
 
-        {/* <div id='popers' className='fixed z-2 container align-center direct-col br-5 p-2 transition-2 w-75 m-auto t-25' style={{backgroundImage: "url('/images/backgrounds/body/B6.png')"}}>
+        <div id='popers' className='fixed z-2 container align-center direct-col br-5 p-2 transition-2 w-75 m-auto t-25' style={{backgroundImage: "url('/images/backgrounds/body/B6.png')"}}>
           <div className="container">
                 <span className="text  text-center red live-pop">Welcome to the floraverse!</span>
             </div>
@@ -394,7 +394,7 @@ const Mint = () => {
             <button onClick={() => {popup()}} className="container justify-center btn link solid-red br-5 w-75">
                 <span className="text mint-p p-2">OKAY</span>
             </button> 
-        </div> */}
+        </div>
 
         <div className='text-center m-1'>
             <span className='text red web3-congrats'>CONGRATS!</span>
