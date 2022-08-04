@@ -322,7 +322,7 @@ const Mint = () => {
           >
             {connecting ? 'CONNECTING' : wallet ? 'MINT FLORA' : 'CONNECT WALLET'}
           </button>
-          <button id='winter' className='btn text solid-red p-2 m-2 mint-button br-5'>MINT WITH CARD</button>
+          <button id='winter' className='btn text solid-red p-2 m-2 mint-button br-5'>PAY W/ CARD</button>
         </div>
         <WinterCheckout 
             projectId={6858} 
