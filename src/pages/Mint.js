@@ -302,14 +302,9 @@ const Mint = () => {
         </div>
 
         <div className='container w-50 m-2'>
-          <div className='container direct-col w-50 justify-center align-center text text-center red fs-2 mint-price '>
-            <span>Pre-sale: </span>
+          <div className='container direct-col w-100 justify-center align-center text text-center red fs-2 mint-price '>
             <span className='p-lr-1'>.055 ETH </span>
           </div>
-          <div className='container w-50 justify-center text text-center red fs-2 mint-price direct-col'>
-            <span>Public sale:</span>
-            <span className='p-lr-1'>.088 ETH </span>
-          </div>   
         </div>
 
         <div className='container direct-col space-evenly align-center w-50'>
@@ -379,7 +374,8 @@ const Mint = () => {
     }
     
     return(
-      <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-2 h-100' style={{backgroundImage: `url('${mint_2100}')`}}>
+      // container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-2 h-100
+      <div className='container-fluid' style={{backgroundImage: `url('${mint_2100}')`}}>
 
         <div id='popers' className='fixed z-2 container align-center direct-col br-5 p-2 transition-2 w-75 m-auto t-25' style={{backgroundImage: "url('/images/backgrounds/body/B6.png')"}}>
           <div className="container">
@@ -427,11 +423,12 @@ const Mint = () => {
 
   return ( 
     <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-1' style={{backgroundImage: `url('${mint_2100}')`, height: `${window.innerHeight *.9}px`}}>
-      { 
-      complete ?
-      <PostPurchase /> 
-      : <PrePurchase />
-      } 
+          {
+            complete ?
+            <PostPurchase /> 
+            : 
+            <PrePurchase />
+          }
     </div>
   )
 }

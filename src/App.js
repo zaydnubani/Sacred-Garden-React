@@ -22,16 +22,16 @@ function App() {
         <Route exact path="/team">
           <Team />
         </Route>
-        <Route exact path="/Roadmap">
+        <Route exact path="/roadmap">
           <Roadmap />
         </Route>
-        <Route exact path="/Partners">
+        <Route exact path="/partners">
           <Partners />
         </Route>
-        <Route exact path="/Flora">
+        <Route exact path="/plants">
             <Flora />
         </Route>
-        <Route exact path="/Mint">
+        <Route exact path="/mint">
           <Mint />
         </Route>
         <Route exact path="/terms">
