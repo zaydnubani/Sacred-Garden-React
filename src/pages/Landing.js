@@ -41,7 +41,7 @@ const Landing = () => {
     return(
         <div className='row g-5 d-flex'>
 
-            <div className='col-12 overflow-hidden'>
+            <div className='order-4 order-sm-4 order-md-1 order-xxl-1 col-12 overflow-hidden'>
                 <Marquee gradientWidth={25} pauseOnHover='true' className='rounded' speed={10}>
                     {NFT.map((value) => { return(
                     <img src={value} alt={value} className="" key={value}/>
@@ -49,7 +49,7 @@ const Landing = () => {
                 </Marquee>
             </div>
             
-            <div className="'col-xxl-4 col-xl-4 col-sm-12 Flora-Font d-flex text-center flex-column align-items-center justify-content-evenly">
+            <div className="order-3 order-sm-3 order-xxl-2 col-4 col-sm-12 col-md-6 col-xxl-4 Flora-Font d-flex text-center flex-column align-items-center justify-content-evenly">
                 
                 <div className="m-3">
                     <a href='/mint'>
@@ -68,7 +68,7 @@ const Landing = () => {
                 </div>
             </div>
 
-            <div className='col-xxl-4 col-xl-4 col-sm-12 Flora-Font text-center d-flex flex-column align-items-center'>
+            <div className='order-1 order-sm-1 order-xxl-3 col-4 col-sm-12 col-md-6 col-xxl-4 Flora-Font text-center d-flex flex-column align-items-center'>
                 <div className="d-flex flex-column align-items-center justify-content-evenly p-3 rounded flex-fill" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
                     <p className="fs-2 p-3" >
                         Sacred Garden is a real and virtual  
@@ -83,7 +83,7 @@ const Landing = () => {
                 </div>
             </div>
 
-            <div className="accordion accordion-flush d-flex flex-column justify-content-evenly col-xxl-4 col-xl-4 col-sm-12" id="roadmap">
+            <div className="order-2 order-sm-2 order-md-4 order-xxl-4 col-4 col-sm-12 col-md-12 col-xxl-4 accordion accordion-flush d-flex flex-column justify-content-evenly" id="roadmap">
                 <div className="accordion-item m-2 rounded">
                     <h2 className="accordion-header" id="flora-header">
                         <button className="accordion-button collapsed fs-1 Flora-Font rounded" type="button" data-bs-toggle="collapse" data-bs-target="#flora-collapse" aria-expanded="false" aria-controls="flora-collapse" style={{backgroundColor: '#FFC4E8', color: '#00544B'}}>
@@ -217,7 +217,7 @@ const Landing = () => {
                 </div>
             </div>
 
-            <div className="'col-12 Flora-Font d-flex text-center flex-row overflow-hidden align-items-center justify-content-evenly">
+            <div className="order-5 order-sm-5 order-xxl-5 col-12 Flora-Font d-flex text-center flex-row overflow-hidden align-items-center justify-content-evenly">
                     <Marquee gradientWidth={25} className='rounded'>
                         <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-2">IRL Plants</span></div>
                         <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-2">|</span></div>
