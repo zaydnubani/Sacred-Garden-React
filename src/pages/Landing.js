@@ -69,15 +69,15 @@ const Landing = () => {
             </div>
 
             <div className='col-xxl-4 col-xl-4 col-sm-12 Flora-Font text-center d-flex flex-column align-items-center'>
-                <div className="d-flex flex-column align-items-center justify-content-evenly p-3 rounded w-100 flex-fill" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
-                    <p className="fs-3 p-3" >
+                <div className="d-flex flex-column align-items-center justify-content-evenly p-3 rounded flex-fill" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
+                    <p className="fs-2 p-3" >
                         Sacred Garden is a real and virtual  
                         psychedelic plant community with
                         a focus on conservation, cultivation 
                         and education. ΔFLORA
                         is your membership token.
                     </p>
-                    <a  href="/Mint" className="py-4 rounded fs-3 text-decoration-none text-uppercase w-75" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
+                    <a  href="/Mint" className="py-4 rounded fs-2 text-decoration-none text-uppercase w-75" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
                         <span className="">join our community</span>
                     </a> 
                 </div>
