@@ -49,7 +49,7 @@ const Landing = () => {
                 </Marquee>
             </div>
             
-            <div className="order-3 order-sm-3 order-xxl-2 col-4 col-sm-12 col-md-6 col-xxl-4 Flora-Font d-flex text-center flex-column align-items-center justify-content-evenly">
+            <div className="order-3 order-sm-3 order-xxl-2  col-sm-12 col-md-6 col-xxl-4 Flora-Font d-flex text-center flex-column align-items-center justify-content-evenly">
                 
                 <div className="m-3">
                     <a href='/mint'>
@@ -68,7 +68,7 @@ const Landing = () => {
                 </div>
             </div>
 
-            <div className='order-1 order-sm-1 order-xxl-3 col-4 col-sm-12 col-md-6 col-xxl-4 Flora-Font text-center d-flex flex-column align-items-center'>
+            <div className='order-1 order-sm-1 order-xxl-3  col-sm-12 col-md-6 col-xxl-4 Flora-Font text-center d-flex flex-column align-items-center'>
                 <div className="d-flex flex-column align-items-center justify-content-evenly p-3 rounded flex-fill" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
                     <p className="fs-2 p-3" >
                         Sacred Garden is a real and virtual  
@@ -83,7 +83,7 @@ const Landing = () => {
                 </div>
             </div>
 
-            <div className="order-2 order-sm-2 order-md-4 order-xxl-4 col-4 col-sm-12 col-md-12 col-xxl-4 accordion accordion-flush d-flex flex-column justify-content-evenly" id="roadmap">
+            <div className="order-2 order-sm-2 order-md-4 order-xxl-4  col-sm-12 col-md-12 col-xxl-4 accordion accordion-flush d-flex flex-column justify-content-evenly" id="roadmap">
                 <div className="accordion-item m-2 rounded">
                     <h2 className="accordion-header" id="flora-header">
                         <button className="accordion-button collapsed fs-1 Flora-Font rounded" type="button" data-bs-toggle="collapse" data-bs-target="#flora-collapse" aria-expanded="false" aria-controls="flora-collapse" style={{backgroundColor: '#FFC4E8', color: '#00544B'}}>
