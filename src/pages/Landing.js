@@ -42,28 +42,6 @@ const Landing = () => {
     const NFT = [ 
         one, two, three, four, five, P1, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, P16, P17, P18, P19, P21, P23, P24, P25
     ]
-    
-    // non bootstrap start
-    // return (   
-    //     <div className="relative container align-center justify-center of-hidden" style={{height: `${window.innerHeight *.6}px`, width: `100vw`}}>
-    //         <div className='container align-center justify-center w-100 rotating'> 
-    //             <img className='img landing-bg' src={rotate_2100} alt="rotate" />
-    //         </div>
-    //         <img className='absolute img m-auto landing-logo' src={sacrd_gardn_neon} alt="logo center page" />
-    //         <div className='popup absolute z-2 container align-center direct-col br-5 p-1 transition-2' style={{top: '50%', left: '50%', transform: 'translate(-50%, -50%)',backgroundImage: "url('/images/backgrounds/body/B6.png')"}}>
-    //             <div className="container">
-    //                 <span className="text  text-center red live-pop">△FLORA NFT mint is live!</span>
-    //             </div>
-    //             <p className="text text-center red message-p">
-    //                 Sacred Garden is a real and virtual psychedelic plant community with a focus on conservation, cultivation and education. Our ΔFLORA NFT is your membership token.
-    //             </p>
-    //             <a  href="/Mint" onClick={window.localStorage.setItem('popped', 'true')} className="container justify-center btn link solid-red br-5 w-75">
-    //                 <span className="text mint-p p-2">Plant a Seed</span>
-    //             </a> 
-    //         </div>
-    //     </div>
-    // );
-    // non bootstrap end
    
     return(
         <div className='row g-5 d-flex'>
@@ -95,8 +73,8 @@ const Landing = () => {
             </div>
 
             <div className='col-xxl-4 col-xl-4 col-sm-12 Flora-Font text-center d-flex flex-column align-items-center'>
-                <div className="d-flex flex-column align-items-center justify-content-center p-3 rounded w-100 flex-fill" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
-                    <p className="fs-3 p-5" >
+                <div className="d-flex flex-column align-items-center justify-content-evenly p-3 rounded w-100 flex-fill" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
+                    <p className="fs-3 p-3" >
                         Sacred Garden is a real and virtual  
                         psychedelic plant community with
                         a focus on conservation, cultivation 
@@ -110,9 +88,9 @@ const Landing = () => {
             </div>
 
             <div className="accordion accordion-flush d-flex flex-column justify-content-evenly col-xxl-4 col-xl-4 col-sm-12" id="roadmap">
-                <div className="accordion-item m-4 rounded">
+                <div className="accordion-item m-2 rounded">
                     <h2 className="accordion-header" id="flora-header">
-                        <button className="accordion-button collapsed fs-3 Flora-Font rounded" type="button" data-bs-toggle="collapse" data-bs-target="#flora-collapse" aria-expanded="false" aria-controls="flora-collapse" style={{backgroundColor: '#FFC4E8', color: '#00544B'}}>
+                        <button className="accordion-button collapsed fs-1 Flora-Font rounded" type="button" data-bs-toggle="collapse" data-bs-target="#flora-collapse" aria-expanded="false" aria-controls="flora-collapse" style={{backgroundColor: '#FFC4E8', color: '#00544B'}}>
                         COMMUNITY
                         </button>
                     </h2>
@@ -122,9 +100,9 @@ const Landing = () => {
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item m-4 rounded">
+                <div class="accordion-item m-2 rounded">
                     <h2 class="accordion-header" id="flush-headingThree">
-                        <button class="accordion-button collapsed rounded Flora-Font fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" style={{backgroundColor: '#FFAC80', color: '#00544B'}}>
+                        <button class="accordion-button collapsed rounded Flora-Font fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" style={{backgroundColor: '#FFAC80', color: '#00544B'}}>
                             SHOP
                         </button>
                     </h2>
@@ -134,9 +112,9 @@ const Landing = () => {
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item m-4 rounded">
+                <div class="accordion-item m-2 rounded">
                     <h2 class="accordion-header" id="market-head">
-                        <button class="accordion-button collapsed rounded Flora-Font fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#market-collapse" aria-expanded="false" aria-controls="market-collapse" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
+                        <button class="accordion-button collapsed rounded Flora-Font fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#market-collapse" aria-expanded="false" aria-controls="market-collapse" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
                         ∆FLORA DROPS & PLANT MARKETPLACE
                         </button>
                     </h2>
@@ -146,9 +124,9 @@ const Landing = () => {
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item m-4 rounded">
+                <div class="accordion-item m-2 rounded">
                     <h2 class="accordion-header" id="com-head">
-                        <button class="accordion-button collapsed rounded Flora-Font fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#com-collapse" aria-expanded="false" aria-controls="com-collapse" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
+                        <button class="accordion-button collapsed rounded Flora-Font fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#com-collapse" aria-expanded="false" aria-controls="com-collapse" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
                         ∆FLORA
                         </button>
                     </h2>
@@ -217,9 +195,9 @@ const Landing = () => {
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item m-4 rounded">
+                <div class="accordion-item m-2 rounded">
                     <h2 class="accordion-header" id="master-head">
-                        <button class="accordion-button collapsed Flora-Font rounded fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#master-collapse" aria-expanded="false" aria-controls="master-collapse" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
+                        <button class="accordion-button collapsed Flora-Font rounded fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#master-collapse" aria-expanded="false" aria-controls="master-collapse" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
                         MASTERCLASS
                         </button>
                     </h2>
@@ -229,9 +207,9 @@ const Landing = () => {
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item m-4 rounded">
+                <div class="accordion-item m-2 rounded">
                     <h2 class="accordion-header" id="evo-head">
-                        <button class="accordion-button collapsed Flora-Font rounded fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#evo-collapse" aria-expanded="false" aria-controls="evo-collapse" style={{backgroundColor: '#FFC4E8', color: '#00544B'}}>
+                        <button class="accordion-button collapsed Flora-Font rounded fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#evo-collapse" aria-expanded="false" aria-controls="evo-collapse" style={{backgroundColor: '#FFC4E8', color: '#00544B'}}>
                         THE EVOLUTION
                         </button>
                     </h2>
