@@ -219,16 +219,16 @@ const Landing = () => {
 
             <div className="'col-12 Flora-Font d-flex text-center flex-row overflow-hidden align-items-center justify-content-evenly">
                     <Marquee gradientWidth={25} className='rounded'>
-                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-3">IRL Plants</span></div>
-                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-3">|</span></div>
-                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-3">Plant Merch</span></div>
-                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-3">|</span></div>
-                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-3">Partner Experiences & Education</span></div>
-                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-3">|</span></div>
-                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-3">Plant Simulator</span></div>
-                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-3">|</span></div>
-                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-3">10% of proceeds go to non-profit partners</span></div>
-                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-3">|</span></div>
+                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-2">IRL Plants</span></div>
+                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-2">|</span></div>
+                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-2">Plant Merch</span></div>
+                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-2">|</span></div>
+                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-2">Partner Experiences & Education</span></div>
+                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-2">|</span></div>
+                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-2">Plant Simulator</span></div>
+                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-2">|</span></div>
+                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-2">10% of proceeds go to non-profit partners</span></div>
+                        <div className="p-3 m-2 rounded text-center" style={{color: '#00544B'}}><span className="text-uppercase Flora-Font fs-2">|</span></div>
                     </Marquee>
             </div>
 
