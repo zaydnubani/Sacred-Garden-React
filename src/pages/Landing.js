@@ -32,11 +32,6 @@ import P23 from '../images/300px/P23.png'
 import P24 from '../images/300px/P24.png'
 import P25 from '../images/300px/P25.png'
 
-// import callAction from '../images/TakeAction.png'
-
-// import MOV from '../videos/Aya-tube-cycles-v01-edited.MOV'
-// import WEBM from '../videos/Aya-tube-cycles-v01-edited.webm'
-
 const Landing = () => {
 
     const NFT = [ 

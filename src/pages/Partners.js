@@ -9,13 +9,13 @@ import TucsonHerpSociety from '../images/Partner Logos/Tucson Herpetological Soc
 
 const Partners = () => {
     return(
-        <div className="container direct-row wrap align-center space-evenly w-90 h-auto">
-            <a className="container align-center justify-center h-auto p-1 partner-link" href="https://chacruna.net/"><img className="img partner-icon" src={Chacruna} alt=""/></a>
-            <a className="container align-center justify-center h-auto p-1 partner-link" href="https://growmedicine.com/"><img className="img partner-icon" src={GrowMedicine} alt=""/></a>
-            <a className="container align-center justify-center h-auto p-1 partner-link" href="https://www.iceers.org/"><img className="img partner-icon" src={ICEERS} alt=""/></a>
-            <a className="container align-center justify-center h-auto p-1 partner-link" href="https://psychedelicstoday.com/"><img className="img partner-icon" src={PsychedelicsToday} alt=""/></a>
-            <a className="container align-center justify-center h-auto p-1 partner-link" href="https://sistersinpsychedelics.org/"><img className="img partner-icon" src={SistersPsychedelics} alt=""/></a>
-            <a className="container align-center justify-center h-auto p-1 partner-link" href="https://tucsonherpsociety.org/"><img className="img partner-icon" src={TucsonHerpSociety} alt=""/></a>
+        <div className="col-12 d-flex flex-row flex-wrap align-items-center justify-content-evenly">
+            <a className="d-flex align-items-center justify-content-center w-25 m-3" href="https://chacruna.net/"><img className="img-fluid" src={Chacruna} alt=""/></a>
+            <a className="d-flex align-items-center justify-content-center w-25 m-3" href="https://growmedicine.com/"><img className="img-fluid" src={GrowMedicine} alt=""/></a>
+            <a className="d-flex align-items-center justify-content-center w-25 m-3" href="https://www.iceers.org/"><img className="img-fluid" src={ICEERS} alt=""/></a>
+            <a className="d-flex align-items-center justify-content-center w-25 m-3" href="https://psychedelicstoday.com/"><img className="img-fluid" src={PsychedelicsToday} alt=""/></a>
+            <a className="d-flex align-items-center justify-content-center w-25 m-3" href="https://sistersinpsychedelics.org/"><img className="img-fluid" src={SistersPsychedelics} alt=""/></a>
+            <a className="d-flex align-items-center justify-content-center w-25 m-3" href="https://tucsonherpsociety.org/"><img className="img-fluid" src={TucsonHerpSociety} alt=""/></a>
         </div>
     )
 }
