@@ -50,11 +50,7 @@ const Landing = () => {
             </div>
             
             <div className="'col-xxl-4 col-xl-4 col-sm-12 Flora-Font d-flex text-center flex-column align-items-center justify-content-evenly">
-                <div className="m-3">
-                    <a href='https://opensea.io/collection/gardenconservation'>
-                        <img src='https://cdn.discordapp.com/attachments/1003719366703067217/1006628210433327104/buttons-06.png' alt='call to action' className="img-fluid rounded"/>
-                    </a>
-                </div>
+                
                 <div className="m-3">
                     <a href='/mint'>
                         <img src='https://cdn.discordapp.com/attachments/1003719366703067217/1006628319682367649/Web_button.png' alt='call to action' className="img-fluid rounded"/>
@@ -63,6 +59,11 @@ const Landing = () => {
                 <div className="m-3">
                     <a href='https://my.matterport.com/show/?m=mvHce8tduYB&brand=0&play=1&wh=0'>
                         <img src='https://cdn.discordapp.com/attachments/1003719366703067217/1006628320118591589/Web_button2.png' alt='call to action' className="img-fluid rounded"/>
+                    </a>
+                </div>
+                <div className="m-3">
+                    <a href='https://opensea.io/collection/gardenconservation'>
+                        <img src='https://cdn.discordapp.com/attachments/1003719366703067217/1006628210433327104/buttons-06.png' alt='call to action' className="img-fluid rounded"/>
                     </a>
                 </div>
             </div>
