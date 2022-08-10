@@ -1,10 +1,5 @@
 import React from 'react';
 
-import B6 from '../images/backgrounds/body/B6.png'
-import B21 from '../images/backgrounds/body/B21.png'
-import B24 from '../images/backgrounds/body/B24.png'
-import B26 from '../images/backgrounds/body/B26.png'
-
 const Faq = () => {
     const faqs = [
         {
@@ -108,19 +103,13 @@ const Faq = () => {
             answer: "We are very excited to share the amazing partnerships, plans and vision that we have for this project around the conservation and therapeutic use of entheogenic plants.. As a group, we are dedicated to giving back in ways that will benefit not only our current generation, but also future generations. A seed has been planted."
         }
     ];
-
-    const backgrounds = [
-        B6, B21, B24, B26
-    ]
-
-    const bg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
     
     return(   
         <div className='container align-center direct-col w-90'>
             {faqs.map((value) => {
                 return(
                     <div className="relative container direct-row w-100" key={value.question}>
-                        <div className="container direct-row space-between w-100 br-5 m-tb-1 p-1" style={{backgroundImage: `url(${bg}`}}>
+                        <div className="container direct-row space-between w-100 br-5 m-tb-1 p-1">
                             <div className='container justify-center align-center'>
                                 <span className='text red br-10 m-0 faq-question'>
                                     {value.question}
