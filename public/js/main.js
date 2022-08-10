@@ -19,7 +19,7 @@ for(let i=0; i<main.length;i++){
 
 
     // changes main background color
-    main[i].style = `background-image: url('/images/backgrounds/body/${backgrounds_body[Math.floor(Math.random() * backgrounds_body.length)]}');`;
+    // main[i].style = `background-image: url('/images/backgrounds/body/${backgrounds_body[Math.floor(Math.random() * backgrounds_body.length)]}');`;
 
     // closes nav menu
     main[i].children[0].children[1].addEventListener('click', () => {
@@ -33,13 +33,13 @@ for(let i=0; i<main.length;i++){
 
 };
 
-if(window.location.href.indexOf('Mint')>-1){
+// if(window.location.href.indexOf('mint')>-1){
 
-    const Footer = document.getElementsByClassName('Footer');
+//     const Footer = document.getElementsByClassName('footer');
 
-    for(let i =0; i < Footer.length ; i++){
-        Footer[i].style = 'display: none';
-    }
-}
+//     for(let i =0; i < Footer.length ; i++){
+//         Footer[i].style = 'display: none';
+//     }
+// }
 
 

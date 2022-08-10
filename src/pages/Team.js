@@ -3,7 +3,7 @@ import React from 'react';
 import Amanda from '../images/team/amanda.png'
 import Eli from '../images/team/eli.jpg'
 import Jenna from '../images/team/jenna.jpg'
-import Twitter from '../images/logos/twitter.png'
+// import Twitter from '../images/logos/twitter.png'
 
 const Team = () => {
     const members = [
@@ -34,50 +34,60 @@ const Team = () => {
         <div className='relative container justify-center align-center direct-col w-90'>
             {members.map((member) => {
                 return(
-                    <div className='relative container direct-row h-auto w-100 br-10 m-5' key={member.name}>
-                        <div className='container direct-row p-3 w-100 br-10 bg-p-bot' style={{backgroundImage: "url('/images/backgrounds/body/B26.png')"}}>
-                            <div className='img-30'>
-                                <img className="img img-100 br-10" src={member.headshot} alt={member.name}/>
-                            </div>
-                            <div className='container direct-col space-evenly grow-2 p-1 align-start text red'>
-                                <div className='title-team wrap'>
-                                    {member.name}
-                                </div>
-                                <div className='subTitle-team'>
-                                    {member.title}
-                                </div>
-                            </div>
+                    // <div className='relative container direct-row h-auto w-100 br-10 m-5' key={member.name}>
+                    //     <div className='container direct-row p-3 w-100 br-10 bg-p-bot' style={{backgroundImage: "url('/images/backgrounds/body/B26.png')"}}>
+                    //         <div className='img-30'>
+                    //             <img className="img img-100 br-10" src={member.headshot} alt={member.name}/>
+                    //         </div>
+                    //         <div className='container direct-col space-evenly grow-2 p-1 align-start text red'>
+                    //             <div className='title-team wrap'>
+                    //                 {member.name}
+                    //             </div>
+                    //             <div className='subTitle-team'>
+                    //                 {member.title}
+                    //             </div>
+                    //         </div>
+                    //     </div>
+                    //     <div className='absolute r-0 container space-evenly direct-col h-50 w-10 text-center justify-center align-center t-0 transition-2 red text bg-p-center fs-3' style={{backgroundImage: "url('/images/backgrounds/body/B21.png')", borderRadius: '0 10px 0 0' }} onClick={function(event){
+                    //             event.target.children[0].style = 'display: block;';
+                    //             event.target.children[1].style = 'display: block;';
+                    //             if(window.screen.width >= 1400){
+                    //                 event.target.style = `width:${event.target.parentNode.offsetWidth}px; height:${event.target.parentNode.offsetHeight}px; font-size:2vw; overflow-y:scroll; z-index:1; padding: 5%; border-radius: 10px; background-image: url("/images/backgrounds/body/B21.png");`;
+                    //             } else if(window.screen.width >= 1200) {
+                    //                 event.target.style = `width:${event.target.parentNode.offsetWidth}px; height:${event.target.parentNode.offsetHeight}px; font-size:1.75vw; overflow-y:scroll; z-index:1; padding: 1% 0; border-radius: 10px; background-image: url("/images/backgrounds/body/B21.png");`;
+                    //             }  else if(window.screen.width >= 992) {
+                    //                 event.target.style = `width:${event.target.parentNode.offsetWidth}px; height:${event.target.parentNode.offsetHeight}px; font-size:1.5vw; overflow-y:scroll; z-index:1; padding: 2% 0; border-radius: 10px; background-image: url("/images/backgrounds/body/B21.png");`;
+                    //             } else if(window.screen.width >= 768) {
+                    //                 event.target.style = `width:${event.target.parentNode.offsetWidth}px; height:${event.target.parentNode.offsetHeight}px; font-size:1.25vw; overflow-y:scroll; z-index:1; padding: 2% 0; border-radius: 10px; background-image: url("/images/backgrounds/body/B21.png");`;
+                    //             } else if(window.screen.width >= 576) {
+                    //                 event.target.style =`width:${event.target.parentNode.offsetWidth}px; height:${event.target.parentNode.offsetHeight}px; font-size:1vw; overflow-y:scroll; z-index:1; padding: 2% 0; border-radius: 10px; background-image: url("/images/backgrounds/body/B21.png");`;
+                    //             } else if(window.screen.width >= 360) {
+                    //                 event.target.style = `width:${event.target.parentNode.offsetWidth}px; height:${event.target.parentNode.offsetHeight}px; font-size:0.75vw; overflow-y:scroll; z-index:1; padding: 2% 0; border-radius: 10px; background-image: url("/images/backgrounds/body/B21.png");`;
+                    //             }
+                    //         }}>
+                    //         <button className='container align-center absolute z-2 t-0 r-0 p-1 br-10 btn trans-red fs-3' style={{display: "none"}} onClick={function(event){
+                    //             event.target.style = 'display: none;';
+                    //             event.target.parentNode.children[1].style='display: none;';
+                    //             event.target.parentNode.style= 'border-radius: 0 10px 0 0; background-image: url("/images/backgrounds/body/B21.png")';
+                    //         }}>&times;</button>
+                    //         BIO
+                    //         <p className="text-center h-100 w-90 " style={{display: "none", alignSelf: 'center',}}>
+                    //             {member.bio}
+                    //         </p>
+                    //     </div>
+                    //     <a className='absolute r-0 container space-evenly direct-col h-50 w-10 text-center align-center b-0 transition-2 bg-p-top' style={{backgroundImage: "url('/images/backgrounds/body/B26.png')", borderRadius: '0 0 10px 0'}} href={member.twitter}>
+                    //         <img className='img img-30' src={Twitter} alt="Twitter Logo"/>
+                    //     </a>
+                    // </div>
+                    <div className="card col-4">
+                        <img src={member.headshot} className="card-img-top img-fluid" alt="..."/>
+
+                        <div className="card-body">
+                            <h5 className="card-title">{member.name}</h5>
+                            <span className="card-title">{member.title}</span>
+                            <p className="card-text">{member.bio}</p>
+                            <a href={member.twitter} className="btn btn-primary">Go somewhere</a>
                         </div>
-                        <div className='absolute r-0 container space-evenly direct-col h-50 w-10 text-center justify-center align-center t-0 transition-2 red text bg-p-center fs-3' style={{backgroundImage: "url('/images/backgrounds/body/B21.png')", borderRadius: '0 10px 0 0' }} onClick={function(event){
-                                event.target.children[0].style = 'display: block;';
-                                event.target.children[1].style = 'display: block;';
-                                if(window.screen.width >= 1400){
-                                    event.target.style = `width:${event.target.parentNode.offsetWidth}px; height:${event.target.parentNode.offsetHeight}px; font-size:2vw; overflow-y:scroll; z-index:1; padding: 5%; border-radius: 10px; background-image: url("/images/backgrounds/body/B21.png");`;
-                                } else if(window.screen.width >= 1200) {
-                                    event.target.style = `width:${event.target.parentNode.offsetWidth}px; height:${event.target.parentNode.offsetHeight}px; font-size:1.75vw; overflow-y:scroll; z-index:1; padding: 1% 0; border-radius: 10px; background-image: url("/images/backgrounds/body/B21.png");`;
-                                }  else if(window.screen.width >= 992) {
-                                    event.target.style = `width:${event.target.parentNode.offsetWidth}px; height:${event.target.parentNode.offsetHeight}px; font-size:1.5vw; overflow-y:scroll; z-index:1; padding: 2% 0; border-radius: 10px; background-image: url("/images/backgrounds/body/B21.png");`;
-                                } else if(window.screen.width >= 768) {
-                                    event.target.style = `width:${event.target.parentNode.offsetWidth}px; height:${event.target.parentNode.offsetHeight}px; font-size:1.25vw; overflow-y:scroll; z-index:1; padding: 2% 0; border-radius: 10px; background-image: url("/images/backgrounds/body/B21.png");`;
-                                } else if(window.screen.width >= 576) {
-                                    event.target.style =`width:${event.target.parentNode.offsetWidth}px; height:${event.target.parentNode.offsetHeight}px; font-size:1vw; overflow-y:scroll; z-index:1; padding: 2% 0; border-radius: 10px; background-image: url("/images/backgrounds/body/B21.png");`;
-                                } else if(window.screen.width >= 360) {
-                                    event.target.style = `width:${event.target.parentNode.offsetWidth}px; height:${event.target.parentNode.offsetHeight}px; font-size:0.75vw; overflow-y:scroll; z-index:1; padding: 2% 0; border-radius: 10px; background-image: url("/images/backgrounds/body/B21.png");`;
-                                }
-                            }}>
-                            <button className='container align-center absolute z-2 t-0 r-0 p-1 br-10 btn trans-red fs-3' style={{display: "none"}} onClick={function(event){
-                                event.target.style = 'display: none;';
-                                event.target.parentNode.children[1].style='display: none;';
-                                event.target.parentNode.style= 'border-radius: 0 10px 0 0; background-image: url("/images/backgrounds/body/B21.png")';
-                            }}>&times;</button>
-                            BIO
-                            <p className="text-center h-100 w-90 " style={{display: "none", alignSelf: 'center',}}>
-                                {member.bio}
-                            </p>
-                        </div>
-                        <a className='absolute r-0 container space-evenly direct-col h-50 w-10 text-center align-center b-0 transition-2 bg-p-top' style={{backgroundImage: "url('/images/backgrounds/body/B26.png')", borderRadius: '0 0 10px 0'}} href={member.twitter}>
-                            <img className='img img-30' src={Twitter} alt="Twitter Logo"/>
-                        </a>
                     </div>
                 )
             })}

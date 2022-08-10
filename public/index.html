@@ -16,7 +16,7 @@
     <!-- {{!-- imported css files here: --}} -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://use.typekit.net/ban0udj.css">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/d0399de96a.js" crossorigin="anonymous"></script>
 
     <!-- {{!-- personal css files here: --}} -->
@@ -29,10 +29,10 @@
     <link rel="stylesheet" href="/css/roadmap.css">
     <link rel="stylesheet" href="/css/terms.css">
     <link rel="stylesheet" href="/css/partners.css">
-    <link rel="stylesheet" href="/css/master.css">
+    <!-- <link rel="stylesheet" href="/css/master.css"> -->
     <link rel="stylesheet" href="/css/mint.css">
     <link rel="stylesheet" href="/css/web3.css">
-    <!-- <link rel="stylesheet" href="/css/bootstrap.css"> -->
+    <link rel="stylesheet" href="/css/bootstrap.css">
 
 
 
@@ -48,7 +48,7 @@
 </head>
 
 <!-- non bootstrap main start -->
-<main class="container direct-col justify-center align-center br-10 of-hidden">
+<!-- <main class="container direct-col justify-center align-center br-10 of-hidden">
     <div class="fixed z-2 b-0 container direct-col align-center space-evenly p-1 h-100 of-x-hidden transition-1 offcanvas canvas-container"
     style="right: -105%;">
         <img class="img logo-canvas" src="\images\logos\sacrd_gardn_neon.png" alt="logo">
@@ -77,7 +77,6 @@
             <a href="https://my.matterport.com/show/?m=mvHce8tduYB&brand=0&play=1&wh=0"
                 class="link grow-2 p-2 m-1 text-center w-auto text white br-10 transition-1 canvas-btn"
                 style="background-color: rgb(240, 206, 65);">Virtual Garden</a>
-            <!-- <a href="/simulator" class="link" style="background-color: rgb(255, 90, 0);">Simulator</a> -->
         </div>
 
         <div class="container direct-row text-center wrap">
@@ -172,11 +171,11 @@
     <script src="/js/main.js" alt="main.js"></script>
     <script src="/js/countdown.js" alt="countdown.js"></script>
 
-</main>
+</main> -->
 <!-- non bootstrap main end -->
 
 <!-- bootstrap main start -->
-<!-- <main class="d-flex flex-column">
+<main class="d-flex flex-column">
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
@@ -197,18 +196,18 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="d-flex flex-wrap flex-xxl-row flex-xl-row flex-lg-row flex-row align-items-center">
-                                <a href="/partners" class="text-decoration-none flex-fill w-100">
-                                    <div class="p-3 m-1 rounded text-center" style="color: cornsilk;background-color: #FFC4E8;"><span class="text-uppercase Flora-Font fs-3">partners</span></div>
-                                </a>
-                                <a href="/team" class="text-decoration-none flex-fill">
-                                    <div class="p-3 m-1 rounded text-center" style="color: cornsilk;background-color: #43D3EE;"><span class="text-uppercase Flora-Font fs-3">team</span></div>
-                                </a>
-                                <a href="/faq" class="text-decoration-none flex-fill w-100">
-                                    <div class="p-3 m-1 rounded text-center" style="color: cornsilk;background-color: #00544B;"><span class="text-uppercase Flora-Font fs-3">faq</span></div>
-                                </a>
+                                <!-- <a href="/partners" class="text-decoration-none flex-fill w-100">
+                                    <div class="p-3 m-1 rounded text-center" style="color: #00544B;background-color: #FFC4E8;"><span class="text-uppercase Flora-Font fs-3">partners</span></div>
+                                </a> -->
+                                <!-- <a href="/team" class="text-decoration-none flex-fill">
+                                    <div class="p-3 m-1 rounded text-center" style="color: #00544B;background-color: #43D3EE;"><span class="text-uppercase Flora-Font fs-3">team</span></div>
+                                </a> -->
+                                <!-- <a href="/faq" class="text-decoration-none flex-fill w-100">
+                                    <div class="p-3 m-1 rounded text-center" style="color: #00544B;background-color: #00544B;"><span class="text-uppercase Flora-Font fs-3">faq</span></div>
+                                </a> -->
         
                                 <a href="/mint" class="text-decoration-none flex-fill">
-                                    <div class="p-3 m-1 rounded text-center" style="color: cornsilk;background-color: #43D3EE;"><span class="text-uppercase Flora-Font fs-3">△flora nft</span></div>
+                                    <div class="p-3 m-1 rounded text-center" style="color: #00544B;background-color: #43D3EE;"><span class="text-uppercase Flora-Font fs-3">△flora nft</span></div>
                                 </a>
                                
                             </div>
@@ -254,7 +253,7 @@
     <div id="root" class="container-fluid">
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid py-5 footer">
 
         <div class="row justify-content-center">
             <div class="col-12 text-center">
@@ -268,7 +267,7 @@
                     <div class="d-flex flex-grow-1">
                         <input type="email" class="form-control Flora-Font fs-3 m-1" id="exampleInputEmail1" aria-describedby="emailHelp" name="email_address" aria-label="Email Address" placeholder="Email Address" required="">
                     </div>
-                    <button type="submit" data-element="submit" class="btn btn-success  Flora-Font fs-3 m-1">Submit</button>
+                    <button type="submit" data-element="submit" class="btn form-btn Flora-Font fs-3 m-1">Submit</button>
                 </form>
             </div>
         </div>
@@ -305,6 +304,6 @@
 
     <script src="/js/main.js" alt="main.js"></script>
     <script src="/js/countdown.js" alt="countdown.js"></script>
-</main> -->
+</main>
 <!-- Bootstrap main end -->
 </html>

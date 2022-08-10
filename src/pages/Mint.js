@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 
 import mint_2100 from '../images/frames/mint_2100.png'
 import logo_1 from '../images/gifs/Logo_1.gif'
-import web from '../images/gifs/web.gif'
+// import web from '../images/gifs/web.gif'
+import bouncingSeed from '../images/bouncing-seed.mp4'
 
 import { useConnectWallet } from '@web3-onboard/react';
 import initWeb3Onboard from '../services';
@@ -14,6 +15,7 @@ import toast, { Toaster } from 'react-hot-toast';
 // import MerkleTree from 'merkletreejs';
 // import keccak256 from 'keccak256';
 import { WinterCheckout } from '@usewinter/checkout'
+import ReactPlayer from 'react-player'
 
 const MAINNET_CONTRACT_ADDRESS = "0x21374d22f169849cfd680241f3f37cd61ac2eea5";
 
@@ -244,15 +246,18 @@ const Mint = () => {
 
   const GoQuantity = () => {
     return (
-      <div className='container align-center space-evenly direct-row w-50'>
-        <button className='text btn trans-red fs-5 text-center w-25' onClick={()=> { dec()}}>-</button>
-          <div>
-              <span className='text-center text fs-5'>
-                {quantity}
-              </span>
-          </div>
-        <button className='text btn trans-red fs-5 text-center w-25' onClick={()=> { inc()}}>+</button>
-      </div>
+      // master css : div className='container align-center space-evenly direct-row w-50'
+      <>
+      {/* master css : 'text btn trans-red fs-5 text-center w-25' */}
+        <button className='fs-1 m-1 btn' onClick={()=> { dec()}} style={{color: '#00544B'}}>-</button>
+        <div>
+            <span className='text-center text fs-1 m-1' style={{color: '#00544B'}}>
+              {quantity}
+            </span>
+        </div>
+        {/* master css : 'text btn trans-red fs-5 text-center w-25' */}
+        <button className='fs-1 btn m-1' onClick={()=> { inc()}} style={{color: '#00544B'}}>+</button>
+      </>
     )
   }
 
@@ -286,63 +291,51 @@ const Mint = () => {
         return () => window.removeEventListener("message", handleWindowEvent)
     }, [])
 
-
     return (
-      <div className='container direct-col justify-center align-center w-100 h-100 bg-p-bot bg-s-100 bg-norepeat p-5'>
+      <div className='col-12 d-flex flex-column justify-content-evenly align-items-center'>
+        
         <Toaster />
-        <div className='container justify-center w-100'>
-            <img className='img mint-animation' src={logo_1} alt=""/>
+
+        <div className='d-flex align-items-center justify-content-center w-50'>
+            <img className='img-fluid w-auto' src={logo_1} alt=""/>
         </div>
 
-        <div className='container direct-col w-75 m-2'>
-            <span className='text text-center mint-minted m-1 red'>Mint ΔFLORA NFT</span>
-            <span className='text text-center mint-mint red'>
+        <div className='d-flex flex-column Flora-Font text-center m-2' style={{color: '#00544B'}}>
+            <span className='fs-1'>Mint ΔFLORA NFT</span>
+            <span className='fs-3'>
               {minted}/5,555 Minted
             </span>
         </div>
 
-        <div className='container w-50 m-2'>
-          <div className='container direct-col w-100 justify-center align-center text text-center red fs-2 mint-price '>
-            <span className='p-lr-1'>.055 ETH </span>
-          </div>
+        <div className='Flora-Font text-center'>
+          <span className='fs-4 text-uppercase' style={{color: '#00544B'}}> .055 ETH </span>
         </div>
 
-        <div className='container direct-col space-evenly align-center w-50'>
-          <div className='container align-center space-evenly direct-row w-50'>
+        <div className='d-flex flex-column'>
+          
+          <div className='Flora-Font d-flex flex-row align-items-center justify-content-center' >
           {wallet ? <GoQuantity /> : null }
           </div>
-          <button className='btn text solid-red p-2 m-2 mint-button br-5' 
+          
+          <button className='btn Flora-Font fs-2 p-3 m-3 rounded' 
           onClick={() => (wallet? handleMint(quantity) : connect())}
-          // onClick={() => (wallet? null : connect())}
-          >
+          style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
             {connecting ? 'CONNECTING' : wallet ? 'MINT FLORA' : 'CONNECT WALLET'}
           </button>
-          <button id='winter' className='btn text solid-red p-2 m-2 mint-button br-5'>PAY W/ CARD</button>
+
+          <button id='winter' className='btn Flora-Font p-3 fs-2 text-capitalize m-3 rounded' style={{backgroundColor: '#43D3EE', color: '#00544B'}}>PAY W/ CARD</button>
+
         </div>
+
         <WinterCheckout 
-            projectId={6858} 
-            production={true} 
-            showModal={showModal} 
-            // Extra mint params are params besides 'address, amount, proof'
-            // The key needs to exactly match the name of the param provided to Winter
-            // The value will be passed in as the param
-            extraMintParams={{a: 1, b: 2}}
-        />
-      </div>
-    )
-  }
-  
-  const GetIDs = () => {
-  
-    return (
-      <div className='container direct-row justify-center m-2 w-75'>
-          <div className='w-50'>
-              <ul className='m-0 p-0 web3-planted' style={{listStyle:'none'}}>
-                  <li className='text red'>#<span className='text' style={{color: 'rgb(240, 206, 65)'}}>202</span> / 5,555</li>
-                  <li className='text red'>#<span className='text' style={{color: 'rgb(240, 206, 65)'}}>203</span> / 5,555</li>
-                  <li className='text red'>#<span className='text' style={{color: 'rgb(240, 206, 65)'}}>203</span> / 5,555</li>
-              </ul>
-          </div> 
+          projectId={6858} 
+          production={true} 
+          showModal={showModal} 
+          // Extra mint params are params besides 'address, amount, proof'
+          // The key needs to exactly match the name of the param provided to Winter
+          // The value will be passed in as the param
+          extraMintParams={{a: 1, b: 2}}
+      />
       </div>
     )
   }
@@ -351,11 +344,12 @@ const Mint = () => {
 
     const popup = () => {
       const popers = document.getElementById('popers')
-      popers.style = 'display: none; visibility: hidden;'
+      popers.style = 'display: none; visibility: hidden; position: fixed;'
     }
 
     const SeedMinted = () => {
-      return(<span className='text red web3-planted'>
+      return(
+      <span className='Flora-Font text-uppercase fs-2 m-3' style={{color: '#00544B'}}>
       {minted} Seeds Minted
       </span>
       )
@@ -363,66 +357,82 @@ const Mint = () => {
 
     const MintedWinter = () => {
       return(
-        <span className='text red web3-reveal-winter w-90'>
+        <span className='fs-3 m-2 px-1 py-2 Flora-Font rounded' style={{backgroundColor: '#FFAC80', color: '#00544B'}}>
           Check your email for a message from 
-          <br />
           orders@usewinter.com
-          <br /> 
           It might go to spam or promotions.
         </span>
       )
     }
+
+    const GetIDs = () => {
+      return (
+          <div className='d-flex flex-row m-3'>
+
+            <div className='px-2' style={{color: '#00544B'}}>
+              <span className='Flora-Font fs-4 text-uppercase'>Seeds Planted: </span>
+            </div>
+
+            <div className='d-flex flex-column text-center Flora-Font px-2' style={{color: '#00544B'}}>
+              <span className='fs-4' style={{color: ''}}>#{202} / 5,555</span>
+              <span className='fs-4' style={{color: ''}}>#{203} / 5,555</span>
+              <span className='fs-4' style={{color: ''}}>#{204} / 5,555</span>
+            </div>
+          </div>
+      )
+    }
     
     return(
-      // container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-2 h-100
-      <div className='container-fluid' style={{backgroundImage: `url('${mint_2100}')`}}>
+      
+      <div className='col-12 d-flex flex-column text-center align-items-center justify-content-evently py-3'>
 
-        <div id='popers' className='fixed z-2 container align-center direct-col br-5 p-2 transition-2 w-75 m-auto t-25' style={{backgroundImage: "url('/images/backgrounds/body/B6.png')"}}>
-          <div className="container">
-                <span className="text  text-center red live-pop">Welcome to the floraverse!</span>
-            </div>
-            <p className="text text-center red message-p web3-reveal-winter w-90">
-              This is your first step into the garden. Your seed will reveal itself on August 11. Stay tuned for info on claiming your gifts, special events and more! 
-            </p>
-            {winterMint ? 
-            <MintedWinter /> 
-            : null }
-            <button onClick={() => {popup()}} className="container justify-center btn link solid-red br-5 w-75">
-                <span className="text mint-p p-2">OKAY</span>
-            </button> 
+        <div id='popers' className='d-flex flex-column p-3 m-1 Flora-Font text-center rounded '
+        style={{backgroundColor: '#00544B', color: '#FFAC80', position: 'fixed'}}>
+
+          <button onClick={() => {popup()}} className="btn align-self-end" style={{backgroundColor: '#00544B', color: '#FFAC80'}}>
+            <span className='Flora-Font fs-5'>X</span> 
+          </button> 
+          
+          <span className="text-uppercase fs-1">Welcome to the floraverse!</span>
+
+          <span className="fs-3 rounded m-2 px-1 py-2" style={{backgroundColor: '#FFAC80', color: '#00544B'}}>
+            This is your first step into the garden. Your seed will reveal itself on August 11. Stay tuned for info on claiming your gifts, special events and more! 
+          </span>
+
+          <MintedWinter /> 
+
+          {winterMint ? 
+          <MintedWinter /> 
+          : null }
+          
         </div>
 
-        <div className='text-center m-1'>
-            <span className='text red web3-congrats'>CONGRATS!</span>
+        <span className='Flora-Font fs-1 m-3' style={{color: '#00544B'}}>CONGRATS!</span>
+
+        <div className='w-75 m-3 d-flex justify-content-center'>
+          <ReactPlayer playing='true' loop='true' muted='true' url={bouncingSeed} className='img-fluid'/>
+          {/* <img className='img-fluid rounded' src={web} alt=''/>  */}
         </div>
 
-        <div className='container justify-center align-center w-75'>
-            <img className='img web3-animation br-10' src={web} alt=''>
-            </img>
-        </div>
+        
+        <span className='Flora-Font fs-4 text-uppercase m-3' style={{color: '#00544B'}}>
+          Thanks for minting with us!
+        </span>
+
+        {minted ?  <SeedMinted /> : null }
 
         { nftID ? <GetIDs /> : null }
 
-        <div className='w-75 text-center'>
-          {minted ?  <SeedMinted /> : null }
-        </div>
-
-        <div className='text-center w-50 m-1'>
-            <span className='text red web3-reveal'>
-            Thanks for minting with us!
-            </span>
-        </div>
-
-        <div className='container align-center justify-center text-center w-75 m-1'>
-            <a href="https://opensea.io/collection/deltaflora" className='link solid-red p-2 web3-open text br-5'>VIEW ON OPENSEA</a>
-        </div>
+        
+        <a href="https://opensea.io/collection/deltaflora" className='Flora-Font p-3 fs-3 text-decoration-none btn rounded m-3' style={{color: '#00544B', backgroundColor: '#43D3EE' }}>VIEW ON OPENSEA</a>
 
       </div>
     )
   }
 
   return ( 
-    <div className='container direct-col space-evenly align-center w-100 bg-p-bot bg-s-100 bg-norepeat p-1' style={{backgroundImage: `url('${mint_2100}')`, height: `${window.innerHeight *.9}px`}}>
+    <div className='row py-5' style={{backgroundImage: `url('${mint_2100}')`, backgroundSize: '100%', backgroundPosition: 'bottom', backgroundRepeat: 'no-repeat'}}
+    >
           {
             complete ?
             <PostPurchase /> 
