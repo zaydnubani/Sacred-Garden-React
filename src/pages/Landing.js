@@ -42,7 +42,7 @@ const Landing = () => {
         <div className='row g-5 d-flex'>
 
             <div className='order-4 order-sm-4 order-md-1 order-xxl-1 col-12 overflow-hidden'>
-                <Marquee gradientWidth={25} pauseOnHover='true' className='rounded' speed={10}>
+                <Marquee gradientWidth={25}  className='rounded'>
                     {NFT.map((value) => { return(
                     <img src={value} alt={value} className="" key={value}/>
                     )})}
