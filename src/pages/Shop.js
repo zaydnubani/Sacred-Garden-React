@@ -787,7 +787,7 @@ const Shop = () => {
                                     :
                                     null
                         }
-                        <a className="btn btn-primary Flora-Font fs-3 text-uppercase m-2" href="/dashboard">dashboard</a>
+                        <a className="btn btn-primary Flora-Font fs-3 text-uppercase m-2" href="/dashboard">Orders</a>
                     </div>
                 </div>
             </div>
