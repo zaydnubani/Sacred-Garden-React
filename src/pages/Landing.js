@@ -96,94 +96,94 @@ const Landing = () => {
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item m-2 rounded">
-                    <h2 class="accordion-header" id="flush-headingThree">
-                        <button class="accordion-button collapsed rounded Flora-Font fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" style={{backgroundColor: '#FFAC80', color: '#00544B'}}>
+                <div className="accordion-item m-2 rounded">
+                    <h2 className="accordion-header" id="flush-headingThree">
+                        <button className="accordion-button collapsed rounded Flora-Font fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" style={{backgroundColor: '#FFAC80', color: '#00544B'}}>
                             SHOP
                         </button>
                     </h2>
-                    <div id="flush-collapseThree" class="accordion-collapse collapse Flora-Font fs-5 rounded" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
-                        <div class="accordion-body">
+                    <div id="flush-collapseThree" className="accordion-collapse collapse Flora-Font fs-5 rounded" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
+                        <div className="accordion-body">
                             Members will have access to exclusive and discounted psychedelic plant merchandise, partner experiences, planters and growing tools custom designed by artists.
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item m-2 rounded">
-                    <h2 class="accordion-header" id="market-head">
-                        <button class="accordion-button collapsed rounded Flora-Font fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#market-collapse" aria-expanded="false" aria-controls="market-collapse" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
+                <div className="accordion-item m-2 rounded">
+                    <h2 className="accordion-header" id="market-head">
+                        <button className="accordion-button collapsed rounded Flora-Font fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#market-collapse" aria-expanded="false" aria-controls="market-collapse" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
                         ∆FLORA DROPS & PLANT MARKETPLACE
                         </button>
                     </h2>
-                    <div id="market-collapse" class="accordion-collapse collapse rounded Flora-Font fs-5" aria-labelledby="market-head" data-bs-parent="#roadmap" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
-                        <div class="accordion-body">
+                    <div id="market-collapse" className="accordion-collapse collapse rounded Flora-Font fs-5" aria-labelledby="market-head" data-bs-parent="#roadmap" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
+                        <div className="accordion-body">
                         Exclusive ∆FLORA drops of rare physical plant cuttings and a decentralized marketplace for plants with our farmer and garden members.
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item m-2 rounded">
-                    <h2 class="accordion-header" id="com-head">
-                        <button class="accordion-button collapsed rounded Flora-Font fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#com-collapse" aria-expanded="false" aria-controls="com-collapse" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
+                <div className="accordion-item m-2 rounded">
+                    <h2 className="accordion-header" id="com-head">
+                        <button className="accordion-button collapsed rounded Flora-Font fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#com-collapse" aria-expanded="false" aria-controls="com-collapse" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
                         ∆FLORA
                         </button>
                     </h2>
-                    <div id="com-collapse" class="accordion-collapse collapse" aria-labelledby="com-head" data-bs-parent="#roadmap" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
-                        <div class="accordion accordion-body accordion-flush" id="floraNFT">
-                            <div class="accordion-item rounded m-1">
-                                <h2 class="accordion-header" id="claim-head">
-                                    <button class="accordion-button collapsed rounded fs-5 Flora-Font" type="button" data-bs-toggle="collapse" data-bs-target="#claim-collapse" aria-expanded="false" aria-controls="claim-collapse" style={{backgroundColor: '#FFAC80', color: '#00544B'}}>
+                    <div id="com-collapse" className="accordion-collapse collapse" aria-labelledby="com-head" data-bs-parent="#roadmap" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
+                        <div className="accordion accordion-body accordion-flush" id="floraNFT">
+                            <div className="accordion-item rounded m-1">
+                                <h2 className="accordion-header" id="claim-head">
+                                    <button className="accordion-button collapsed rounded fs-5 Flora-Font" type="button" data-bs-toggle="collapse" data-bs-target="#claim-collapse" aria-expanded="false" aria-controls="claim-collapse" style={{backgroundColor: '#FFAC80', color: '#00544B'}}>
                                         CLAIM
                                     </button>
                                 </h2>
-                                <div id="claim-collapse" class="accordion-collapse collapse rounded fs-5 Flora-Font" aria-labelledby="claim-head" data-bs-parent="#floraNFT" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
-                                    <div class="accordion-body">
+                                <div id="claim-collapse" className="accordion-collapse collapse rounded fs-5 Flora-Font" aria-labelledby="claim-head" data-bs-parent="#floraNFT" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
+                                    <div className="accordion-body">
                                         1 free claim from our SHOP or PLANT MARKETPLACE per NFT
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item rounded m-1">
-                                <h2 class="accordion-header" id="don-head">
-                                    <button class="accordion-button collapsed fs-5 Flora-Font rounded" type="button" data-bs-toggle="collapse" data-bs-target="#don-collapse" aria-expanded="false" aria-controls="don-collapse" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
+                            <div className="accordion-item rounded m-1">
+                                <h2 className="accordion-header" id="don-head">
+                                    <button className="accordion-button collapsed fs-5 Flora-Font rounded" type="button" data-bs-toggle="collapse" data-bs-target="#don-collapse" aria-expanded="false" aria-controls="don-collapse" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
                                         DONATION
                                     </button>
                                 </h2>
-                                <div id="don-collapse" class="accordion-collapse collapse Flora-Font fs-5 rounded" aria-labelledby="don-head" data-bs-parent="#floraNFT" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
-                                    <div class="accordion-body">
+                                <div id="don-collapse" className="accordion-collapse collapse Flora-Font fs-5 rounded" aria-labelledby="don-head" data-bs-parent="#floraNFT" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
+                                    <div className="accordion-body">
                                         10% of initial sale is donated to non-profit partners Chacruna Institute, ICEERS, Grow Medicine to support entheogen plant and indigenous community conservation
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item rounded m-1">
-                                <h2 class="accordion-header" id="ref-head">
-                                    <button class="accordion-button collapsed rounded fs-5 Flora-Font" type="button" data-bs-toggle="collapse" data-bs-target="#ref-collapse" aria-expanded="false" aria-controls="ref-collapse" style={{backgroundColor: '#FFC4E8', color: '#00544B'}}>
+                            <div className="accordion-item rounded m-1">
+                                <h2 className="accordion-header" id="ref-head">
+                                    <button className="accordion-button collapsed rounded fs-5 Flora-Font" type="button" data-bs-toggle="collapse" data-bs-target="#ref-collapse" aria-expanded="false" aria-controls="ref-collapse" style={{backgroundColor: '#FFC4E8', color: '#00544B'}}>
                                         REFORESTATION
                                     </button>
                                 </h2>
-                                <div id="ref-collapse" class="accordion-collapse collapse rounded fs-5 Flora-Font" aria-labelledby="ref-head" data-bs-parent="#floraNFT" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
-                                    <div class="accordion-body">
+                                <div id="ref-collapse" className="accordion-collapse collapse rounded fs-5 Flora-Font" aria-labelledby="ref-head" data-bs-parent="#floraNFT" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
+                                    <div className="accordion-body">
                                         We will offset our carbon footprint and donate to a reforestation project in the Amazon to have a carbon negative impact
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item rounded m-1">
-                                <h2 class="accordion-header" id="mem-head">
-                                    <button class="accordion-button collapsed Flora-Font fs-5 rounded" type="button" data-bs-toggle="collapse" data-bs-target="#mem-collapse" aria-expanded="false" aria-controls="mem-collapse" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
+                            <div className="accordion-item rounded m-1">
+                                <h2 className="accordion-header" id="mem-head">
+                                    <button className="accordion-button collapsed Flora-Font fs-5 rounded" type="button" data-bs-toggle="collapse" data-bs-target="#mem-collapse" aria-expanded="false" aria-controls="mem-collapse" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
                                         MEMBERSHIP
                                     </button>
                                 </h2>
-                                <div id="mem-collapse" class="accordion-collapse collapse Flora-Font fs-5 rounded" aria-labelledby="mem-head" data-bs-parent="#floraNFT" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
-                                    <div class="accordion-body">
+                                <div id="mem-collapse" className="accordion-collapse collapse Flora-Font fs-5 rounded" aria-labelledby="mem-head" data-bs-parent="#floraNFT" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
+                                    <div className="accordion-body">
                                         global community with exclusive chats, first access to future drops and integration with our partner network of psychedelic pioneers
                                     </div>
                                 </div>
                             </div>   
-                            <div class="accordion-item rounded m-1">
-                                <h2 class="accordion-header" id="exp-head">
-                                    <button class="accordion-button collapsed Flora-Font fs-5 rounded" type="button" data-bs-toggle="collapse" data-bs-target="#exp-collapse" aria-expanded="false" aria-controls="exp-collapse" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
+                            <div className="accordion-item rounded m-1">
+                                <h2 className="accordion-header" id="exp-head">
+                                    <button className="accordion-button collapsed Flora-Font fs-5 rounded" type="button" data-bs-toggle="collapse" data-bs-target="#exp-collapse" aria-expanded="false" aria-controls="exp-collapse" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
                                         EXPERIENCES
                                     </button>
                                 </h2>
-                                <div id="exp-collapse" class="accordion-collapse collapse Flora-Font fs-5 rounded" aria-labelledby="exp-head" data-bs-parent="#floraNFT" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
-                                    <div class="accordion-body">
+                                <div id="exp-collapse" className="accordion-collapse collapse Flora-Font fs-5 rounded" aria-labelledby="exp-head" data-bs-parent="#floraNFT" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
+                                    <div className="accordion-body">
                                         access to education and experiences IRL and in the floraverse
                                     </div>
                                 </div>
@@ -191,26 +191,26 @@ const Landing = () => {
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item m-2 rounded">
-                    <h2 class="accordion-header" id="master-head">
-                        <button class="accordion-button collapsed Flora-Font rounded fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#master-collapse" aria-expanded="false" aria-controls="master-collapse" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
+                <div className="accordion-item m-2 rounded">
+                    <h2 className="accordion-header" id="master-head">
+                        <button className="accordion-button collapsed Flora-Font rounded fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#master-collapse" aria-expanded="false" aria-controls="master-collapse" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
                         MASTERCLASS
                         </button>
                     </h2>
-                    <div id="master-collapse" class="accordion-collapse collapse Flora-Font rounded fs-5" aria-labelledby="master-head" data-bs-parent="#roadmap" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
-                        <div class="accordion-body">
+                    <div id="master-collapse" className="accordion-collapse collapse Flora-Font rounded fs-5" aria-labelledby="master-head" data-bs-parent="#roadmap" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
+                        <div className="accordion-body">
                         Expand your mind and your gardening prowess on our platform with the help of world-class experts. Explore the virtual plant library, garden and experiences!
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item m-2 rounded">
-                    <h2 class="accordion-header" id="evo-head">
-                        <button class="accordion-button collapsed Flora-Font rounded fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#evo-collapse" aria-expanded="false" aria-controls="evo-collapse" style={{backgroundColor: '#FFC4E8', color: '#00544B'}}>
+                <div className="accordion-item m-2 rounded">
+                    <h2 className="accordion-header" id="evo-head">
+                        <button className="accordion-button collapsed Flora-Font rounded fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#evo-collapse" aria-expanded="false" aria-controls="evo-collapse" style={{backgroundColor: '#FFC4E8', color: '#00544B'}}>
                         THE EVOLUTION
                         </button>
                     </h2>
-                    <div id="evo-collapse" class="accordion-collapse collapse Flora-Font rounded fs-5" aria-labelledby="master-evo" data-bs-parent="#roadmap" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
-                        <div class="accordion-body">
+                    <div id="evo-collapse" className="accordion-collapse collapse Flora-Font rounded fs-5" aria-labelledby="master-evo" data-bs-parent="#roadmap" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
+                        <div className="accordion-body">
                         SACRΞD GARDΞN will bridge the physical and virtual from dirt to digital using IRL plants and web3 tools.  We will grow the biggest decentralized garden of sacred plants.
                         </div>
                     </div>

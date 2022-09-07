@@ -419,7 +419,7 @@ const Mint = () => {
           Thanks for minting with us!
         </span>
 
-        {minted ?  <SeedMinted /> : null }
+        { minted ?  <SeedMinted /> : null }
 
         { nftID ? <GetIDs /> : null }
 

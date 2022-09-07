@@ -1,0 +1,211 @@
+import React, { useEffect, useState } from "react";
+import { useConnectWallet } from '@web3-onboard/react';
+import initWeb3Onboard from '../services';
+import { q, client } from "../config/fauna.js";
+
+const Dashboard = () => {
+
+    const [web3Onboard, setWeb3Onboard] = useState();
+    const [{ wallet, connecting }, connect] = useConnectWallet()
+    const [ orders, setOrders ] = useState([])
+    const [ address, setAddress ] = useState(null)
+    const [ email, setEmail ] = useState(null)
+    const [ cardPurch, setCardPurch ] = useState(false)
+    const [ review, setReview ] = useState(null)
+    
+
+
+    // // this perpetuates the connection to blocknative
+    useEffect(() => {
+        // This initializes bloclknative so that wallets can be connected given custom parameters from '../service'
+        setWeb3Onboard(initWeb3Onboard)
+    }, []);
+
+    useEffect(() => {
+        // Asks IF there ISN'T a wallet connected or a provider then...
+            if (wallet != null) {
+            // throws a func that sets the provider given their ETH information to be used in a static state
+                return setAddress(wallet.accounts[0].address)
+            } 
+            return
+    }, [ wallet]);
+
+    useEffect(() => {
+        const walletOrders = (address) => {
+            client.query(q.Paginate(q.Match(q.Index("walletOrders"), address)))
+            .then((ret)=>{
+                ret.data.map( async (ref) => {
+                    await client.query(q.Get(q.Ref(q.Collection('Orders'), ref.value.id))).then((oth) => { 
+                        console.log({id: ref.value.id, order: oth.data})
+                        return setOrders(old=>[...old,{id: ref.value.id, order: oth.data}])
+                    })
+                    return 
+                })
+            }).catch((err) => console.error(
+                'Error: [%s] %s: %s',
+                err.name,
+                err.message,
+                err.errors()[0].description,
+                web3Onboard
+            ))
+        }
+
+        const cardOrders = (email) => {
+            client.query(q.Paginate(q.Match(q.Index('cardOrders'), email)))
+            .then((ret)=>{
+                ret.data.map( async (ref) => {
+                    await client.query(q.Get(q.Ref(q.Collection('Orders'), ref.value.id))).then((oth) => { 
+                        return setOrders(old=>[...old,{order: ref.value.id, oth}])
+                    })
+                    return 
+                })
+            }).catch((err) => console.error(
+                'Error: [%s] %s: %s',
+                err.name,
+                err.message,
+                err.errors()[0].description,
+            ))
+        }
+
+        if(address != null){
+            return walletOrders(address)
+        } else if(email != null){
+            return cardOrders(email)
+        }
+    }, [address, email, web3Onboard])
+
+    return(
+        <div className="row">
+            <div className="col m-2 p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
+                    {
+                        cardPurch !== false ?
+                        <div className="d-flex flex-column justify-content-evenly">
+                            <div className="d-flex flex-row p-3 my-2">
+                                <input className='Flora-Font fs-5 text-uppercase rounded w-75 mx-1' type={'email'} placeholder='Email Address'/>
+                                <button className="Flora-Font fs-2 btn btn-primary text-uppercase mx-1 p-3" 
+                                onClick={(e)=>{setEmail(e.target.parentNode.children[0].value)}}>
+                                    submit
+                                </button>
+                            </div>
+                            <button className='btn fs-5 Flora-Font' onClick={()=>{
+                                setCardPurch(false)}}>
+                                <span>Purchased a Membership with a Wallet?</span>
+                            </button>
+                        </div> 
+                        :
+                        <div className="d-flex flex-column justify-content-evenly align-items-center">
+                            <button className='btn Flora-Font fs-2 p-3 my-3 rounded w-100' 
+                            onClick={async () => (connect())}
+                            style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
+                                {connecting ? 'CONNECTING' : wallet ? 'CONNECTED' : 'CONNECT WALLET'}
+                            </button>
+                            <button className='btn fs-5 Flora-Font' onClick={()=>{
+                                setCardPurch(true)}}>
+                                <span>Purchased a Membership with a Credit or Debit Card?</span>
+                            </button>
+                        </div>
+                    }
+            </div>
+            <div className="col m-2 p-3 rounded d-flex flex-column justify-content-around" style={{backgroundColor: '#FFE0E0'}}>
+                {
+                    orders.length >= 1 ?
+                        orders.map((ret)=>{
+                            return(
+                                <button className="p-2 mx-1 my-2 rounded btn d-flex flex-column" style={{backgroundColor: '#FFF5B5'}} key={ret.id} onClick={()=>{
+                                    setReview(orders[orders.indexOf(ret)])
+                                }}>
+                                    <span className="Flora-Font text-uppercase fs-5">Order #: {ret.id}</span>
+                                    <div  className="p-1 rounded w-100" style={{backgroundColor: '#FFC4E8'}}>
+                                        {ret.order.Items.map((res)=>{
+                                            return(
+                                                <div className="d-flex flex-row" key={ret.id}>
+                                                    <div className="Flora-Font">
+                                                        <img src={res.src} alt={res.src}/>
+                                                        <span className="text-capitalize">{res.item}</span>
+                                                    </div>
+                                                    <span className="ms-auto Flora-Font">x{res.quantity}</span>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                </button> 
+                            )
+                        })
+                        :
+                        <div>
+                            {
+                                cardPurch !== false?
+                                <span className="Flora-Font fs-4 p-4">Enter an email to review an order.</span>
+                                :
+                                null                            
+                            }   
+                        </div>
+                }
+            </div>
+            <div className="col m-2 p-3 rounded d-flex flex-column" style={{backgroundColor: '#FFE0E0'}}>
+                {
+                    review != null?
+                    <div className="d-flex flex-column justify-content-evenly rounded p-2" style={{backgroundColor: '#FFF5B5'}}>
+                        <span className="Flora-Font text-uppercase fs-5">Order #: {review.id}</span>
+                        {review.order.Items.map((res)=>{
+                            return(
+                                <div className="d-flex flex-row rounded p-2 my-2" key={review.id} style={{backgroundColor: '#FFC4E8'}}>
+                                    <div className="Flora-Font">
+                                        <img src={res.src} alt={res.src}/>
+                                        <span className="text-capitalize">{res.item}</span>
+                                    </div>
+                                    <span className="ms-auto Flora-Font">x{res.quantity}</span>
+                                </div>
+                            )
+                        })}
+                        <div className="d-flex Flora-Font flex-column rounded p-2 my-2" style={{backgroundColor: '#FFC4E8'}}>
+                            <div className="d-flex flex-row">
+                                <span>Tokens</span>
+                                <span className="ms-auto">x{review.order.Tokens.length}</span>
+                            </div>
+                            {review.order.Tokens.map((ret)=>{
+                                return(
+                                    <div className="d-flex Flora-Font rounded p-1" key={ret.tokenId} style={{backgroundColor: '#04F2AF'}}>
+                                        <span>ERC{ret.tokenId}</span>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        {
+                            review.order.Email != null?
+                            <div className="d-flex flex-row flex-wrap Flora-Font justify-content-between">
+                                <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
+                                    <label>Address</label>
+                                    <span  className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.order.Address}</span>
+                                </div>
+                                <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
+                                    <label>Apartment</label>
+                                    <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.order.Apartment}</span>
+                                </div>
+                                <div className="d-flex flex-column w-50 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
+                                    <label>City</label>
+                                    <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.order.City}</span>
+                                </div>
+                                <div className="d-flex flex-column rounded p-2 my-1" style={{backgroundColor: '#FFC4E8'}}>
+                                    <label>State</label>
+                                    <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.order.State}</span>
+                                </div>
+                                <div className="d-flex flex-column w-25 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
+                                    <label>ZIP</label>
+                                    <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.order.ZIP}</span>
+                                </div>
+                            </div>
+                            :
+                            null
+
+                        }
+                    </div>
+                    :
+                    null
+                }
+            </div>
+        </div>
+    )
+}
+
+export default Dashboard

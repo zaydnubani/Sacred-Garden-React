@@ -8,6 +8,7 @@ import Partners from './pages/Partners'
 import Mint from './pages/Mint.js'
 import Terms from './pages/Terms'
 import Shop from './pages/Shop'
+import Dashboard from './pages/dashboard';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
       </Route>
       <Route exact path="/shop">
         <Shop />
+      </Route>
+      <Route exact path="/dashboard">
+        <Dashboard />
       </Route>
     </Router>
   );
