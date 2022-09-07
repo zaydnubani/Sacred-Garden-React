@@ -153,7 +153,7 @@ const Shop = () => {
         }
         cart.forEach((res)=>{
             // if the item type matches then the user will need to fill-out the information form given that the item needs to be shipped
-            if(res.type === 'clothes' | res.type === 'plants'){
+            if(res.type !== 'course'){
                 setAddressRequired(true)
             }
             if(res.quantity===0){
