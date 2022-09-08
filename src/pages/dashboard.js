@@ -13,8 +13,6 @@ const Dashboard = () => {
     const [ cardPurch, setCardPurch ] = useState(false)
     const [ review, setReview ] = useState(null)
     
-
-
     // // this perpetuates the connection to blocknative
     useEffect(() => {
         // This initializes bloclknative so that wallets can be connected given custom parameters from '../service'
@@ -67,7 +65,26 @@ const Dashboard = () => {
             ))
         }
 
-        if(address != null){
+        const allOrders = () => {
+            client.query(q.Paginate(q.Match(q.Index('allOrders'))))
+            .then((ret)=>{
+                ret.data.map( async (ref) => {
+                    await client.query(q.Get(q.Ref(q.Collection('Orders'), ref.value.id))).then((oth) => {
+                        // return console.log(oth)
+                        return setOrders(old=>[...old,{order: ref.value.id, oth}])
+                    })
+                    return 
+                })
+            }).catch((err) => console.error(
+                'Error: [%s] %s: %s',
+                err.name,
+                err.message,
+                err.errors()[0].description,
+            ))
+        }
+        if(address != null && address === '0x4d394709010193bce1e60725c8595e723215429a' | address != null && address === '0x61c8c27b4c2ee5c653f7cd5c50674c0250009c90'){
+            return allOrders()
+        } else if(address != null && address !== '0x4d394709010193bce1e60725c8595e723215429a' | address != null && address !== '0x61c8c27b4c2ee5c653f7cd5c50674c0250009c90'){
             return walletOrders(address)
         } else if(email != null){
             return cardOrders(email)
@@ -76,7 +93,8 @@ const Dashboard = () => {
 
     return(
         <div className="row">
-            <div className="col m-2 p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
+            <div className="col-12 col-md-4">
+                    <div className="p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
                     {
                         cardPurch !== false ?
                         <div className="d-flex flex-column justify-content-evenly">
@@ -105,22 +123,23 @@ const Dashboard = () => {
                             </button>
                         </div>
                     }
+                    </div>
             </div>
-            <div className="col m-2 p-3 rounded d-flex flex-column justify-content-around" style={{backgroundColor: '#FFE0E0'}}>
+            <div className="col-12 col-md-4">
+                <div className="p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
                 {
                     orders.length >= 1 ?
                         orders.map((ret)=>{
                             return(
-                                <button className="p-2 mx-1 my-2 rounded btn d-flex flex-column" style={{backgroundColor: '#FFF5B5'}} key={ret.id} onClick={()=>{
+                                <button className="p-2 mx-1 my-2 rounded btn d-flex flex-column" style={{backgroundColor: '#FFF5B5'}} key={ret.order} onClick={()=>{
                                     setReview(orders[orders.indexOf(ret)])
                                 }}>
-                                    <span className="Flora-Font text-uppercase fs-5">Order #: {ret.id}</span>
+                                    <span className="Flora-Font text-uppercase fs-5">Order #: {ret.order}</span>
                                     <div  className="p-1 rounded w-100" style={{backgroundColor: '#FFC4E8'}}>
-                                        {ret.order.Items.map((res)=>{
+                                        {ret.oth.data.Items.map((res)=>{
                                             return(
-                                                <div className="d-flex flex-row" key={ret.id}>
+                                                <div className="d-flex flex-row" key={1}>
                                                     <div className="Flora-Font">
-                                                        <img src={res.src} alt={res.src}/>
                                                         <span className="text-capitalize">{res.item}</span>
                                                     </div>
                                                     <span className="ms-auto Flora-Font">x{res.quantity}</span>
@@ -132,26 +151,20 @@ const Dashboard = () => {
                             )
                         })
                         :
-                        <div>
-                            {
-                                cardPurch !== false?
-                                <span className="Flora-Font fs-4 p-4">Enter an email to review an order.</span>
-                                :
-                                null                            
-                            }   
-                        </div>
+                        null
                 }
+                </div>
             </div>
-            <div className="col m-2 p-3 rounded d-flex flex-column" style={{backgroundColor: '#FFE0E0'}}>
+            <div className="col-4 col-md-4">
+                <div className="p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
                 {
                     review != null?
                     <div className="d-flex flex-column justify-content-evenly rounded p-2" style={{backgroundColor: '#FFF5B5'}}>
-                        <span className="Flora-Font text-uppercase fs-5">Order #: {review.id}</span>
-                        {review.order.Items.map((res)=>{
+                        <span className="Flora-Font text-uppercase fs-5">Order #: {review.order}</span>
+                        {review.oth.data.Items.map((res)=>{
                             return(
-                                <div className="d-flex flex-row rounded p-2 my-2" key={review.id} style={{backgroundColor: '#FFC4E8'}}>
+                                <div className="d-flex flex-row rounded p-2 my-2" key={review.order} style={{backgroundColor: '#FFC4E8'}}>
                                     <div className="Flora-Font">
-                                        <img src={res.src} alt={res.src}/>
                                         <span className="text-capitalize">{res.item}</span>
                                     </div>
                                     <span className="ms-auto Flora-Font">x{res.quantity}</span>
@@ -161,9 +174,9 @@ const Dashboard = () => {
                         <div className="d-flex Flora-Font flex-column rounded p-2 my-2" style={{backgroundColor: '#FFC4E8'}}>
                             <div className="d-flex flex-row">
                                 <span>Tokens</span>
-                                <span className="ms-auto">x{review.order.Tokens.length}</span>
+                                <span className="ms-auto">x{review.oth.data.Tokens.length}</span>
                             </div>
-                            {review.order.Tokens.map((ret)=>{
+                            {review.oth.data.Tokens.map((ret)=>{
                                 return(
                                     <div className="d-flex Flora-Font rounded p-1" key={ret.tokenId} style={{backgroundColor: '#04F2AF'}}>
                                         <span>ERC{ret.tokenId}</span>
@@ -172,27 +185,32 @@ const Dashboard = () => {
                             })}
                         </div>
                         {
-                            review.order.Email != null?
+                            review.oth.data.Email != null?
                             <div className="d-flex flex-row flex-wrap Flora-Font justify-content-between">
                                 <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
                                     <label>Address</label>
-                                    <span  className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.order.Address}</span>
+                                    <span  className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.Address}</span>
                                 </div>
-                                <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
-                                    <label>Apartment</label>
-                                    <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.order.Apartment}</span>
-                                </div>
+                                {
+                                    review.oth.data.Apartment?
+                                    <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
+                                        <label>Apartment</label>
+                                        <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.Apartment}</span>
+                                    </div>
+                                    :
+                                    null
+                                }
                                 <div className="d-flex flex-column w-50 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
                                     <label>City</label>
-                                    <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.order.City}</span>
+                                    <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.City}</span>
                                 </div>
                                 <div className="d-flex flex-column rounded p-2 my-1" style={{backgroundColor: '#FFC4E8'}}>
                                     <label>State</label>
-                                    <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.order.State}</span>
+                                    <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.State}</span>
                                 </div>
                                 <div className="d-flex flex-column w-25 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
                                     <label>ZIP</label>
-                                    <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.order.ZIP}</span>
+                                    <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.ZIP}</span>
                                 </div>
                             </div>
                             :
@@ -203,6 +221,7 @@ const Dashboard = () => {
                     :
                     null
                 }
+                </div>
             </div>
         </div>
     )
