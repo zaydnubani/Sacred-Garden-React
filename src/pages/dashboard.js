@@ -24,7 +24,11 @@ const Dashboard = () => {
             if (wallet != null) {
             // throws a func that sets the provider given their ETH information to be used in a static state
                 return setAddress(wallet.accounts[0].address)
-            } 
+                // return setAddress('0x4d394709010193bce1e60725c8595e723215429a')
+            } else {
+                setReview(null)
+                setOrders([])
+            }
             return
     }, [ wallet]);
 
@@ -81,9 +85,9 @@ const Dashboard = () => {
                 err.errors()[0].description,
             ))
         }
-        if(address != null && address === '0x4d394709010193bce1e60725c8595e723215429a' | address != null && address === '0x61c8c27b4c2ee5c653f7cd5c50674c0250009c90'){
+        if(address === '0x4d394709010193bce1e60725c8595e723215429a' | address === '0x61c8c27b4c2ee5c653f7cd5c50674c0250009c90'){
             return allOrders()
-        } else if(address != null && address !== '0x4d394709010193bce1e60725c8595e723215429a' | address != null && address !== '0x61c8c27b4c2ee5c653f7cd5c50674c0250009c90'){
+        } else if(address != null && address !== '0x4d394709010193bce1e60725c8595e723215429a' | address != null && address !== '0x61c8c27b4c2ee5c653f7cd5c50674c0250009c9'){
             return walletOrders(address)
         } else if(email != null){
             return cardOrders(email)
@@ -91,12 +95,13 @@ const Dashboard = () => {
     }, [address, email, web3Onboard])
 
     return(
-        <div className="row">
+        <div className="row d-flex justify-content-evenly gy-3">
             <div className="col-12 col-md-4">
-                    <div className="p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
+                    <div className="container-fluid p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
                     {
                         cardPurch !== false ?
                         <div className="d-flex flex-column justify-content-evenly">
+                            <span className="Flora-Font fs-3">Submit an email to review orders.</span>
                             <div className="d-flex flex-row p-3 my-2">
                                 <input className='Flora-Font fs-5 text-uppercase rounded w-75 mx-1' type={'email'} placeholder='Email Address'/>
                                 <button className="Flora-Font fs-2 btn btn-primary text-uppercase mx-1 p-3" 
@@ -111,6 +116,7 @@ const Dashboard = () => {
                         </div> 
                         :
                         <div className="d-flex flex-column justify-content-evenly align-items-center">
+                            <span className="Flora-Font fs-3">Connect to a wallet to review orders.</span>
                             <button className='btn Flora-Font fs-2 p-3 my-3 rounded w-100' 
                             onClick={async () => (connect())}
                             style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
@@ -124,105 +130,114 @@ const Dashboard = () => {
                     }
                     </div>
             </div>
-            <div className="col-12 col-md-4">
-                <div className="p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
-                {
-                    orders.length >= 1 ?
-                        orders.map((ret)=>{
-                            return(
-                                <button className="p-2 mx-1 my-2 rounded btn d-flex flex-column" style={{backgroundColor: '#FFF5B5'}} key={ret.order} onClick={(e)=>{
-                                    console.log(e.target.parentNode.parentNode.parentNode.parentNode.children[2].children[0].children[0])
-                                    setReview(orders[orders.indexOf(ret)])
-                                }}>
-                                    <span className="Flora-Font text-uppercase fs-5">Order #: {ret.order}</span>
-                                    <div  className="p-1 rounded w-100" style={{backgroundColor: '#FFC4E8'}}>
-                                        {ret.oth.data.Items.map((res)=>{
-                                            return(
-                                                <div className="d-flex flex-row" key={ret.oth.data.Items.indexOf(res)}>
-                                                    <div className="Flora-Font">
-                                                        <span className="text-capitalize">{res.item}</span>
-                                                    </div>
-                                                    <span className="ms-auto Flora-Font">x{res.quantity}</span>
-                                                </div>
-                                            )
-                                        })}
-                                    </div>
-                                </button> 
-                            )
-                        })
-                        :
-                        null
-                }
-                </div>
-            </div>
-            <div className="col-12 col-md-4">
-                <div className="p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
-                {
-                    review != null?
-                    <div className="d-flex flex-column justify-content-evenly rounded p-2" style={{backgroundColor: '#FFF5B5'}}>
-                        <span className="Flora-Font text-uppercase fs-5">Order #: {review.order}</span>
-                        {review.oth.data.Items.map((res)=>{
-                            return(
-                                <div className="d-flex flex-row rounded p-2 my-2" key={review.oth.data.Items.indexOf(res)} style={{backgroundColor: '#FFC4E8'}}>
-                                    <div className="Flora-Font">
-                                        <span className="text-capitalize">{res.item}</span>
-                                    </div>
-                                    <span className="ms-auto Flora-Font">x{res.quantity}</span>
-                                </div>
-                            )
-                        })}
-                        <div className="d-flex Flora-Font flex-column rounded p-2 my-2" style={{backgroundColor: '#FFC4E8'}}>
-                            <div className="d-flex flex-row">
-                                <span>Tokens</span>
-                                <span className="ms-auto">x{review.oth.data.Tokens.length}</span>
-                            </div>
-                            {review.oth.data.Tokens.map((ret)=>{
+            {
+                wallet != null ?
+                <div className="col-12 col-md-4">
+                    <div className="p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
+                        <span className="Flora-Font fs-3">Select an order to review.</span>
+                    {
+                        orders.length >= 1 ?
+                            orders.map((ret)=>{
                                 return(
-                                    <div className="d-flex Flora-Font rounded p-1 m-1" key={ret.tokenId} style={{backgroundColor: '#04F2AF'}}>
-                                        <span>ERC{ret.tokenId}</span>
+                                    <button className="p-2 mx-1 my-2 rounded btn d-flex flex-column" style={{backgroundColor: '#FFF5B5'}} key={ret.order} onClick={(e)=>{
+                                        setReview(null)                                        
+                                        setReview(orders[orders.indexOf(ret)])
+                                    }}>
+                                        <span className="Flora-Font text-uppercase fs-5">Order #: {ret.order}</span>
+                                        <div  className="p-1 rounded w-100" style={{backgroundColor: '#FFC4E8'}}>
+                                            {ret.oth.data.Items.map((res)=>{
+                                                return(
+                                                    <div className="d-flex flex-row" key={ret.oth.data.Items.indexOf(res)}>
+                                                        <div className="Flora-Font">
+                                                            <span className="text-capitalize">{res.item}</span>
+                                                        </div>
+                                                        <span className="ms-auto Flora-Font">x{res.quantity}</span>
+                                                    </div>
+                                                )
+                                            })}
+                                        </div>
+                                    </button> 
+                                )
+                            })
+                            :
+                            null
+                    }
+                    </div>
+                </div>
+                :
+                null
+            }
+            {
+                review != null?
+                <div className="col-12 col-md-4">
+                    <div className="p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
+                        <button type="button" className="btn-close ms-auto py-3" aria-label="Close" onClick={()=>{
+                        setReview(null)
+                        }}></button>
+                        <div className="d-flex flex-column justify-content-evenly rounded p-2" style={{backgroundColor: '#FFF5B5'}}>
+                            <span className="Flora-Font text-uppercase fs-5">Order #: {review.order}</span>
+                            {review.oth.data.Items.map((res)=>{
+                                return(
+                                    <div className="d-flex flex-row rounded p-2 my-2" key={review.oth.data.Items.indexOf(res)} style={{backgroundColor: '#FFC4E8'}}>
+                                        <div className="Flora-Font">
+                                            <span className="text-capitalize">{res.item}</span>
+                                        </div>
+                                        <span className="ms-auto Flora-Font">x{res.quantity}</span>
                                     </div>
                                 )
                             })}
-                        </div>
-                        {
-                            review.oth.data.Email != null?
-                            <div className="d-flex flex-row flex-wrap Flora-Font justify-content-between">
-                                <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
-                                    <label>Address</label>
-                                    <span  className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.Address}</span>
+                            <div className="d-flex Flora-Font flex-column rounded p-2 my-2" style={{backgroundColor: '#FFC4E8'}}>
+                                <div className="d-flex flex-row">
+                                    <span>Tokens</span>
+                                    <span className="ms-auto">x{review.oth.data.Tokens.length}</span>
                                 </div>
-                                {
-                                    review.oth.data.Apartment?
-                                    <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
-                                        <label>Apartment</label>
-                                        <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.Apartment}</span>
-                                    </div>
-                                    :
-                                    null
-                                }
-                                <div className="d-flex flex-column w-50 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
-                                    <label>City</label>
-                                    <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.City}</span>
-                                </div>
-                                <div className="d-flex flex-column rounded p-2 my-1" style={{backgroundColor: '#FFC4E8'}}>
-                                    <label>State</label>
-                                    <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.State}</span>
-                                </div>
-                                <div className="d-flex flex-column w-25 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
-                                    <label>ZIP</label>
-                                    <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.ZIP}</span>
-                                </div>
+                                {review.oth.data.Tokens.map((ret)=>{
+                                    return(
+                                        <div className="d-flex Flora-Font rounded p-1 m-1" key={ret.tokenId} style={{backgroundColor: '#04F2AF'}}>
+                                            <span>ERC{ret.tokenId}</span>
+                                        </div>
+                                    )
+                                })}
                             </div>
-                            :
-                            null
+                            {
+                                review.oth.data.Email != null?
+                                <div className="d-flex flex-row flex-wrap Flora-Font justify-content-between">
+                                    <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
+                                        <label>Address</label>
+                                        <span  className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.Address}</span>
+                                    </div>
+                                    {
+                                        review.oth.data.Apartment?
+                                        <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
+                                            <label>Apartment</label>
+                                            <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.Apartment}</span>
+                                        </div>
+                                        :
+                                        null
+                                    }
+                                    <div className="d-flex flex-column w-50 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
+                                        <label>City</label>
+                                        <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.City}</span>
+                                    </div>
+                                    <div className="d-flex flex-column rounded p-2 my-1" style={{backgroundColor: '#FFC4E8'}}>
+                                        <label>State</label>
+                                        <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.State}</span>
+                                    </div>
+                                    <div className="d-flex flex-column w-25 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
+                                        <label>ZIP</label>
+                                        <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.ZIP}</span>
+                                    </div>
+                                </div>
+                                :
+                                null
 
-                        }
+                            }
+                        </div>
                     </div>
-                    :
-                    null
-                }
-                </div>
-            </div>
+                </div> 
+                :
+                null
+            }
         </div>
     )
 }
