@@ -96,7 +96,7 @@ const Dashboard = () => {
 
     return(
         <div className="row d-flex justify-content-evenly gy-3">
-            <div className="col-12 col-md-4">
+            <div className="col-12 col-lg-4">
                     <div className="container-fluid p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
                     {
                         cardPurch !== false ?
@@ -132,7 +132,7 @@ const Dashboard = () => {
             </div>
             {
                 wallet != null ?
-                <div className="col-12 col-md-4">
+                <div className="col-12 col-lg-4">
                     <div className="p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
                         <span className="Flora-Font fs-3">Select an order to review.</span>
                     {
@@ -169,7 +169,7 @@ const Dashboard = () => {
             }
             {
                 review != null?
-                <div className="col-12 col-md-4">
+                <div className="col-12 col-lg-4">
                     <div className="p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
                         <button type="button" className="btn-close ms-auto py-3" aria-label="Close" onClick={()=>{
                         setReview(null)
