@@ -35,7 +35,7 @@ const Dashboard = () => {
                 ret.data.map( async (ref) => {
                     await client.query(q.Get(q.Ref(q.Collection('Orders'), ref.value.id))).then((oth) => { 
                         console.log({id: ref.value.id, order: oth.data})
-                        return setOrders(old=>[...old,{id: ref.value.id, order: oth.data}])
+                        return setOrders(old=>[...old,{order: ref.value.id, oth}])
                     })
                     return 
                 })
@@ -70,7 +70,6 @@ const Dashboard = () => {
             .then((ret)=>{
                 ret.data.map( async (ref) => {
                     await client.query(q.Get(q.Ref(q.Collection('Orders'), ref.value.id))).then((oth) => {
-                        // return console.log(oth)
                         return setOrders(old=>[...old,{order: ref.value.id, oth}])
                     })
                     return 
@@ -131,14 +130,15 @@ const Dashboard = () => {
                     orders.length >= 1 ?
                         orders.map((ret)=>{
                             return(
-                                <button className="p-2 mx-1 my-2 rounded btn d-flex flex-column" style={{backgroundColor: '#FFF5B5'}} key={ret.order} onClick={()=>{
+                                <button className="p-2 mx-1 my-2 rounded btn d-flex flex-column" style={{backgroundColor: '#FFF5B5'}} key={ret.order} onClick={(e)=>{
+                                    console.log(e.target.parentNode.parentNode.parentNode.parentNode.children[2].children[0].children[0])
                                     setReview(orders[orders.indexOf(ret)])
                                 }}>
                                     <span className="Flora-Font text-uppercase fs-5">Order #: {ret.order}</span>
                                     <div  className="p-1 rounded w-100" style={{backgroundColor: '#FFC4E8'}}>
                                         {ret.oth.data.Items.map((res)=>{
                                             return(
-                                                <div className="d-flex flex-row" key={1}>
+                                                <div className="d-flex flex-row" key={ret.oth.data.Items.indexOf(res)}>
                                                     <div className="Flora-Font">
                                                         <span className="text-capitalize">{res.item}</span>
                                                     </div>
@@ -155,7 +155,7 @@ const Dashboard = () => {
                 }
                 </div>
             </div>
-            <div className="col-4 col-md-4">
+            <div className="col-12 col-md-4">
                 <div className="p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
                 {
                     review != null?
@@ -163,7 +163,7 @@ const Dashboard = () => {
                         <span className="Flora-Font text-uppercase fs-5">Order #: {review.order}</span>
                         {review.oth.data.Items.map((res)=>{
                             return(
-                                <div className="d-flex flex-row rounded p-2 my-2" key={review.order} style={{backgroundColor: '#FFC4E8'}}>
+                                <div className="d-flex flex-row rounded p-2 my-2" key={review.oth.data.Items.indexOf(res)} style={{backgroundColor: '#FFC4E8'}}>
                                     <div className="Flora-Font">
                                         <span className="text-capitalize">{res.item}</span>
                                     </div>
@@ -178,7 +178,7 @@ const Dashboard = () => {
                             </div>
                             {review.oth.data.Tokens.map((ret)=>{
                                 return(
-                                    <div className="d-flex Flora-Font rounded p-1" key={ret.tokenId} style={{backgroundColor: '#04F2AF'}}>
+                                    <div className="d-flex Flora-Font rounded p-1 m-1" key={ret.tokenId} style={{backgroundColor: '#04F2AF'}}>
                                         <span>ERC{ret.tokenId}</span>
                                     </div>
                                 )

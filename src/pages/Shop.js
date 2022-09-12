@@ -263,24 +263,37 @@ const Shop = () => {
             {
                 merchData.map((ret)=>{
                     
-                    const duplicate = (ret) => {
+                    const duplicate = (ret, size) => {
 
                         let bool = false;
 
                         cart.forEach((res)=>{
-                            if(ret.item===res.item){
-                                console.log(true)
-                                const filteredCart = cart.filter(retrn=>retrn.item!==ret.item)
-                                filteredCart.push({item: ret.item, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity + 1})
-                                setCart(filteredCart)
-                                return bool = true
-                            }else{
-                                return console.log(false)
+                            if(ret.type === 'clothes'){
+                                if(ret.item===res.item && size === res.size){
+                                    const filteredCart =[]
+                                    const filter1 = cart.filter( retrn => retrn.item !== ret.item && retrn.size !== size)
+                                    filter1.forEach(it=>filteredCart.push(it))
+                                    const filter2 = cart.filter( retrn => retrn.item === ret.item && retrn.size !== size)
+                                    filter2.forEach(it=>filteredCart.push(it))
+                                    filteredCart.push({item: ret.item, size: size, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity + 1})
+                                    // console.log(filteredCart)
+                                    setCart(filteredCart)
+                                    return bool = true
+                                }
+                                return
+                            } else {
+                                if(ret.item===res.item){
+                                    const filteredCart = cart.filter(retrn=>retrn.item!==ret.item)
+                                    filteredCart.push({item: ret.item, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity + 1})
+                                    setCart(filteredCart)
+                                    return bool = true
+                                }
+                                return
                             }
                         });
 
                         if (bool === false ){
-                            setCart(old => [...old, {item: ret.item, src: ret.src, type: ret.type, description: ret.description, quantity: 1}]);
+                            return setCart(old => [...old, {item: ret.item, src: ret.src, size: size, type: ret.type, description: ret.description, quantity: 1}]);
                         } 
 
                         return
@@ -344,9 +357,9 @@ const Shop = () => {
                                 <button className="btn btn-primary text-uppercase" onClick={(e)=>{
                                     if(ret.type === 'clothes'){
                                         if(cart.length >= 1){
-                                            duplicate(ret)
+                                            duplicate(ret, e.target.parentNode.children[3].value)
                                         }else{
-                                            setCart(old => [...old, {item: ret.item, type: ret.type, description: ret.description, size: e.target.parentNode.children[0].value, quantity: 1}]);
+                                            setCart(old => [...old, {item: ret.item, type: ret.type, description: ret.description, size: e.target.parentNode.children[3].value, quantity: 1}]);
                                         }
                                     }else{
                                         if(cart.length >= 1){
@@ -455,8 +468,12 @@ const Shop = () => {
                                     if(val === 'add'){
                                         cart.forEach((res)=>{
                                             if(ret.item===res.item){
-                                                const filteredCart = cart.filter(retrn=>retrn.item!==ret.item)
-                                                filteredCart.splice(cart.indexOf(res), 0, {item: ret.item, src: ret.src, tags: ret.tags, type: ret.type, description: ret.description, quantity: res.quantity + 1})
+                                                const filteredCart = [];
+                                                const filter1 = cart.filter( retrn => retrn.item !== ret.item && retrn.size !== res.size)
+                                                filter1.forEach(it=>filteredCart.push(it))
+                                                const filter2 = cart.filter( retrn => retrn.item === ret.item && retrn.size !== res.size)
+                                                filter2.forEach(it=>filteredCart.push(it))
+                                                filteredCart.splice(cart.indexOf(res), 0, {item: ret.item, size: res.size, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity + 1})
                                                 setCart(filteredCart)
                                                 return
                                             } else{
@@ -466,8 +483,12 @@ const Shop = () => {
                                     } else {
                                         cart.forEach((res)=>{
                                             if(ret.item===res.item){
-                                                const filteredCart = cart.filter(retrn=>retrn.item!==ret.item)
-                                                filteredCart.splice(cart.indexOf(res), 0, {item: ret.item, src: ret.src, tags: ret.tags, type: ret.type, description: ret.description, quantity: res.quantity - 1})
+                                                const filteredCart = [];
+                                                const filter1 = cart.filter( retrn => retrn.item !== ret.item && retrn.size !== res.size)
+                                                filter1.forEach(it=>filteredCart.push(it))
+                                                const filter2 = cart.filter( retrn => retrn.item === ret.item && retrn.size !== res.size)
+                                                filter2.forEach(it=>filteredCart.push(it))
+                                                filteredCart.splice(cart.indexOf(res), 0, {item: ret.item, size: res.size, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity - 1})
                                                 setCart(filteredCart)
                                                 return
                                             }else{
@@ -476,14 +497,33 @@ const Shop = () => {
                                         });
                                     }
                                 }
-                            return <div key={ret.item} className='d-flex flex-row align-items-center justify-content-evenly m-1'>
-                                <span className="Flora-Font fs-5">{ret.item}</span>
-                                <div className="d-flex flex-row align-items-center fs-5 ms-auto">
-                                    <button className="btn Flora-Font" value='sub' onClick={(e)=>cartQuant(e.target.value, ret)}>-</button>
-                                    <span className="Flora-Font">{ret.quantity}</span>
-                                    <button className="btn Flora-Font" value='add' onClick={(e)=>cartQuant(e.target.value, ret)}>+</button>
-                                </div>
-                                </div>
+                                return (
+                                    <div key={cart.indexOf(ret)}>
+                                        {
+                                            ret.size?
+                                            <div className='d-flex flex-column align-items-center justify-content-evenly m-1'>
+                                                <span className="Flora-Font fs-5">{ret.item}</span>
+                                                <div className="d-flex flex-row w-100 align-items-center">
+                                                    <span className="Flora-Font mx-5">{ret.size}</span>
+                                                    <div className="d-flex flex-row align-items-center fs-5 ms-auto">
+                                                        <button className="btn Flora-Font" value='sub' onClick={(e)=>cartQuant(e.target.value, ret)}>-</button>
+                                                        <span className="Flora-Font">{ret.quantity}</span>
+                                                        <button className="btn Flora-Font" value='add' onClick={(e)=>cartQuant(e.target.value, ret)}>+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            :
+                                            <div className='d-flex flex-rowcolumn align-items-center justify-content-evenly m-1'>
+                                                <span className="Flora-Font fs-5">{ret.item}</span>
+                                                <div className="d-flex flex-row align-items-center fs-5 ms-auto">
+                                                    <button className="btn Flora-Font" value='sub' onClick={(e)=>cartQuant(e.target.value, ret)}>-</button>
+                                                    <span className="Flora-Font">{ret.quantity}</span>
+                                                    <button className="btn Flora-Font" value='add' onClick={(e)=>cartQuant(e.target.value, ret)}>+</button>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                )
                             })}
                             <div className="border"></div>
                             <div className="d-flex flex-row w-100 m-1">
