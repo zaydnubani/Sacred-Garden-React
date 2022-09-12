@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useConnectWallet } from '@web3-onboard/react';
 import initWeb3Onboard from '../services';
 import { q, client } from "../config/fauna.js";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Dashboard = () => {
 
@@ -91,11 +92,13 @@ const Dashboard = () => {
             return walletOrders(address)
         } else if(email != null){
             return cardOrders(email)
-        }
+        } 
+
     }, [address, email, web3Onboard])
 
     return(
         <div className="row d-flex justify-content-evenly gy-3">
+            <div><Toaster/></div>
             <div className="col-12 col-lg-4">
                     <div className="container-fluid p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
                     {
@@ -131,13 +134,13 @@ const Dashboard = () => {
                     </div>
             </div>
             {
-                wallet != null ?
+                wallet != null | email != null?
                 <div className="col-12 col-lg-4">
-                    <div className="p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
-                        <span className="Flora-Font fs-3">Select an order to review.</span>
                     {
                         orders.length >= 1 ?
-                            orders.map((ret)=>{
+                        <div className="p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
+                            <span className="Flora-Font fs-3">Select an order to review.</span>
+                            {orders.map((ret)=>{
                                 return(
                                     <button className="p-2 mx-1 my-2 rounded btn d-flex flex-column" style={{backgroundColor: '#FFF5B5'}} key={ret.order} onClick={(e)=>{
                                         setReview(null)                                        
@@ -158,11 +161,15 @@ const Dashboard = () => {
                                         </div>
                                     </button> 
                                 )
-                            })
-                            :
-                            null
+                            })}
+                        </div>
+                        :
+                        <div className="p-3 rounded d-flex flex-column justify-content-evenly text-center" style={{backgroundColor: '#FFE0E0'}}>
+                            <span className="Flora-Font fs-3">No orders associated with this account.</span>
+                            <span className="Flora-Font fs-5">Visit the shop to place an order!</span>
+                            <a href="/shop" className="btn Flora-Font btn-primary text-uppercase fs-3">SHOP</a>
+                        </div>
                     }
-                    </div>
                 </div>
                 :
                 null
