@@ -192,6 +192,8 @@ const Shop = () => {
                     Wallet: address,
                     Items: finalOrder.Items,
                     Tokens: finalOrder.Tokens,
+                    First: finalOrder.First,
+                    Last: finalOrder.Last,
                     Email: finalOrder.Email,
                     Address: finalOrder.Address,
                     Apartment: finalOrder.Apartment,
@@ -403,24 +405,40 @@ const Shop = () => {
             {
                 typeData.map((ret)=>{
 
-                    const duplicate = (ret) => {
+                    const duplicate = (ret, size) => {
+
                         let bool = false;
+
                         cart.forEach((res)=>{
-                            if(ret.item===res.item){
-                                const filteredCart = cart.filter(retrn=>retrn.item!==ret.item)
-                                filteredCart.push({item: ret.item, src: ret.src, tags: ret.tags, type: ret.type, description: ret.description, quantity: res.quantity + 1})
-                                setCart(filteredCart)
-                                return bool = true
-                            }else{
+                            if(ret.type === 'clothes'){
+                                if(ret.item===res.item && size === res.size){
+                                    const filteredCart =[]
+                                    const filter1 = cart.filter( retrn => retrn.item !== ret.item && retrn.size !== size)
+                                    filter1.forEach(it=>filteredCart.push(it))
+                                    const filter2 = cart.filter( retrn => retrn.item === ret.item && retrn.size !== size)
+                                    filter2.forEach(it=>filteredCart.push(it))
+                                    filteredCart.push({item: ret.item, size: size, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity + 1})
+                                    setCart(filteredCart)
+                                    return bool = true
+                                }
+                                return
+                            } else {
+                                if(ret.item===res.item){
+                                    const filteredCart = cart.filter(retrn=>retrn.item!==ret.item)
+                                    filteredCart.push({item: ret.item, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity + 1})
+                                    setCart(filteredCart)
+                                    return bool = true
+                                }
                                 return
                             }
                         });
+
                         if (bool === false ){
-                            console.log('bool is false');
-                            setCart(old => [...old, {item: ret.item, src: ret.src, tags: ret.tags, type: ret.type, description: ret.description, quantity: 1}]);
-                        } else{
-                            console.log('bool is true');
-                        }
+                            return setCart(old => [...old, {item: ret.item, src: ret.src, size: size, type: ret.type, description: ret.description, quantity: 1}]);
+                        } 
+
+                        return
+
                     }
 
                     return( 
@@ -467,36 +485,51 @@ const Shop = () => {
                                 const cartQuant = (val, ret) => {
                                     if(val === 'add'){
                                         cart.forEach((res)=>{
-                                            if(ret.item===res.item){
-                                                const filteredCart = [];
-                                                const filter1 = cart.filter( retrn => retrn.item !== ret.item && retrn.size !== res.size)
-                                                filter1.forEach(it=>filteredCart.push(it))
-                                                const filter2 = cart.filter( retrn => retrn.item === ret.item && retrn.size !== res.size)
-                                                filter2.forEach(it=>filteredCart.push(it))
-                                                filteredCart.splice(cart.indexOf(res), 0, {item: ret.item, size: res.size, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity + 1})
-                                                setCart(filteredCart)
+                                            if(ret.type === 'clothes'){
+                                                if(ret.item===res.item && ret.size === res.size){
+                                                    const filteredCart =[]
+                                                    const filter1 = cart.filter( retrn => retrn.item !== ret.item && retrn.size !== ret.size)
+                                                    filter1.forEach(it=>filteredCart.push(it))
+                                                    const filter2 = cart.filter( retrn => retrn.item === ret.item && retrn.size !== ret.size)
+                                                    filter2.forEach(it=>filteredCart.push(it))
+                                                    filteredCart.splice(cart.indexOf(res), 0, {item: ret.item, size: ret.size, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity + 1})
+                                                    return setCart(filteredCart)
+                                                }
                                                 return
-                                            } else{
+                                            } else {
+                                                if(ret.item===res.item){
+                                                    const filteredCart = cart.filter(retrn=>retrn.item!==ret.item)
+                                                    filteredCart.splice(cart.indexOf(res), 0,{item: ret.item, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity + 1})
+                                                    return setCart(filteredCart)
+                                                }
                                                 return
                                             }
                                         });
                                     } else {
                                         cart.forEach((res)=>{
-                                            if(ret.item===res.item){
-                                                const filteredCart = [];
-                                                const filter1 = cart.filter( retrn => retrn.item !== ret.item && retrn.size !== res.size)
-                                                filter1.forEach(it=>filteredCart.push(it))
-                                                const filter2 = cart.filter( retrn => retrn.item === ret.item && retrn.size !== res.size)
-                                                filter2.forEach(it=>filteredCart.push(it))
-                                                filteredCart.splice(cart.indexOf(res), 0, {item: ret.item, size: res.size, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity - 1})
-                                                setCart(filteredCart)
+                                            if(ret.type === 'clothes'){
+                                                if(ret.item===res.item && ret.size === res.size){
+                                                    const filteredCart =[]
+                                                    const filter1 = cart.filter( retrn => retrn.item !== ret.item && retrn.size !== ret.size)
+                                                    filter1.forEach(it=>filteredCart.push(it))
+                                                    const filter2 = cart.filter( retrn => retrn.item === ret.item && retrn.size !== ret.size)
+                                                    filter2.forEach(it=>filteredCart.push(it))
+                                                    filteredCart.splice(cart.indexOf(res), 0, {item: ret.item, size: ret.size, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity - 1})
+                                                    return setCart(filteredCart)
+                                                }
                                                 return
-                                            }else{
-                                                return  
+                                            } else {
+                                                if(ret.item===res.item){
+                                                    const filteredCart = cart.filter(retrn=>retrn.item!==ret.item)
+                                                    filteredCart.splice(cart.indexOf(res), 0,{item: ret.item, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity - 1})
+                                                    return setCart(filteredCart)
+                                                }
+                                                return
                                             }
                                         });
                                     }
                                 }
+
                                 return (
                                     <div key={cart.indexOf(ret)}>
                                         {
@@ -593,41 +626,83 @@ const Shop = () => {
                                         </span>
                                     </div>
                                     {
-                                    cart.map((ret)=>{
-                                        const cartQuant = (val, ret) => {
-                                            if(val === 'add'){
-                                                cart.forEach((res)=>{
-                                                    if(ret.item===res.item){
-                                                        const filteredCart = cart.filter(retrn=>retrn.item!==ret.item)
-                                                        filteredCart.splice(cart.indexOf(res), 0, {item: ret.item, src: ret.src, tags: ret.tags, type: ret.type, description: ret.description, quantity: res.quantity + 1})
-                                                        setCart(filteredCart)
-                                                        return
-                                                    } else{
-                                                        return
+                                        cart.map((ret)=>{
+                                            const cartQuant = (val, ret) => {
+                                                    if(val === 'add'){
+                                                        cart.forEach((res)=>{
+                                                            if(ret.type === 'clothes'){
+                                                                if(ret.item===res.item && ret.size === res.size){
+                                                                    const filteredCart =[]
+                                                                    const filter1 = cart.filter( retrn => retrn.item !== ret.item && retrn.size !== ret.size)
+                                                                    filter1.forEach(it=>filteredCart.push(it))
+                                                                    const filter2 = cart.filter( retrn => retrn.item === ret.item && retrn.size !== ret.size)
+                                                                    filter2.forEach(it=>filteredCart.push(it))
+                                                                    filteredCart.splice(cart.indexOf(res), 0, {item: ret.item, size: ret.size, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity + 1})
+                                                                    return setCart(filteredCart)
+                                                                }
+                                                                return
+                                                            } else {
+                                                                if(ret.item===res.item){
+                                                                    const filteredCart = cart.filter(retrn=>retrn.item!==ret.item)
+                                                                    filteredCart.splice(cart.indexOf(res), 0,{item: ret.item, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity + 1})
+                                                                    return setCart(filteredCart)
+                                                                }
+                                                                return
+                                                            }
+                                                        });
+                                                    } else {
+                                                        cart.forEach((res)=>{
+                                                            if(ret.type === 'clothes'){
+                                                                if(ret.item===res.item && ret.size === res.size){
+                                                                    const filteredCart =[]
+                                                                    const filter1 = cart.filter( retrn => retrn.item !== ret.item && retrn.size !== ret.size)
+                                                                    filter1.forEach(it=>filteredCart.push(it))
+                                                                    const filter2 = cart.filter( retrn => retrn.item === ret.item && retrn.size !== ret.size)
+                                                                    filter2.forEach(it=>filteredCart.push(it))
+                                                                    filteredCart.splice(cart.indexOf(res), 0, {item: ret.item, size: ret.size, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity - 1})
+                                                                    return setCart(filteredCart)
+                                                                }
+                                                                return
+                                                            } else {
+                                                                if(ret.item===res.item){
+                                                                    const filteredCart = cart.filter(retrn=>retrn.item!==ret.item)
+                                                                    filteredCart.splice(cart.indexOf(res), 0,{item: ret.item, src: ret.src, type: ret.type, description: ret.description, quantity: res.quantity - 1})
+                                                                    return setCart(filteredCart)
+                                                                }
+                                                                return
+                                                            }
+                                                        });
                                                     }
-                                                });
-                                            } else {
-                                                cart.forEach((res)=>{
-                                                    if(ret.item===res.item){
-                                                        const filteredCart = cart.filter(retrn=>retrn.item!==ret.item)
-                                                        filteredCart.splice(cart.indexOf(res), 0, {item: ret.item, src: ret.src, tags: ret.tags, type: ret.type, description: ret.description, quantity: res.quantity - 1})
-                                                        setCart(filteredCart)
-                                                        return
-                                                    }else{
-                                                      return  
+                                                }
+                                            return( 
+                                                <div key={ret.item} className='d-flex flex-row align-items-center justify-content-evenly m-1'>
+                                                    {
+                                                        ret.size?
+                                                        <div className='d-flex flex-column align-items-center justify-content-evenly m-1'>
+                                                            <span className="Flora-Font fs-5">{ret.item}</span>
+                                                            <div className="d-flex flex-row w-100 align-items-center">
+                                                                <span className="Flora-Font mx-5">{ret.size}</span>
+                                                                <div className="d-flex flex-row align-items-center fs-5 ms-auto">
+                                                                    <button className="btn Flora-Font" value='sub' onClick={(e)=>cartQuant(e.target.value, ret)}>-</button>
+                                                                    <span className="Flora-Font">{ret.quantity}</span>
+                                                                    <button className="btn Flora-Font" value='add' onClick={(e)=>cartQuant(e.target.value, ret)}>+</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        :
+                                                        <div className='d-flex flex-row align-items-center justify-content-evenly m-1 w-100'>
+                                                            <span className="Flora-Font fs-5">{ret.item}</span>
+                                                            <div className="d-flex flex-row align-items-center fs-5 ms-auto">
+                                                                <button className="btn Flora-Font" value='sub' onClick={(e)=>cartQuant(e.target.value, ret)}>-</button>
+                                                                <span className="Flora-Font">{ret.quantity}</span>
+                                                                <button className="btn Flora-Font" value='add' onClick={(e)=>cartQuant(e.target.value, ret)}>+</button>
+                                                            </div>
+                                                        </div>
                                                     }
-                                                });
-                                            }
-                                        }
-                                    return <div key={ret.item} className='d-flex flex-row align-items-center justify-content-evenly m-1'>
-                                        <span className="Flora-Font fs-5">{ret.item}</span>
-                                        <div className="d-flex flex-row align-items-center fs-5 ms-auto">
-                                            <button className="btn Flora-Font" value='sub' onClick={(e)=>cartQuant(e.target.value, ret)}>-</button>
-                                            <span className="Flora-Font">{ret.quantity}</span>
-                                            <button className="btn Flora-Font" value='add' onClick={(e)=>cartQuant(e.target.value, ret)}>+</button>
-                                        </div>
-                                        </div>
-                                    })}
+                                                </div>
+                                            )
+                                        })
+                                    }
                                     <div className="border"></div>
                                     <div className="d-flex flex-row w-100 m-1">
                                         <span className="Flora-Font fs-5">
@@ -657,13 +732,8 @@ const Shop = () => {
                                     {
                                         (claimTokens.length - cartQuant) >= 0 ? 
                                             <button className="btn fs-2 p-3 my-3 rounded" style={{backgroundColor: '#04F2AF', color: '#00544B'}} 
-                                            onClick={()=>{
-                                                if(addressRequired !== true){
-                                                    setOrder({Wallet: address, Items: cart.map(ret=>ret),Tokens: claimTokens.slice(0, cartQuant) ,Email: email})
-                                                    return setCheckout(true)
-                                                } else {
-                                                    return setCheckout(true)
-                                                }                                              
+                                            onClick={()=>{                                              
+                                                return setCheckout(true)
                                             }}>
                                                 <span className="Flora-Font text-uppercase">
                                                     proceed to checkout
@@ -705,16 +775,19 @@ const Shop = () => {
                         </a>
                     </div>
                     <div className="col-12 d-flex flex-column">
+                    {
+                        addressRequired !== false?
                         <div className="d-flex flex-column">
                             <div className="py-3">
                                 <span className="Flora-Font text-uppercase fs-3">Information</span>
                             </div>
                             <form className="d-flex flex-row flex-wrap justify-content-evenly">
-                                <input type="email" className="form-control Flora-Font mx-1 my-2" id="InputEmail" aria-describedby="emailHelp" placeholder="Email"/>
-                                {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
-                                <input type='text' className="form-control Flora-Font mx-1 my-2" id="InputAddress" placeholder="Address"/>
-                                <input type='text' className="form-control Flora-Font mx-1 my-2" id="InputAddress" placeholder="Apartment, Suite, Etc. (optional)"/>
-                                <input type='text' className="form-control Flora-Font w-25 m-1 my-2 flex-grow-1" id="InputCity" placeholder="City"/>
+                                <input type='text' className="form-control Flora-Font mx-1 my-2" placeholder="First Name"/>
+                                <input type='text' className="form-control Flora-Font mx-1 my-2" placeholder="Last Name"/>
+                                <input type="email" className="form-control Flora-Font mx-1 my-2" aria-describedby="emailHelp" placeholder="Email"/>
+                                <input type='text' className="form-control Flora-Font mx-1 my-2"  placeholder="Address"/>
+                                <input type='text' className="form-control Flora-Font mx-1 my-2" placeholder="Apartment, Suite, Etc. (optional)"/>
+                                <input type='text' className="form-control Flora-Font w-25 m-1 my-2 flex-grow-1" placeholder="City"/>
                                 <select className="form-select Flora-Font w-25 m-1 my-2" placeholder="State">
                                     {States.map((ret)=>{
                                         return<option key={ret} value={ret} placeholder="state">{ret}</option>
@@ -724,10 +797,25 @@ const Shop = () => {
                             </form>
                             <button className="btn btn-primary Flora-Font m-1 text-uppercase" onClick={(e)=>{
                                 const children = e.target.parentNode.children[1].children
-                                setOrder({Items: cart.map(ret=>ret),Tokens: claimTokens.slice(0, cartQuant) ,Email: children[0].value, Address: children[1].value, Apartment: children[2].value, City: children[3].value, State: children[4].value, ZIP: children[5].value})
+                                // console.log({Items: cart.map(ret=>ret), Tokens: claimTokens.slice(0, cartQuant), First: children[0].value, Last: children[1].value, Email: children[2].value , Address: children[3].value, Apartment: children[4].value, City: children[5].value, State: children[6].value, ZIP: children[7].value})
+                                setOrder({Items: cart.map(ret=>ret), Tokens: claimTokens.slice(0, cartQuant), First: children[0].value, Last: children[1].value, Email: children[2].value , Address: children[3].value, Apartment: children[4].value, City: children[5].value, State: children[6].value, ZIP: children[7].value})
                             }}>Review Order</button>
                         </div>
-                    </div>                       
+                        :
+                        <div className="d-flex flex-column">
+                            <div className="py-3">
+                                <span className="Flora-Font text-uppercase fs-3">Information</span>
+                            </div>
+                            <form className="d-flex flex-row flex-wrap justify-content-evenly">
+                                <input type="email" className="form-control Flora-Font mx-1 my-2" id="InputEmail" aria-describedby="emailHelp" placeholder="Email"/>
+                            </form>
+                            <button className="btn btn-primary Flora-Font m-1 text-uppercase" onClick={(e)=>{
+                                const emailAddress = e.target.parentNode.children[1].children[0]
+                                setOrder({Items: cart.map(ret=>ret), Tokens: claimTokens.slice(0, cartQuant), Email: emailAddress.value})
+                            }}>Review Order</button>
+                        </div>
+                    }     
+                    </div>                  
                 </div>
             </div>
         )
@@ -746,6 +834,14 @@ const Shop = () => {
                         { addressRequired !== false ?
                         <div className="d-flex flex-row flex-wrap m-1">
                                 <span className="Flora-Font text-uppercase fs-3">Information</span>
+                                <div className="d-flex flex-column Flora-Font w-50 my-1">
+                                    <label className="">First Name</label>
+                                    <span>{order.First}</span>
+                                </div>
+                                <div className="d-flex flex-column Flora-Font w-50 my-1">
+                                    <label className="">Last Name</label>
+                                    <span>{order.Last}</span>
+                                </div>
                                 <div className="d-flex flex-column Flora-Font w-100 my-1">
                                     <label className="">Email</label>
                                     <span>{order.Email}</span>
@@ -772,15 +868,35 @@ const Shop = () => {
                                 </div>
                             </div>
                             : 
-                            null
+                            <div className="d-flex flex-row flex-wrap m-1">
+                                <span className="Flora-Font text-uppercase fs-3">Information</span>
+                                <div className="d-flex flex-column Flora-Font w-100 my-1">
+                                    <label className="">Email</label>
+                                    <span>{order.Email}</span>
+                                </div>
+                            </div>
                         }
                         <span className="Flora-Font text-uppercase fs-3">cart</span>
-                        <div className="d-flex flex-column m-1">
-                            {order.Items.map((ret)=>{return(<div className="Flora-Font d-flex flex-row" key={ret.item}>
-                                <span className="">{ret.item}</span>
-                                <span className="ms-auto">x{ret.quantity}</span>
-                            </div>)})}
-                        </div>
+                        {order.Items.map((ret)=>{
+                            return(
+                                <div className="d-flex flex-column m-1" key={ret.item}>
+                                    {
+                                        ret.size ?
+                                        <div className="Flora-Font d-flex flex-column" key={ret.item}>
+                                            <span>{ret.item}</span>
+                                            <div className="d-flex flex-row">
+                                                <span className="mx-4">{ret.size}</span>
+                                                <span className="ms-auto">x{ret.quantity}</span>
+                                            </div>
+                                        </div>
+                                        :
+                                        <div className="Flora-Font d-flex flex-row" key={ret.item}>
+                                            <span>{ret.item}</span>
+                                            <span className="ms-auto">x{ret.quantity}</span>
+                                        </div>
+                                    }
+                                </div>
+                            )})}
                         <div className="border"></div>
                         <div className="d-flex flex-row Flora-Font m-1">
                             <span className="">Total</span>

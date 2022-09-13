@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useConnectWallet } from '@web3-onboard/react';
 import initWeb3Onboard from '../services';
 import { q, client } from "../config/fauna.js";
-import toast, { Toaster } from 'react-hot-toast';
 
 const Dashboard = () => {
 
@@ -75,6 +74,7 @@ const Dashboard = () => {
             .then((ret)=>{
                 ret.data.map( async (ref) => {
                     await client.query(q.Get(q.Ref(q.Collection('Orders'), ref.value.id))).then((oth) => {
+                        console.log(oth)
                         return setOrders(old=>[...old,{order: ref.value.id, oth}])
                     })
                     return 
@@ -98,7 +98,6 @@ const Dashboard = () => {
 
     return(
         <div className="row d-flex justify-content-evenly gy-3">
-            <div><Toaster/></div>
             <div className="col-12 col-lg-4">
                     <div className="container-fluid p-3 rounded d-flex flex-column justify-content-evenly" style={{backgroundColor: '#FFE0E0'}}>
                     {
@@ -150,11 +149,22 @@ const Dashboard = () => {
                                         <div  className="p-1 rounded w-100" style={{backgroundColor: '#FFC4E8'}}>
                                             {ret.oth.data.Items.map((res)=>{
                                                 return(
-                                                    <div className="d-flex flex-row" key={ret.oth.data.Items.indexOf(res)}>
-                                                        <div className="Flora-Font">
-                                                            <span className="text-capitalize">{res.item}</span>
-                                                        </div>
-                                                        <span className="ms-auto Flora-Font">x{res.quantity}</span>
+                                                    <div className="my-1 p-2" key={ret.oth.data.Items.indexOf(res)}>
+                                                        {
+                                                            res.size?
+                                                            <div className="d-flex flex-column rounded w-100">
+                                                                <span className="Flora-Font text-capitalize align-self-start">{res.item}</span>
+                                                                <div className="d-flex flex-row">
+                                                                    <span className="Flora-Font mx-4">{res.size}</span>
+                                                                    <span className="ms-auto Flora-Font">x{res.quantity}</span>
+                                                                </div>
+                                                            </div>
+                                                            :
+                                                            <div className="d-flex flex-row rounded w-100">
+                                                                <span className="Flora-Font text-capitalize">{res.item}</span>
+                                                                <span className="ms-auto Flora-Font">x{res.quantity}</span>
+                                                            </div>
+                                                        }
                                                     </div>
                                                 )
                                             })}
@@ -185,11 +195,22 @@ const Dashboard = () => {
                             <span className="Flora-Font text-uppercase fs-5">Order #: {review.order}</span>
                             {review.oth.data.Items.map((res)=>{
                                 return(
-                                    <div className="d-flex flex-row rounded p-2 my-2" key={review.oth.data.Items.indexOf(res)} style={{backgroundColor: '#FFC4E8'}}>
-                                        <div className="Flora-Font">
-                                            <span className="text-capitalize">{res.item}</span>
-                                        </div>
-                                        <span className="ms-auto Flora-Font">x{res.quantity}</span>
+                                    <div className="rounded" key={review.oth.data.Items.indexOf(res)} style={{backgroundColor: '#FFC4E8'}}>
+                                        {
+                                            res.size?
+                                            <div className="d-flex flex-column rounded p-2 my-2">
+                                                <span className="Flora-Font text-capitalize">{res.item}</span>
+                                                <div className="d-flex flex-row">
+                                                    <span className="Flora-Font mx-4">{res.size}</span>
+                                                    <span className="ms-auto Flora-Font">x{res.quantity}</span>
+                                                </div>
+                                            </div>
+                                            :
+                                            <div className="d-flex flex-row rounded p-2 my-2">
+                                                <span className="Flora-Font text-capitalize">{res.item}</span>
+                                                <span className="ms-auto Flora-Font">x{res.quantity}</span>
+                                            </div>
+                                        }
                                     </div>
                                 )
                             })}
@@ -207,8 +228,27 @@ const Dashboard = () => {
                                 })}
                             </div>
                             {
-                                review.oth.data.Email != null?
+                                review.oth.data.Apartment != null?
                                 <div className="d-flex flex-row flex-wrap Flora-Font justify-content-between">
+                                    {
+                                        review.oth.data.First ?
+                                        <div className="d-flex flex-row w-100 rounded" style={{backgroundColor: '#FFC4E8'}}>
+                                            <div className="d-flex flex-column w-50 p-2 my-1">
+                                                <label>First Name</label>
+                                                <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.First}</span>
+                                            </div>
+                                            <div className="d-flex flex-column w-50 p-2 my-1">
+                                                <label>Last Name</label>
+                                                <span className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.Last}</span>
+                                            </div>
+                                        </div>
+                                        :
+                                        null
+                                    }
+                                    <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
+                                        <label>Email</label>
+                                        <span  className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.Email}</span>
+                                    </div>
                                     <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#FFC4E8'}}>
                                         <label>Address</label>
                                         <span  className="rounded p-1" style={{backgroundColor: '#04F2AF'}}>{review.oth.data.Address}</span>
