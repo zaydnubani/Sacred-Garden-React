@@ -285,6 +285,15 @@ const Dashboard = () => {
                                         })}
                                     </div>
                                     {
+                                        ret.email ? 
+                                        <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
+                                            <label>Email</label>
+                                            <span  className="rounded p-1" style={{backgroundColor: '#FFF5B5'}}>{ret.Email}</span>
+                                        </div>  
+                                        :
+                                        null
+                                    }
+                                    {
                                         ret.Address != null?
                                             <div className="d-flex flex-row flex-wrap Flora-Font justify-content-between">
                                                 {
@@ -302,10 +311,6 @@ const Dashboard = () => {
                                                     :
                                                     null
                                                 }
-                                                <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
-                                                    <label>Email</label>
-                                                    <span  className="rounded p-1" style={{backgroundColor: '#FFF5B5'}}>{ret.Email}</span>
-                                                </div>
                                                 <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
                                                     <label>Address</label>
                                                     <span  className="rounded p-1" style={{backgroundColor: '#FFF5B5'}}>{ret.Address}</span>
