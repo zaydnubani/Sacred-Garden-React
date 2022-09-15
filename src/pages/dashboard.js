@@ -279,14 +279,14 @@ const Dashboard = () => {
                                         {ret.Tokens.map((res)=>{
                                             return(
                                                 <div className="d-flex Flora-Font rounded p-1 m-1" key={ret.Tokens.indexOf(res)} style={{backgroundColor: '#FFF5B5'}}>
-                                                    <span>ERC{ret.tokenId}</span>
+                                                    <span>ERC{res.tokenId}</span>
                                                 </div>
                                             )
                                         })}
                                     </div>
                                     {
-                                        ret.email ? 
-                                        <div className="d-flex flex-column w-100 p-2 rounded my-1" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
+                                        ret.Email? 
+                                        <div className="d-flex flex-column w-100 p-2 rounded my-1 Flora-Font" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
                                             <label>Email</label>
                                             <span  className="rounded p-1" style={{backgroundColor: '#FFF5B5'}}>{ret.Email}</span>
                                         </div>  
