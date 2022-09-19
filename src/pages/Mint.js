@@ -433,12 +433,12 @@ const Mint = () => {
   return ( 
     <div className='row py-5' style={{backgroundImage: `url('${mint_2100}')`, backgroundSize: '100%', backgroundPosition: 'bottom', backgroundRepeat: 'no-repeat'}}
     >
-          {
-            complete ?
-            <PostPurchase /> 
-            : 
-            <PrePurchase />
-          }
+      {
+        complete ?
+        <PostPurchase /> 
+        : 
+        <PrePurchase />
+      }
     </div>
   )
 }
