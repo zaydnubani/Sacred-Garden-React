@@ -32,6 +32,7 @@ const Mint = () => {
   // this is used to clarify if a wallet is present and to connect/disconnect from a wallet
   const [{ wallet, connecting }, connect] = useConnectWallet()  
 
+
   // this sets the connected wallet's providers and references their addresses to be used during transactions
   const [provider, setProvider] = useState();
 
@@ -49,6 +50,9 @@ const Mint = () => {
   const [nftID, setNFTIDs] = useState();
 
   const [winterMint, setWinter] = useState();
+
+  const [ pause, setPause ] = useState(false);
+
 
   // const previouslyConnectedWallets = JSON.parse(
   //   window.localStorage.getItem('connectedWallets')
@@ -312,19 +316,17 @@ const Mint = () => {
         </div>
 
         <div className='d-flex flex-column'>
-          
           <div className='Flora-Font d-flex flex-row align-items-center justify-content-center' >
           {wallet ? <GoQuantity /> : null }
           </div>
-          
           <button className='btn Flora-Font fs-2 p-3 m-3 rounded' 
-          onClick={() => (wallet? handleMint(quantity) : connect())}
+          onClick={() => {
+            (wallet? handleMint(quantity) : connect())
+          }}
           style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
             {connecting ? 'CONNECTING' : wallet ? 'MINT FLORA' : 'CONNECT WALLET'}
           </button>
-
-          <button id='winter' className='btn Flora-Font p-3 fs-2 text-capitalize m-3 rounded' style={{backgroundColor: '#43D3EE', color: '#00544B'}}>PAY W/ CARD</button>
-
+          <button id='winter' className='btn Flora-Font p-3 fs-2 text-capitalize m-3 rounded' style={{backgroundColor: '#43D3EE', color: '#00544B'}}>PAY W/ CARD</button> 
         </div>
 
         <WinterCheckout 
@@ -335,7 +337,7 @@ const Mint = () => {
           // The key needs to exactly match the name of the param provided to Winter
           // The value will be passed in as the param
           extraMintParams={{a: 1, b: 2}}
-      />
+        />
       </div>
     )
   }
@@ -430,14 +432,47 @@ const Mint = () => {
     )
   }
 
+  const PausePurchase = () => {
+    
+    return (
+      <div className='col-12 d-flex flex-column justify-content-evenly align-items-center'>
+        
+        <Toaster />
+
+        <div className='d-flex align-items-center justify-content-center w-50'>
+            <img className='img-fluid w-auto' src={logo_1} alt=""/>
+        </div>
+
+        <div className='d-flex flex-column Flora-Font text-center m-2' style={{color: '#00544B'}}>
+            <span className='fs-1'>Mint ΔFLORA NFT</span>
+            <span className='fs-3'>
+              {minted}/5,555 Minted
+            </span>
+        </div>
+
+        <div className='Flora-Font text-center'>
+          <span className='fs-4 text-uppercase' style={{color: '#00544B'}}> .055 ETH </span>
+        </div>
+
+        <button className='btn Flora-Font fs-2 p-3 m-3 rounded' onClick={()=>{
+          toast.error('Minting is unavailable at this time.')
+          setPause(false)
+        }} style={{backgroundColor: '#04F2AF', color: '#00544B'}}>CONNECT</button>
+      </div>
+      )
+  }
+
   return ( 
     <div className='row py-5' style={{backgroundImage: `url('${mint_2100}')`, backgroundSize: '100%', backgroundPosition: 'bottom', backgroundRepeat: 'no-repeat'}}
     >
       {
         complete ?
         <PostPurchase /> 
-        : 
+        :
+        pause !== false? 
         <PrePurchase />
+        :
+        <PausePurchase/>
       }
     </div>
   )
