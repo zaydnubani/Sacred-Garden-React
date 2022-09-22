@@ -16,6 +16,7 @@ import toast, { Toaster } from 'react-hot-toast';
 // import keccak256 from 'keccak256';
 import { WinterCheckout } from '@usewinter/checkout'
 import ReactPlayer from 'react-player'
+import axios from 'axios'
 
 const MAINNET_CONTRACT_ADDRESS = "0x21374d22f169849cfd680241f3f37cd61ac2eea5";
 
@@ -93,6 +94,32 @@ const Mint = () => {
       console.log(`Total Supplied : ${result}`)
     })
   }, [ provider ])
+
+  useEffect(()=>{
+
+    const api = axios.create()
+
+    api.get(`https://api.nftport.xyz/v0/nfts/0x21374D22F169849cFD680241F3f37cD61AC2eea5`, {
+        params: {
+            chain: 'ethereum',
+            contract_address: '0x21374D22F169849cFD680241F3f37cD61AC2eea5'
+        }, 
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'b556fb67-bb92-4e82-85cc-643f02174e3a'
+        }
+    }).then((res)=>{
+      setMinted(res.data.total)
+        // return res.data.nfts.map((ret)=>{
+        //     return setTokens(old=>[...old, {tokenId:ret.token_id, smartContract:ret.contract_address.toUpperCase()}])
+        // })
+    }).catch(function (error) {
+        console.error(error);
+    });
+    
+  },[])
+
+
 
   useEffect(() => {
      // This retrieves the minting price of NFTs minted given the specific contract using wallet provider information
@@ -450,9 +477,9 @@ const Mint = () => {
             </span>
         </div>
 
-        <div className='Flora-Font text-center'>
+        {/* <div className='Flora-Font text-center'>
           <span className='fs-4 text-uppercase' style={{color: '#00544B'}}> .055 ETH </span>
-        </div>
+        </div> */}
 
         <button className='btn Flora-Font fs-2 p-3 m-3 rounded' onClick={()=>{
           toast.error('Minting is unavailable at this time.')

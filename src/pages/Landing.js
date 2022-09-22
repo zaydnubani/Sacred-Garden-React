@@ -32,6 +32,11 @@ import P23 from '../images/300px/P23.png'
 import P24 from '../images/300px/P24.png'
 import P25 from '../images/300px/P25.png'
 
+import ActionShop from '../images/ActionShop.png'
+import ActionNFT from '../images/ActionNFT.png'
+import ActionVG from '../images/ActionVG.png'
+
+
 const Landing = () => {
 
     const NFT = [ 
@@ -41,7 +46,7 @@ const Landing = () => {
     return(
         <div className='row g-5 d-flex'>
 
-            <div className='order-4 order-sm-4 order-md-1 order-xxl-1 col-12 overflow-hidden'>
+            <div className='col-12 overflow-hidden'>
                 <Marquee gradientWidth={25}  className='rounded'>
                     {NFT.map((value) => { return(
                     <img src={value} alt={value} className="" key={value}/>
@@ -49,26 +54,26 @@ const Landing = () => {
                 </Marquee>
             </div>
             
-            <div className="order-3 order-sm-3 order-xxl-2  col-sm-12 col-md-6 col-xxl-4 Flora-Font d-flex text-center flex-column align-items-center justify-content-evenly">
+            <div className="order-2 col-sm-12 col-md-6 col-xxl-4 Flora-Font d-flex text-center flex-column align-items-center justify-content-evenly">
                 
                 <div className="m-3">
                     <a href='/mint'>
-                        <img src='https://cdn.discordapp.com/attachments/1003719366703067217/1006628319682367649/Web_button.png' alt='call to action' className="img-fluid rounded"/>
+                        <img src={ActionNFT} alt='call to action' className="img-fluid rounded"/>
                     </a>
                 </div>
                 <div className="m-3">
                     <a href='https://my.matterport.com/show/?m=mvHce8tduYB&brand=0&play=1&wh=0'>
-                        <img src='https://cdn.discordapp.com/attachments/1003719366703067217/1006628320118591589/Web_button2.png' alt='call to action' className="img-fluid rounded"/>
+                        <img src={ActionVG} alt='call to action' className="img-fluid rounded"/>
                     </a>
                 </div>
                 <div className="m-3">
-                    <a href='https://opensea.io/collection/gardenconservation'>
-                        <img src='https://cdn.discordapp.com/attachments/1003719366703067217/1006628210433327104/buttons-06.png' alt='call to action' className="img-fluid rounded"/>
+                    <a href='/shop'>
+                        <img src={ActionShop} alt='call to action' className="img-fluid rounded"/>
                     </a>
                 </div>
             </div>
 
-            <div className='order-1 order-sm-1 order-xxl-3  col-sm-12 col-md-6 col-xxl-4 Flora-Font text-center d-flex flex-column align-items-center'>
+            <div className='order-1 order-xxl-3  col-sm-12 col-md-6 col-xxl-4 Flora-Font text-center d-flex flex-column align-items-center'>
                 <div className="d-flex flex-column align-items-center justify-content-evenly p-3 rounded flex-fill" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
                     <p className="fs-2 p-3" >
                         Sacred Garden is a real and virtual  
@@ -85,45 +90,9 @@ const Landing = () => {
 
             <div className="order-2 order-sm-2 order-md-4 order-xxl-4  col-sm-12 col-md-12 col-xxl-4 accordion accordion-flush d-flex flex-column justify-content-evenly" id="roadmap">
                 <div className="accordion-item m-2 rounded">
-                    <h2 className="accordion-header" id="flora-header">
-                        <button className="accordion-button collapsed fs-1 Flora-Font rounded" type="button" data-bs-toggle="collapse" data-bs-target="#flora-collapse" aria-expanded="false" aria-controls="flora-collapse" style={{backgroundColor: '#FFC4E8', color: '#00544B'}}>
-                        COMMUNITY
-                        </button>
-                    </h2>
-                    <div id="flora-collapse" className="accordion-collapse collapse Flora-Font fs-5" aria-labelledby="flora-header" data-bs-parent="#roadmap" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
-                        <div className="accordion-body rounded">
-                        Twitter, Instagram, YouTube, Discord & Strategic Partnerships launched.
-                        </div>
-                    </div>
-                </div>
-                <div className="accordion-item m-2 rounded">
-                    <h2 className="accordion-header" id="flush-headingThree">
-                        <button className="accordion-button collapsed rounded Flora-Font fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" style={{backgroundColor: '#FFAC80', color: '#00544B'}}>
-                            SHOP
-                        </button>
-                    </h2>
-                    <div id="flush-collapseThree" className="accordion-collapse collapse Flora-Font fs-5 rounded" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
-                        <div className="accordion-body">
-                            Members will have access to exclusive and discounted psychedelic plant merchandise, partner experiences, planters and growing tools custom designed by artists.
-                        </div>
-                    </div>
-                </div>
-                <div className="accordion-item m-2 rounded">
-                    <h2 className="accordion-header" id="market-head">
-                        <button className="accordion-button collapsed rounded Flora-Font fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#market-collapse" aria-expanded="false" aria-controls="market-collapse" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
-                        ∆FLORA DROPS & PLANT MARKETPLACE
-                        </button>
-                    </h2>
-                    <div id="market-collapse" className="accordion-collapse collapse rounded Flora-Font fs-5" aria-labelledby="market-head" data-bs-parent="#roadmap" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
-                        <div className="accordion-body">
-                        Exclusive ∆FLORA drops of rare physical plant cuttings and a decentralized marketplace for plants with our farmer and garden members.
-                        </div>
-                    </div>
-                </div>
-                <div className="accordion-item m-2 rounded">
                     <h2 className="accordion-header" id="com-head">
                         <button className="accordion-button collapsed rounded Flora-Font fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#com-collapse" aria-expanded="false" aria-controls="com-collapse" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
-                        ∆FLORA
+                        ∆FLORA MEMBERSHIP TOKEN
                         </button>
                     </h2>
                     <div id="com-collapse" className="accordion-collapse collapse" aria-labelledby="com-head" data-bs-parent="#roadmap" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
@@ -136,7 +105,7 @@ const Landing = () => {
                                 </h2>
                                 <div id="claim-collapse" className="accordion-collapse collapse rounded fs-5 Flora-Font" aria-labelledby="claim-head" data-bs-parent="#floraNFT" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
                                     <div className="accordion-body">
-                                        1 free claim from our SHOP or PLANT MARKETPLACE per NFT
+                                        1 free claim from our SHOP or PLANT MARKETPLACE per token.
                                     </div>
                                 </div>
                             </div>
@@ -148,7 +117,7 @@ const Landing = () => {
                                 </h2>
                                 <div id="don-collapse" className="accordion-collapse collapse Flora-Font fs-5 rounded" aria-labelledby="don-head" data-bs-parent="#floraNFT" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
                                     <div className="accordion-body">
-                                        10% of initial sale is donated to non-profit partners Chacruna Institute, ICEERS, Grow Medicine to support entheogen plant and indigenous community conservation
+                                        10% of token sales are donated to non-profit partners Chacruna Institute, ICEERS, Grow Medicine to support entheogen plant and indigenous community conservation
                                     </div>
                                 </div>
                             </div>
@@ -160,19 +129,19 @@ const Landing = () => {
                                 </h2>
                                 <div id="ref-collapse" className="accordion-collapse collapse rounded fs-5 Flora-Font" aria-labelledby="ref-head" data-bs-parent="#floraNFT" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
                                     <div className="accordion-body">
-                                        We will offset our carbon footprint and donate to a reforestation project in the Amazon to have a carbon negative impact
+                                        We will offset our carbon footprint and donate to a reforestation project in the Amazon to have a carbon negative impact.
                                     </div>
                                 </div>
                             </div>
                             <div className="accordion-item rounded m-1">
                                 <h2 className="accordion-header" id="mem-head">
                                     <button className="accordion-button collapsed Flora-Font fs-5 rounded" type="button" data-bs-toggle="collapse" data-bs-target="#mem-collapse" aria-expanded="false" aria-controls="mem-collapse" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
-                                        MEMBERSHIP
+                                        COMMUNITY
                                     </button>
                                 </h2>
                                 <div id="mem-collapse" className="accordion-collapse collapse Flora-Font fs-5 rounded" aria-labelledby="mem-head" data-bs-parent="#floraNFT" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
                                     <div className="accordion-body">
-                                        global community with exclusive chats, first access to future drops and integration with our partner network of psychedelic pioneers
+                                        Global network with exclusive content from plant experts and members only access virtual and IRL events.                                    
                                     </div>
                                 </div>
                             </div>   
@@ -192,9 +161,21 @@ const Landing = () => {
                     </div>
                 </div>
                 <div className="accordion-item m-2 rounded">
+                    <h2 className="accordion-header" id="flush-headingThree">
+                        <button className="accordion-button collapsed rounded Flora-Font fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" style={{backgroundColor: '#FFAC80', color: '#00544B'}}>
+                            SHOP
+                        </button>
+                    </h2>
+                    <div id="flush-collapseThree" className="accordion-collapse collapse Flora-Font fs-5 rounded" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
+                        <div className="accordion-body">
+                            A decentralized global marketplace where small entheogenic gardeners offer seeds and cuttings of sacred plants.                        
+                        </div>
+                    </div>
+                </div>
+                <div className="accordion-item m-2 rounded">
                     <h2 className="accordion-header" id="master-head">
                         <button className="accordion-button collapsed Flora-Font rounded fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#master-collapse" aria-expanded="false" aria-controls="master-collapse" style={{backgroundColor: '#FFE0E0', color: '#00544B'}}>
-                        MASTERCLASS
+                        LEARN
                         </button>
                     </h2>
                     <div id="master-collapse" className="accordion-collapse collapse Flora-Font rounded fs-5" aria-labelledby="master-head" data-bs-parent="#roadmap" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
@@ -206,12 +187,12 @@ const Landing = () => {
                 <div className="accordion-item m-2 rounded">
                     <h2 className="accordion-header" id="evo-head">
                         <button className="accordion-button collapsed Flora-Font rounded fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#evo-collapse" aria-expanded="false" aria-controls="evo-collapse" style={{backgroundColor: '#FFC4E8', color: '#00544B'}}>
-                        THE EVOLUTION
+                        GET PHYGITAL
                         </button>
                     </h2>
                     <div id="evo-collapse" className="accordion-collapse collapse Flora-Font rounded fs-5" aria-labelledby="master-evo" data-bs-parent="#roadmap" style={{backgroundColor: '#FFF5B5', color: '#00544B'}}>
                         <div className="accordion-body">
-                        SACRΞD GARDΞN will bridge the physical and virtual from dirt to digital using IRL plants and web3 tools.  We will grow the biggest decentralized garden of sacred plants.
+                            SACRΞD GARDΞN will bridge the physical and virtual from dirt to digital using IRL plants and web3 tools. Virtual plant library, growth simulator and the creation of the biggest decentralized garden of sacred plants.
                         </div>
                     </div>
                 </div>
