@@ -1,5 +1,6 @@
 import React from 'react';
 import Marquee from "react-fast-marquee";
+import toast, { Toaster } from 'react-hot-toast';
 
 // import sacrd_gardn_neon from '../images/logos/sacrd_gardn_neon.png'
 // import rotate_2100 from '../images/frames/rotate_2100.png'
@@ -46,6 +47,8 @@ const Landing = () => {
     return(
         <div className='row g-5 d-flex'>
 
+            <Toaster />
+
             <div className='col-12 overflow-hidden'>
                 <Marquee gradientWidth={25}  className='rounded'>
                     {NFT.map((value) => { return(
@@ -57,9 +60,14 @@ const Landing = () => {
             <div className="order-2 col-sm-12 col-md-6 col-xxl-4 Flora-Font d-flex text-center flex-column align-items-center justify-content-evenly">
                 
                 <div className="m-3">
-                    <a href='/mint'>
+                    {/* <a href='/mint'>
                         <img src={ActionNFT} alt='call to action' className="img-fluid rounded"/>
-                    </a>
+                    </a> */}
+                    <button className='btn' onClick={()=>{
+                        toast.error('This feature is not currently available.')
+                    }}>
+                        <img src={ActionNFT} alt='call to action' className="img-fluid rounded"/>
+                    </button>
                 </div>
                 <div className="m-3">
                     <a href='https://my.matterport.com/show/?m=mvHce8tduYB&brand=0&play=1&wh=0'>
@@ -82,9 +90,14 @@ const Landing = () => {
                         and education. ΔFLORA
                         is your membership token.
                     </p>
-                    <a  href="/Mint" className="py-4 rounded fs-2 text-decoration-none text-uppercase w-75" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
+                    {/* <a  href="/Mint" className="py-4 rounded fs-2 text-decoration-none text-uppercase w-75" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
                         <span className="">join our community</span>
-                    </a> 
+                    </a>  */}
+                    <button className="btn py-4 rounded fs-2 text-decoration-none text-uppercase w-75" onClick={()=>{
+                        toast.error('This feature is not currently available.')
+                    }} style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
+                        <span className="Flora-Font">join our community</span>
+                    </button> 
                 </div>
             </div>
 
