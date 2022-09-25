@@ -60,9 +60,14 @@ const Landing = () => {
             <div className="order-2 col-sm-12 col-md-6 col-xxl-4 Flora-Font d-flex text-center flex-column align-items-center justify-content-evenly">
                 
                 <div className="m-3">
-                    <a href='/mint'>
+                    {/* <a href='/mint'>
                         <img src={ActionNFT} alt='call to action' className="img-fluid rounded"/>
-                    </a>
+                    </a> */}
+                    <div onClick={()=>{
+                        toast.error('This feature is not currently available.')
+                    }}>
+                        <img src={ActionNFT} alt='call to action' className="img-fluid rounded"/>
+                    </div>
                 </div>
                 <div className="m-3">
                     <a href='https://my.matterport.com/show/?m=mvHce8tduYB&brand=0&play=1&wh=0'>
@@ -90,14 +95,14 @@ const Landing = () => {
                         and education. ΔFLORA
                         is your membership token.
                     </p>
-                    <a  href="/Mint" className="py-4 rounded fs-2 text-decoration-none text-uppercase w-75" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
+                    {/* <a  href="/Mint" className="py-4 rounded fs-2 text-decoration-none text-uppercase w-75" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
                         <span className="">join our community</span>
-                    </a> 
-                    {/* <button className="btn py-4 rounded fs-2 text-decoration-none text-uppercase w-75" onClick={()=>{
+                    </a>  */}
+                    <button className="btn py-4 rounded fs-2 text-decoration-none text-uppercase w-75" onClick={()=>{
                         toast.error('This feature is not currently available.')
                     }} style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
                         <span className="Flora-Font">join our community</span>
-                    </button>  */}
+                    </button> 
                 </div>
             </div>
 
