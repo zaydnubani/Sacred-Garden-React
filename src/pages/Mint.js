@@ -365,7 +365,7 @@ const Mint = () => {
 
         <WinterCheckout 
           projectId={6858} 
-          production={true} 
+          production={false} 
           showModal={showModal} 
           // Extra mint params are params besides 'address, amount, proof'
           // The key needs to exactly match the name of the param provided to Winter
