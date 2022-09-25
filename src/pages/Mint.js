@@ -370,7 +370,8 @@ const Mint = () => {
           // Extra mint params are params besides 'address, amount, proof'
           // The key needs to exactly match the name of the param provided to Winter
           // The value will be passed in as the param
-          extraMintParams={{a: 1, b: 2, proof: [] }}
+          // extraMintParams={{a: 1, b: 2}}
+          extraMintParams={{proof: []}}
         />
       </div>
     )
