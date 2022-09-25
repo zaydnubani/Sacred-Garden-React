@@ -10,13 +10,14 @@ import initWeb3Onboard from '../services';
 import { DeltaFloraGenesis__factory } from '../ethers-contracts';
 import { ethers } from 'ethers';
 import toast, { Toaster } from 'react-hot-toast';
-// for greenList mint
-// import { TESTNET_LEAVES_DATA } from '../emarald/SG_leaves.js';
-// import MerkleTree from 'merkletreejs';
-// import keccak256 from 'keccak256';
+// for greenList & whitelist mint
+import { GREENLIST_LEAVES_DATA } from '../emarald/SG_leaves.js';
+import MerkleTree from 'merkletreejs';
+import keccak256 from 'keccak256';
 import { WinterCheckout } from '@usewinter/checkout'
 import ReactPlayer from 'react-player'
 import axios from 'axios'
+// import { faLess } from '@fortawesome/free-brands-svg-icons';
 
 const MAINNET_CONTRACT_ADDRESS = "0x21374d22f169849cfd680241f3f37cd61ac2eea5";
 
@@ -52,12 +53,8 @@ const Mint = () => {
 
   const [winterMint, setWinter] = useState();
 
-  const [ pause, setPause ] = useState(false);
+  const WhiteOut = false
 
-
-  // const previouslyConnectedWallets = JSON.parse(
-  //   window.localStorage.getItem('connectedWallets')
-  // );
   
 
   useEffect(() => {
@@ -77,23 +74,23 @@ const Mint = () => {
     }
   }, [wallet]);
 
-  useEffect(() => {
-    // This retrieves the totalSupply of NFTs minted given the specific contract using wallet provider information
-    const getMinted = async (provider ) => {
-      // This connects the contract to the wallet provider to initialize communication and pass information
-      const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider);
-      // Returns a promise to await a response from the contract to send it's totalSupply
-      return (await sacrdgardn.totalSupply()).toString();
-    }
-    // sets a variable to call func getMinted given the var provider which points to the wallet provider
-    // The provider is requesting the contract to respond with the supply
-    const promise = getMinted(provider) 
-    // Once the promise has been fulfilled the response is returned in a readable string
-    promise.then((result) => {
-      setMinted(result)
-      console.log(`Total Supplied : ${result}`)
-    })
-  }, [ provider ])
+  // useEffect(() => {
+  //   // This retrieves the totalSupply of NFTs minted given the specific contract using wallet provider information
+  //   const getMinted = async (provider ) => {
+  //     // This connects the contract to the wallet provider to initialize communication and pass information
+  //     const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider);
+  //     // Returns a promise to await a response from the contract to send it's totalSupply
+  //     return (await sacrdgardn.totalSupply()).toString();
+  //   }
+  //   // sets a variable to call func getMinted given the var provider which points to the wallet provider
+  //   // The provider is requesting the contract to respond with the supply
+  //   const promise = getMinted(provider) 
+  //   // Once the promise has been fulfilled the response is returned in a readable string
+  //   promise.then((result) => {
+  //     setMinted(result)
+  //     console.log(`Total Supplied : ${result}`)
+  //   })
+  // }, [ provider ])
 
   useEffect(()=>{
 
@@ -175,57 +172,15 @@ const Mint = () => {
     })
   }
 
-  // const sendMint = async (amount) => {
-  //   function hash(account) {
-  //     return Buffer.from(
-  //       ethers.utils.solidityKeccak256(
-  //         ['address'],
-  //         [account]
-  //       ).slice(2), 'hex');
-  //   }
-    
-  //   // retrieves the wallet providers address
-  //   const address = wallet.accounts[0].address;
-  //   if (provider && wallet?.accounts[0]){
-  //     try { 
-  //       console.log('Trying to transact')
-  //       // This connects the contract to the wallet provider to initialize communication and pass information
-  //       const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider.getSigner());
-  //       // Returns a promise to await a response from the contract to send it's mintPrice
-  //       const stage = await sacrdgardn.currentStage();
-  //       const pricePer = (await sacrdgardn.stages(stage))[2];
-
-  //       const leaves = MerkleTree.unmarshalLeaves(TESTNET_LEAVES_DATA);
-  //       const tree = new MerkleTree(leaves, keccak256, { sortPairs: true });
-  //       const proof = tree.getHexProof(hash(address));
-  //       console.log("PROOF", proof);
-  //       console.log('quanity', amount);
-  //       console.log('address', address);
-  //       console.log('price', (pricePer.mul(amount)).toString())
-
-  //       await sacrdgardn.allowlistMint(
-  //         address,
-  //         amount,
-  //         proof,
-  //           // proof, *** proof is to verify if they are on greenlist
-  //         { value: pricePer.mul(amount) }
-  //       ).then((event) => {
-  //         console.log(event)
-          
-  //       });
-  //     } catch (err) {
-  //         // console.log(err)
-  //         throw new Error("Transaction failed to initiate.");
-      
-  //       }
-  //     return true;
-  //   }
-  //   else {
-  //     return false;
-  //   }
-  // }
-
   const sendMint = async (amount) => {
+    function hash(account) {
+      return Buffer.from(
+        ethers.utils.solidityKeccak256(
+          ['address'],
+          [account]
+        ).slice(2), 'hex');
+    }
+    
     // retrieves the wallet providers address
     const address = wallet.accounts[0].address;
     if (provider && wallet?.accounts[0]){
@@ -237,13 +192,19 @@ const Mint = () => {
         const stage = await sacrdgardn.currentStage();
         const pricePer = (await sacrdgardn.stages(stage))[2];
 
+        const leaves = MerkleTree.unmarshalLeaves(GREENLIST_LEAVES_DATA);
+        const tree = new MerkleTree(leaves, keccak256, { sortPairs: true });
+        const proof = tree.getHexProof(hash(address));
+        console.log("PROOF", proof);
         console.log('quanity', amount);
         console.log('address', address);
         console.log('price', (pricePer.mul(amount)).toString())
 
-        await sacrdgardn.publicMint(
+        await sacrdgardn.allowlistMint(
           address,
           amount,
+          proof,
+            // proof, *** proof is to verify if they are on greenlist
           { value: pricePer.mul(amount) }
         ).then((event) => {
           console.log(event)
@@ -255,43 +216,101 @@ const Mint = () => {
       
         }
       return true;
-      }
-      else {
+    }
+    else {
       return false;
     }
   }
 
-  const inc = () => {
-    if (3> quantity & quantity >= 1){
-      setQuantity((prev) => prev + 1);
+  // const sendMint = async (amount) => {
+  //   // retrieves the wallet providers address
+  //   const address = wallet.accounts[0].address;
+  //   if (provider && wallet?.accounts[0]){
+  //     try { 
+  //       console.log('Trying to transact')
+  //       // This connects the contract to the wallet provider to initialize communication and pass information
+  //       const sacrdgardn = DeltaFloraGenesis__factory.connect(TESTNET_CONTRACT_ADDRESS, provider.getSigner());
+  //       // Returns a promise to await a response from the contract to send it's mintPrice
+  //       const stage = await sacrdgardn.currentStage();
+  //       const pricePer = (await sacrdgardn.stages(stage))[2];
 
-    }
-  }
+  //       console.log('quanity', amount);
+  //       console.log('address', address);
+  //       console.log('price', (pricePer.mul(amount)).toString())
 
-  const dec = () => {
-    // Cannot go to 0
-    if (quantity > 1) {
-      setQuantity((prev) => prev - 1);
-    }
-  }
+  //       await sacrdgardn.publicMint(
+  //         address,
+  //         amount,
+  //         { value: pricePer.mul(amount) }
+  //       ).then((event) => {
+  //         console.log(event)
+          
+  //       });
+  //     } catch (err) {
+  //         // console.log(err)
+  //         throw new Error("Transaction failed to initiate.");
+      
+  //       }
+  //     return true;
+  //     }
+  //     else {
+  //     return false;
+  //   }
+  // }
 
   const GoQuantity = () => {
+
+    const inc = () => {
+      if (3> quantity & quantity >= 1){
+        setQuantity((prev) => prev + 1);
+  
+      }
+    }
+  
+    const dec = () => {
+      // Cannot go to 0
+      if (quantity > 1) {
+        setQuantity((prev) => prev - 1);
+      }
+    }
+
     return (
-      // master css : div className='container align-center space-evenly direct-row w-50'
-      <>
-      {/* master css : 'text btn trans-red fs-5 text-center w-25' */}
-        <button className='fs-1 m-1 btn' onClick={()=> { dec()}} style={{color: '#00544B'}}>-</button>
+      <div className='d-flex flex-row align-items-center Flora-Font'>
+        <button className='fs-1 m-1 btn Flora-Font' onClick={()=> { dec()}} style={{color: '#00544B'}}>-</button>
         <div>
             <span className='text-center text fs-1 m-1' style={{color: '#00544B'}}>
               {quantity}
             </span>
         </div>
-        {/* master css : 'text btn trans-red fs-5 text-center w-25' */}
-        <button className='fs-1 btn m-1' onClick={()=> { inc()}} style={{color: '#00544B'}}>+</button>
-      </>
+        <button className='fs-1 btn m-1 Flora-Font' onClick={()=> { inc()}} style={{color: '#00544B'}}>+</button>
+      </div>
     )
   }
 
+  const WalletCheckout = () =>{
+    return(
+      <div className='d-flex flex-column' style={{'display':'none'}}>
+        {
+          WhiteOut !== false ?
+          <>
+            <div className='Flora-Font d-flex flex-row align-items-center justify-content-center' >
+            {wallet ? <GoQuantity /> : null }
+            </div>
+            <button className='btn Flora-Font fs-2 p-3 m-3 rounded' 
+            onClick={() => {
+              (wallet? handleMint(quantity) : connect())
+            }}
+            style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
+              {connecting ? 'CONNECTING' : wallet ? 'MINT FLORA' : 'CONNECT WALLET'}
+            </button>
+          </>
+          :
+          null
+        }
+        <button id='winter' className='btn Flora-Font p-3 fs-2 text-capitalize m-3 rounded' style={{backgroundColor: '#43D3EE', color: '#00544B'}}>PAY W/ CARD</button> 
+      </div>
+    )
+  }
   
   const PrePurchase = () => {
 
@@ -339,22 +358,10 @@ const Mint = () => {
         </div>
 
         <div className='Flora-Font text-center'>
-          <span className='fs-4 text-uppercase' style={{color: '#00544B'}}> .055 ETH </span>
+          <span className='fs-4 text-uppercase' style={{color: '#00544B'}}> Free + GAS </span>
         </div>
 
-        <div className='d-flex flex-column'>
-          <div className='Flora-Font d-flex flex-row align-items-center justify-content-center' >
-          {wallet ? <GoQuantity /> : null }
-          </div>
-          <button className='btn Flora-Font fs-2 p-3 m-3 rounded' 
-          onClick={() => {
-            (wallet? handleMint(quantity) : connect())
-          }}
-          style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
-            {connecting ? 'CONNECTING' : wallet ? 'MINT FLORA' : 'CONNECT WALLET'}
-          </button>
-          <button id='winter' className='btn Flora-Font p-3 fs-2 text-capitalize m-3 rounded' style={{backgroundColor: '#43D3EE', color: '#00544B'}}>PAY W/ CARD</button> 
-        </div>
+        <WalletCheckout/>
 
         <WinterCheckout 
           projectId={6858} 
@@ -459,36 +466,6 @@ const Mint = () => {
     )
   }
 
-  const PausePurchase = () => {
-    
-    return (
-      <div className='col-12 d-flex flex-column justify-content-evenly align-items-center'>
-        
-        <Toaster />
-
-        <div className='d-flex align-items-center justify-content-center w-50'>
-            <img className='img-fluid w-auto' src={logo_1} alt=""/>
-        </div>
-
-        <div className='d-flex flex-column Flora-Font text-center m-2' style={{color: '#00544B'}}>
-            <span className='fs-1'>Mint ΔFLORA NFT</span>
-            <span className='fs-3'>
-              {minted}/5,555 Minted
-            </span>
-        </div>
-
-        {/* <div className='Flora-Font text-center'>
-          <span className='fs-4 text-uppercase' style={{color: '#00544B'}}> .055 ETH </span>
-        </div> */}
-
-        <button className='btn Flora-Font fs-2 p-3 m-3 rounded' onClick={()=>{
-          toast.error('Minting is unavailable at this time.')
-          setPause(false)
-        }} style={{backgroundColor: '#04F2AF', color: '#00544B'}}>CONNECT</button>
-      </div>
-      )
-  }
-
   return ( 
     <div className='row py-5' style={{backgroundImage: `url('${mint_2100}')`, backgroundSize: '100%', backgroundPosition: 'bottom', backgroundRepeat: 'no-repeat'}}
     >
@@ -496,10 +473,7 @@ const Mint = () => {
         complete ?
         <PostPurchase /> 
         :
-        pause !== false? 
         <PrePurchase />
-        :
-        <PausePurchase/>
       }
     </div>
   )

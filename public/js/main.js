@@ -2,7 +2,7 @@ const footer = document.getElementById('footer')
 const url = window.location.toString().split('/')
 let bool
 url.map((res)=>{
-    if(res!=='mint'){
+    if(res.toLowerCase() !== 'mint'){
         bool = false
     } else {
         bool = true

@@ -26,7 +26,7 @@ const initWeb3Onboard = init({
         // WORKING : https://eth-mainnet.alchemyapi.io/v2/b1mLSbOw7QcQpCDW88sZEbBf7OHBChYq
         // TESTNNET : https://eth-rinkeby.alchemyapi.io/v2/AVSzv_X7HJtkQChIk3ncc8RolOzYnCTr
         // MAINNET : https://eth-mainnet.alchemyapi.io/v2/363c613b6c524ebe86ce01dc2f6511d9
-        rpcUrl: `https://eth-mainnet.alchemyapi.io/v2/b1mLSbOw7QcQpCDW88sZEbBf7OHBChYq`
+        rpcUrl: `https://eth-mainnet.alchemyapi.io/v2/363c613b6c524ebe86ce01dc2f6511d9`
       },
       {
         // TESTING : 0x4
