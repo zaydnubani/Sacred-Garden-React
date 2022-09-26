@@ -321,7 +321,7 @@ const Mint = () => {
           success === true? 
           <div className='d-flex flex-column text-center p-3 w-100'>
             <span className='Flora-Font fs-3' style={{color: '#00544B'}}>
-              Pay attention to your email! Your order information will arrive soon!
+            Welcome to the SACRΞD GARDΞN! We will send you an e-mail with your art and token information soon
             </span>
           </div>
           :
