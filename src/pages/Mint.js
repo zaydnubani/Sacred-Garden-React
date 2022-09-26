@@ -63,7 +63,7 @@ const Mint = () => {
 
   useEffect(() => {
     // This initializes bloclknative so that wallets can be connected given custom parameters from '../service' 
-    console.log('wallet is approaching')
+    // console.log('wallet is approaching')
     setWeb3Onboard(initWeb3Onboard)
   }, []);
 
@@ -72,7 +72,7 @@ const Mint = () => {
     if (wallet) {
       // throws a func that sets the provider given their ETH information to be used in a static state
       setProvider(new ethers.providers.Web3Provider(wallet.provider, 'any'))
-      console.log('wallet is in the building')
+      // console.log('wallet is in the building')
     } else {
       return
     }
@@ -162,7 +162,7 @@ const Mint = () => {
     // Once the promise has been fulfilled the response is returned in a readable string
     promise.then((result) => {
       setPrice(result)
-      console.log(`Current Minting Price : ${result}`)
+      // console.log(`Current Minting Price : ${result}`)
     })
   }, [ provider ])
 
@@ -180,7 +180,7 @@ const Mint = () => {
    // Once the promise has been fulfilled the response is returned in a readable string
    promise.then((result) => {
     setStage(result)
-     console.log(`Current Minting Stage : ${result}`)
+    //  console.log(`Current Minting Stage : ${result}`)
    })
   }, [ provider ])
 
@@ -224,10 +224,10 @@ const Mint = () => {
         const leaves = MerkleTree.unmarshalLeaves(WHITELIST_LEAVES_DATA);
         const tree = new MerkleTree(leaves, keccak256, { sortPairs: true });
         const proof = tree.getHexProof(hash(address));
-        console.log("PROOF", proof);
-        console.log('quanity', amount);
-        console.log('address', address);
-        console.log('price', (pricePer.mul(amount)).toString())
+        // console.log("PROOF", proof);
+        // console.log('quanity', amount);
+        // console.log('address', address);
+        // console.log('price', (pricePer.mul(amount)).toString())
 
         await sacrdgardn.allowlistMint(
           address,
