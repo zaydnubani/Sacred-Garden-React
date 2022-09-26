@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { q, client } from "../config/fauna.js";
+// import { q, client } from "../config/fauna.js";
 
 import mint_2100 from '../images/frames/mint_2100.png'
 import logo_1 from '../images/gifs/Logo_1.gif'
@@ -12,7 +12,8 @@ import { DeltaFloraGenesis__factory } from '../ethers-contracts';
 import { ethers } from 'ethers';
 import toast, { Toaster } from 'react-hot-toast';
 // for greenList & whitelist mint
-import { GREENLIST_LEAVES_DATA } from '../emarald/SG_leaves.js';
+// import { GREENLIST_LEAVES_DATA } from '../emarald/SG_leaves.js';
+import { WHITELIST_LEAVES_DATA } from '../emarald/White_Leaves.js';
 import MerkleTree from 'merkletreejs';
 import keccak256 from 'keccak256';
 // import { WinterCheckout } from '@usewinter/checkout'
@@ -20,9 +21,9 @@ import ReactPlayer from 'react-player'
 import axios from 'axios'
 // import { faLess } from '@fortawesome/free-brands-svg-icons';
 
-const MAINNET_CONTRACT_ADDRESS = "0x21374d22f169849cfd680241f3f37cd61ac2eea5";
+// const MAINNET_CONTRACT_ADDRESS = "0x21374d22f169849cfd680241f3f37cd61ac2eea5";
 
-// const TESTNET_CONTRACT_ADDRESS = '0x3D938ece3C0D8F83c6964b462Dfcd42a612DaF86'
+const TESTNET_CONTRACT_ADDRESS = '0x3D938ece3C0D8F83c6964b462Dfcd42a612DaF86'
 
 const Mint = () => {
 
@@ -54,7 +55,7 @@ const Mint = () => {
 
   const [winterMint, setWinter] = useState();
 
-  const WhiteOut = false
+  // const WhiteOut = false
 
   
 
@@ -123,7 +124,7 @@ const Mint = () => {
      // This retrieves the minting price of NFTs minted given the specific contract using wallet provider information
      const getPrice = async (provider ) => {
       // This connects the contract to the wallet provider to initialize communication and pass information
-      const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider);
+      const sacrdgardn = DeltaFloraGenesis__factory.connect(TESTNET_CONTRACT_ADDRESS, provider);
       // Returns a promise to await a response from the contract to send it's mintPrice
       const stage = await sacrdgardn.currentStage();
       return (await sacrdgardn.stages(stage));
@@ -142,7 +143,7 @@ const Mint = () => {
     // This retrieves the minting stage of NFTs minted given the specific contract using wallet provider information
     const getStage = async (provider ) => {
      // This connects the contract to the wallet provider to initialize communication and pass information
-     const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider);
+     const sacrdgardn = DeltaFloraGenesis__factory.connect(TESTNET_CONTRACT_ADDRESS, provider);
      // Returns a promise to await a response from the contract to send it's currentStage
      return (await sacrdgardn.currentStage()).toString();
    }
@@ -188,12 +189,12 @@ const Mint = () => {
       try { 
         console.log('Trying to transact')
         // This connects the contract to the wallet provider to initialize communication and pass information
-        const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider.getSigner());
+        const sacrdgardn = DeltaFloraGenesis__factory.connect(TESTNET_CONTRACT_ADDRESS, provider.getSigner());
         // Returns a promise to await a response from the contract to send it's mintPrice
         const stage = await sacrdgardn.currentStage();
         const pricePer = (await sacrdgardn.stages(stage))[2];
 
-        const leaves = MerkleTree.unmarshalLeaves(GREENLIST_LEAVES_DATA);
+        const leaves = MerkleTree.unmarshalLeaves(WHITELIST_LEAVES_DATA);
         const tree = new MerkleTree(leaves, keccak256, { sortPairs: true });
         const proof = tree.getHexProof(hash(address));
         console.log("PROOF", proof);
@@ -288,87 +289,80 @@ const Mint = () => {
     )
   }
 
-  const GetWeb2 = () =>{
+  // const GetWeb2 = () =>{
 
-    const createWeb2 = (first, age, country, email)=>{
-      client.query(
-        q.Create(
-          q.Collection('Web2_Users'),
-          { 
-            data: { 
-            first: first,
-            age: age,
-            country: country,
-            email: email 
-            } 
-          }
-        )
-      )
-      .then(() => toast.success('We will send you an email with you token # and art soon!'))
-      .catch((err) => console.error(
-        'Error: [%s] %s: %s',
-        err.name,
-        err.message,
-        err.errors()[0].description,
-      ))
-    }
+  //   const createWeb2 = (first, age, country, email)=>{
+  //     client.query(
+  //       q.Create(
+  //         q.Collection('Web2_Users'),
+  //         { 
+  //           data: { 
+  //           first: first,
+  //           age: age,
+  //           country: country,
+  //           email: email 
+  //           } 
+  //         }
+  //       )
+  //     )
+  //     .then(() => toast.success('We will send you an email with you token # and art soon!'))
+  //     .catch((err) => console.error(
+  //       'Error: [%s] %s: %s',
+  //       err.name,
+  //       err.message,
+  //       err.errors()[0].description,
+  //     ))
+  //   }
 
-    const [ success, setSuccess] = useState(false)
+  //   const [ success, setSuccess] = useState(false)
 
-    return(
-      <div className='w-50'>
-        { 
-          success === true? 
-          <div className='d-flex flex-column text-center p-3 w-100'>
-            <span className='Flora-Font fs-3' style={{color: '#00544B'}}>
-            Welcome to the SACRΞD GARDΞN! We will send you an e-mail with your art and token information soon
-            </span>
-          </div>
-          :
-          <div className='d-flex flex-column text-center p-3 w-100'>
-            <label className='Flora-Font fs-3' style={{color: '#00544B'}}>Sign up for your free membership token & psychedelic plant art!</label>
-            <div className='d-flex flex-row flex-wrap my-1 justify-content-evenly w-100'>
-              <input className='Flora-Font text-uppercase border-0 rounded m-1 p-2 w-100' placeholder='name'/>
-              <input className='Flora-Font text-uppercase border-0 rounded p-2 w-100 m-1' placeholder='age'/>
-              <input className='Flora-Font text-uppercase border-0 rounded p-2 w-100 m-1' placeholder='country'/>
-              <input className='Flora-Font text-uppercase border-0 w-100 rounded m-1 p-2' placeholder='email address'/>
-            </div >
-            <button className='btn p-2' style={{backgroundColor: '#04F2AF', color: '#00544B'}} onClick={(e)=>{
-              const first = e.currentTarget.parentNode.children[1].children[0].value
-              const age = e.currentTarget.parentNode.children[1].children[1].value
-              const country = e.currentTarget.parentNode.children[1].children[2].value
-              const email = e.currentTarget.parentNode.children[1].children[3].value
-              createWeb2(first, age, country, email)
-              setSuccess(true)
-            }}>
-              <span className='Flora-Font fs-5 text-uppercase'>sign up</span>
-            </button>
-          </div>
-        }
-      </div>
-    )
-  }
+  //   return(
+  //     <div className='w-50'>
+  //       { 
+  //         success === true? 
+  //         <div className='d-flex flex-column text-center p-3 w-100'>
+  //           <span className='Flora-Font fs-3' style={{color: '#00544B'}}>
+  //           Welcome to the SACRΞD GARDΞN! We will send you an e-mail with your art and token information soon
+  //           </span>
+  //         </div>
+  //         :
+  //         <div className='d-flex flex-column text-center p-3 w-100'>
+  //           <label className='Flora-Font fs-3' style={{color: '#00544B'}}>Sign up for your free membership token & psychedelic plant art!</label>
+  //           <div className='d-flex flex-row flex-wrap my-1 justify-content-evenly w-100'>
+  //             <input className='Flora-Font text-uppercase border-0 rounded m-1 p-2 w-100' placeholder='name'/>
+  //             <input className='Flora-Font text-uppercase border-0 rounded p-2 w-100 m-1' placeholder='age'/>
+  //             <input className='Flora-Font text-uppercase border-0 rounded p-2 w-100 m-1' placeholder='country'/>
+  //             <input className='Flora-Font text-uppercase border-0 w-100 rounded m-1 p-2' placeholder='email address'/>
+  //           </div >
+  //           <button className='btn p-2' style={{backgroundColor: '#04F2AF', color: '#00544B'}} onClick={(e)=>{
+  //             const first = e.currentTarget.parentNode.children[1].children[0].value
+  //             const age = e.currentTarget.parentNode.children[1].children[1].value
+  //             const country = e.currentTarget.parentNode.children[1].children[2].value
+  //             const email = e.currentTarget.parentNode.children[1].children[3].value
+  //             createWeb2(first, age, country, email)
+  //             setSuccess(true)
+  //           }}>
+  //             <span className='Flora-Font fs-5 text-uppercase'>sign up</span>
+  //           </button>
+  //         </div>
+  //       }
+  //     </div>
+  //   )
+  // }
 
   const WalletCheckout = () =>{
     return(
       <div className='d-flex flex-column' style={{'display':'none'}}>
-        {
-          WhiteOut !== false ?
-          <>
-            <div className='Flora-Font d-flex flex-row align-items-center justify-content-center' >
-            {wallet ? <GoQuantity /> : null }
-            </div>
-            <button className='btn Flora-Font fs-2 p-3 m-3 rounded' 
-            onClick={() => {
-              (wallet? handleMint(quantity) : connect())
-            }}
-            style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
-              {connecting ? 'CONNECTING' : wallet ? 'MINT FLORA' : 'CONNECT WALLET'}
-            </button>
-          </>
-          :
-          null
-        }            
+        <div className='Flora-Font d-flex flex-row align-items-center justify-content-center' >
+        {wallet ? <GoQuantity /> : null }
+        </div>
+        <button className='btn Flora-Font fs-2 p-3 m-3 rounded' 
+        onClick={() => {
+          (wallet? handleMint(quantity) : connect())
+        }}
+        style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
+          {connecting ? 'CONNECTING' : wallet ? 'MINT FLORA' : 'CONNECT WALLET'}
+        </button>   
         {/* <button id='winter' className='btn Flora-Font p-3 fs-2 text-capitalize m-3 rounded' style={{backgroundColor: '#43D3EE', color: '#00544B', display:'none'}}>PAY W/ CARD</button>  */}
       </div>
     )
@@ -425,7 +419,7 @@ const Mint = () => {
 
         <WalletCheckout/>
 
-        <GetWeb2/>
+        {/* <GetWeb2/> */}
         {/* <WinterCheckout 
           projectId={6858} 
           production={true} 
