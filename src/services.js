@@ -31,6 +31,17 @@ const initWeb3Onboard = init({
       {
         // TESTING : 0x4
         // PRODUCTION : 0x1
+        id: '0x5',
+        token: 'Txns',
+        label: 'Goerli',
+        // WORKING : https://eth-mainnet.alchemyapi.io/v2/b1mLSbOw7QcQpCDW88sZEbBf7OHBChYq
+        // TESTNNET : https://eth-rinkeby.alchemyapi.io/v2/AVSzv_X7HJtkQChIk3ncc8RolOzYnCTr
+        // MAINNET : https://eth-mainnet.alchemyapi.io/v2/363c613b6c524ebe86ce01dc2f6511d9
+        rpcUrl: `https://eth-goerli.g.alchemy.com/v2/6MoAMM_b0zTVfaPFFm_Zg0qWxEHK9O3j`
+      },
+      {
+        // TESTING : 0x4
+        // PRODUCTION : 0x1
         id: '0x4',
         token: 'RIN',
         label: 'Rinkeby',

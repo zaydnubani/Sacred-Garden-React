@@ -23,7 +23,9 @@ import axios from 'axios'
 
 // const MAINNET_CONTRACT_ADDRESS = "0x21374d22f169849cfd680241f3f37cd61ac2eea5";
 
-const TESTNET_CONTRACT_ADDRESS = '0x3D938ece3C0D8F83c6964b462Dfcd42a612DaF86'
+// const TESTNET_CONTRACT_ADDRESS = '0x3D938ece3C0D8F83c6964b462Dfcd42a612DaF86'
+
+const GOERLI_CONTRACT_ADDRESS = '0xfe1aeef8335f1444c25c979a6d20149dd23b4a92'
 
 const Mint = () => {
 
@@ -124,7 +126,7 @@ const Mint = () => {
      // This retrieves the minting price of NFTs minted given the specific contract using wallet provider information
      const getPrice = async (provider ) => {
       // This connects the contract to the wallet provider to initialize communication and pass information
-      const sacrdgardn = DeltaFloraGenesis__factory.connect(TESTNET_CONTRACT_ADDRESS, provider);
+      const sacrdgardn = DeltaFloraGenesis__factory.connect(GOERLI_CONTRACT_ADDRESS, provider);
       // Returns a promise to await a response from the contract to send it's mintPrice
       const stage = await sacrdgardn.currentStage();
       return (await sacrdgardn.stages(stage));
@@ -143,7 +145,7 @@ const Mint = () => {
     // This retrieves the minting stage of NFTs minted given the specific contract using wallet provider information
     const getStage = async (provider ) => {
      // This connects the contract to the wallet provider to initialize communication and pass information
-     const sacrdgardn = DeltaFloraGenesis__factory.connect(TESTNET_CONTRACT_ADDRESS, provider);
+     const sacrdgardn = DeltaFloraGenesis__factory.connect(GOERLI_CONTRACT_ADDRESS, provider);
      // Returns a promise to await a response from the contract to send it's currentStage
      return (await sacrdgardn.currentStage()).toString();
    }
@@ -189,7 +191,7 @@ const Mint = () => {
       try { 
         console.log('Trying to transact')
         // This connects the contract to the wallet provider to initialize communication and pass information
-        const sacrdgardn = DeltaFloraGenesis__factory.connect(TESTNET_CONTRACT_ADDRESS, provider.getSigner());
+        const sacrdgardn = DeltaFloraGenesis__factory.connect(GOERLI_CONTRACT_ADDRESS, provider.getSigner());
         // Returns a promise to await a response from the contract to send it's mintPrice
         const stage = await sacrdgardn.currentStage();
         const pricePer = (await sacrdgardn.stages(stage))[2];
