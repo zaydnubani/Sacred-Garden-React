@@ -326,7 +326,7 @@ const Mint = () => {
           </div>
           :
           <div className='d-flex flex-column text-center p-3 w-100'>
-            <label className='Flora-Font fs-3' style={{color: '#00544B'}}>Input information to queue an order</label>
+            <label className='Flora-Font fs-3' style={{color: '#00544B'}}>Sign up for your free membership token & psychedelic plant art!</label>
             <div className='d-flex flex-row flex-wrap my-1 justify-content-evenly w-100'>
               <input className='Flora-Font text-uppercase border-0 rounded m-1 p-2 w-100' placeholder='name'/>
               <input className='Flora-Font text-uppercase border-0 rounded p-2 w-100 m-1' placeholder='age'/>
@@ -341,7 +341,7 @@ const Mint = () => {
               createWeb2(first, age, country, email)
               setSuccess(true)
             }}>
-              <span className='Flora-Font fs-5 text-uppercase'>submit order</span>
+              <span className='Flora-Font fs-5 text-uppercase'>sign up</span>
             </button>
           </div>
         }
