@@ -21,11 +21,11 @@ import ReactPlayer from 'react-player'
 import axios from 'axios'
 // import { faLess } from '@fortawesome/free-brands-svg-icons';
 
-// const MAINNET_CONTRACT_ADDRESS = "0x21374d22f169849cfd680241f3f37cd61ac2eea5";
+const MAINNET_CONTRACT_ADDRESS = "0x21374d22f169849cfd680241f3f37cd61ac2eea5";
 
 // const TESTNET_CONTRACT_ADDRESS = '0x3D938ece3C0D8F83c6964b462Dfcd42a612DaF86'
 
-const GOERLI_CONTRACT_ADDRESS = '0xfe1aeef8335f1444c25c979a6d20149dd23b4a92'
+// const GOERLI_CONTRACT_ADDRESS = '0xfe1aeef8335f1444c25c979a6d20149dd23b4a92'
 
 const Mint = () => {
 
@@ -53,9 +53,9 @@ const Mint = () => {
 
   const [complete, setComplete] = useState();
 
-  const [nftID, setNFTIDs] = useState();
-
   const [winterMint, setWinter] = useState();
+
+  const [tokens, setTokens] = useState([])
 
   // const WhiteOut = false
 
@@ -120,13 +120,38 @@ const Mint = () => {
     
   },[])
 
-
+  useEffect(()=>{
+    const getNFTs = (wallet) =>{  
+      const api = axios.create()
+      api.get(`https://api.nftport.xyz/v0/accounts/${wallet}`, {
+        params: {
+            chain: 'ethereum',
+            contract_address: '0x21374D22F169849cFD680241F3f37cD61AC2eea5'
+        }, 
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'b556fb67-bb92-4e82-85cc-643f02174e3a'
+        }
+      }).then((res)=>{
+        return res.data.nfts.map((ret)=>{
+          return setTokens(old=>[...old, ret.token_id])
+        })
+      }).catch(function (error) {
+        console.error(error); 
+      });
+    }
+    
+    if(wallet){
+      return getNFTs(wallet.accounts[0].address)
+    }
+    
+  }, [wallet])
 
   useEffect(() => {
      // This retrieves the minting price of NFTs minted given the specific contract using wallet provider information
      const getPrice = async (provider ) => {
       // This connects the contract to the wallet provider to initialize communication and pass information
-      const sacrdgardn = DeltaFloraGenesis__factory.connect(GOERLI_CONTRACT_ADDRESS, provider);
+      const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider);
       // Returns a promise to await a response from the contract to send it's mintPrice
       const stage = await sacrdgardn.currentStage();
       return (await sacrdgardn.stages(stage));
@@ -145,7 +170,7 @@ const Mint = () => {
     // This retrieves the minting stage of NFTs minted given the specific contract using wallet provider information
     const getStage = async (provider ) => {
      // This connects the contract to the wallet provider to initialize communication and pass information
-     const sacrdgardn = DeltaFloraGenesis__factory.connect(GOERLI_CONTRACT_ADDRESS, provider);
+     const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider);
      // Returns a promise to await a response from the contract to send it's currentStage
      return (await sacrdgardn.currentStage()).toString();
    }
@@ -168,7 +193,7 @@ const Mint = () => {
     toast.promise(promise, {
       loading: "Please confirm the transaction.",
       success: () => {
-        console.log(`${web3Onboard}, ${price}, ${stage}, ${setNFTIDs}`)
+        console.log(`${web3Onboard}, ${price}, ${stage}`)
         setComplete(true)
         return "Mint initiated."
       },
@@ -191,7 +216,7 @@ const Mint = () => {
       try { 
         console.log('Trying to transact')
         // This connects the contract to the wallet provider to initialize communication and pass information
-        const sacrdgardn = DeltaFloraGenesis__factory.connect(GOERLI_CONTRACT_ADDRESS, provider.getSigner());
+        const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider.getSigner());
         // Returns a promise to await a response from the contract to send it's mintPrice
         const stage = await sacrdgardn.currentStage();
         const pricePer = (await sacrdgardn.stages(stage))[2];
@@ -265,7 +290,7 @@ const Mint = () => {
   const GoQuantity = () => {
 
     const inc = () => {
-      if (3> quantity & quantity >= 1){
+      if (2> quantity & quantity >= 1){
         setQuantity((prev) => prev + 1);
   
       }
@@ -463,18 +488,20 @@ const Mint = () => {
 
     const GetIDs = () => {
       return (
-          <div className='d-flex flex-row m-3'>
-
-            <div className='px-2' style={{color: '#00544B'}}>
-              <span className='Flora-Font fs-4 text-uppercase'>Seeds Planted: </span>
-            </div>
-
-            <div className='d-flex flex-column text-center Flora-Font px-2' style={{color: '#00544B'}}>
-              <span className='fs-4' style={{color: ''}}>#{202} / 5,555</span>
-              <span className='fs-4' style={{color: ''}}>#{203} / 5,555</span>
-              <span className='fs-4' style={{color: ''}}>#{204} / 5,555</span>
-            </div>
+        <div className='d-flex flex-row m-3'>
+          <div className='px-2' style={{color: '#00544B'}}>
+            <span className='Flora-Font fs-4 text-uppercase'>Seeds Planted: </span>
           </div>
+          <div className='d-flex flex-column text-center Flora-Font px-2' style={{color: '#00544B'}}>
+            {
+              tokens.map((res)=>{
+                return(
+                  <span className='fs-4' key={tokens.indexOf(res)} style={{color: ''}}>{res} / 5,555</span>
+                )
+              })
+            }
+          </div>
+        </div>
       )
     }
     
@@ -482,7 +509,7 @@ const Mint = () => {
       
       <div className='col-12 d-flex flex-column text-center align-items-center justify-content-evently py-3'>
 
-        <div id='popers' className='d-flex flex-column p-3 m-1 Flora-Font text-center rounded '
+        <div id='popers' className='d-flex flex-column p-3 m-1 Flora-Font text-center rounded w-75'
         style={{backgroundColor: '#00544B', color: '#FFAC80', position: 'fixed'}}>
 
           <button onClick={() => {popup()}} className="btn align-self-end" style={{backgroundColor: '#00544B', color: '#FFAC80'}}>
@@ -492,34 +519,30 @@ const Mint = () => {
           <span className="text-uppercase fs-1">Welcome to the floraverse!</span>
 
           <span className="fs-3 rounded m-2 px-1 py-2" style={{backgroundColor: '#FFAC80', color: '#00544B'}}>
-            This is your first step into the garden. Your seed will reveal itself on August 11. Stay tuned for info on claiming your gifts, special events and more! 
+            This is your first step into the garden. Let's grow and conserve psychedelic plants! 
           </span>
 
-          <MintedWinter /> 
 
-          {winterMint ? 
-          <MintedWinter /> 
-          : null }
+          {
+          winterMint ? 
+            <MintedWinter /> 
+            : 
+            null 
+          }
           
         </div>
 
-        <span className='Flora-Font fs-1 m-3' style={{color: '#00544B'}}>CONGRATS!</span>
+        <span className='Flora-Font fs-1 m-3' style={{color: '#00544B'}}>THE SEEDS HAVE SPROUTED!</span>
 
         <div className='w-75 m-3 d-flex justify-content-center'>
-          <ReactPlayer playing='true' loop='true' muted='true' url={bouncingSeed} className='img-fluid'/>
+          <ReactPlayer playing={true} loop={true} muted={true} url={bouncingSeed} className='img-fluid'/>
           {/* <img className='img-fluid rounded' src={web} alt=''/>  */}
         </div>
 
-        
-        <span className='Flora-Font fs-4 text-uppercase m-3' style={{color: '#00544B'}}>
-          Thanks for minting with us!
-        </span>
-
         { minted ?  <SeedMinted /> : null }
 
-        { nftID ? <GetIDs /> : null }
+        { tokens.length >= 1 ?  <GetIDs /> : null }
 
-        
         <a href="https://opensea.io/collection/deltaflora" className='Flora-Font p-3 fs-3 text-decoration-none btn rounded m-3' style={{color: '#00544B', backgroundColor: '#43D3EE' }}>VIEW ON OPENSEA</a>
 
       </div>
@@ -532,9 +555,9 @@ const Mint = () => {
       {
         complete ?
         <PostPurchase /> 
-        :
+       : 
         <PrePurchase />
-      }
+      } 
     </div>
   )
 }
