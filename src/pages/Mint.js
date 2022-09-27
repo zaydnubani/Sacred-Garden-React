@@ -13,9 +13,9 @@ import { ethers } from 'ethers';
 import toast, { Toaster } from 'react-hot-toast';
 // for greenList & whitelist mint
 // import { GREENLIST_LEAVES_DATA } from '../emarald/SG_leaves.js';
-import { WHITELIST_LEAVES_DATA } from '../emarald/White_Leaves.js';
-import MerkleTree from 'merkletreejs';
-import keccak256 from 'keccak256';
+// import { WHITELIST_LEAVES_DATA } from '../emarald/White_Leaves.js';
+// import MerkleTree from 'merkletreejs';
+// import keccak256 from 'keccak256';
 // import { WinterCheckout } from '@usewinter/checkout'
 import ReactPlayer from 'react-player'
 import axios from 'axios'
@@ -201,75 +201,39 @@ const Mint = () => {
     })
   }
 
-  const sendMint = async (amount) => {
-    function hash(account) {
-      return Buffer.from(
-        ethers.utils.solidityKeccak256(
-          ['address'],
-          [account]
-        ).slice(2), 'hex');
-    }
-    
-    // retrieves the wallet providers address
-    const address = wallet.accounts[0].address;
-    if (provider && wallet?.accounts[0]){
-      try { 
-        console.log('Trying to transact')
-        // This connects the contract to the wallet provider to initialize communication and pass information
-        const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider.getSigner());
-        // Returns a promise to await a response from the contract to send it's mintPrice
-        const stage = await sacrdgardn.currentStage();
-        const pricePer = (await sacrdgardn.stages(stage))[2];
-
-        const leaves = MerkleTree.unmarshalLeaves(WHITELIST_LEAVES_DATA);
-        const tree = new MerkleTree(leaves, keccak256, { sortPairs: true });
-        const proof = tree.getHexProof(hash(address));
-        // console.log("PROOF", proof);
-        // console.log('quanity', amount);
-        // console.log('address', address);
-        // console.log('price', (pricePer.mul(amount)).toString())
-
-        await sacrdgardn.allowlistMint(
-          address,
-          amount,
-          proof,
-            // proof, *** proof is to verify if they are on greenlist
-          { value: pricePer.mul(amount) }
-        ).then((event) => {
-          console.log(event)
-          
-        });
-      } catch (err) {
-          // console.log(err)
-          throw new Error("Transaction failed to initiate.");
-      
-        }
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
-
   // const sendMint = async (amount) => {
+  //   function hash(account) {
+  //     return Buffer.from(
+  //       ethers.utils.solidityKeccak256(
+  //         ['address'],
+  //         [account]
+  //       ).slice(2), 'hex');
+  //   }
+    
   //   // retrieves the wallet providers address
   //   const address = wallet.accounts[0].address;
   //   if (provider && wallet?.accounts[0]){
   //     try { 
   //       console.log('Trying to transact')
   //       // This connects the contract to the wallet provider to initialize communication and pass information
-  //       const sacrdgardn = DeltaFloraGenesis__factory.connect(TESTNET_CONTRACT_ADDRESS, provider.getSigner());
+  //       const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider.getSigner());
   //       // Returns a promise to await a response from the contract to send it's mintPrice
   //       const stage = await sacrdgardn.currentStage();
   //       const pricePer = (await sacrdgardn.stages(stage))[2];
 
-  //       console.log('quanity', amount);
-  //       console.log('address', address);
-  //       console.log('price', (pricePer.mul(amount)).toString())
+  //       const leaves = MerkleTree.unmarshalLeaves(WHITELIST_LEAVES_DATA);
+  //       const tree = new MerkleTree(leaves, keccak256, { sortPairs: true });
+  //       const proof = tree.getHexProof(hash(address));
+  //       // console.log("PROOF", proof);
+  //       // console.log('quanity', amount);
+  //       // console.log('address', address);
+  //       // console.log('price', (pricePer.mul(amount)).toString())
 
-  //       await sacrdgardn.publicMint(
+  //       await sacrdgardn.allowlistMint(
   //         address,
   //         amount,
+  //         proof,
+  //           // proof, *** proof is to verify if they are on greenlist
   //         { value: pricePer.mul(amount) }
   //       ).then((event) => {
   //         console.log(event)
@@ -281,11 +245,47 @@ const Mint = () => {
       
   //       }
   //     return true;
-  //     }
-  //     else {
+  //   }
+  //   else {
   //     return false;
   //   }
   // }
+
+  const sendMint = async (amount) => {
+    // retrieves the wallet providers address
+    const address = wallet.accounts[0].address;
+    if (provider && wallet?.accounts[0]){
+      try { 
+        console.log('Trying to transact')
+        // This connects the contract to the wallet provider to initialize communication and pass information
+        const sacrdgardn = DeltaFloraGenesis__factory.connect(MAINNET_CONTRACT_ADDRESS, provider.getSigner());
+        // Returns a promise to await a response from the contract to send it's mintPrice
+        const stage = await sacrdgardn.currentStage();
+        const pricePer = (await sacrdgardn.stages(stage))[2];
+
+        console.log('quanity', amount);
+        console.log('address', address);
+        console.log('price', (pricePer.mul(amount)).toString())
+
+        await sacrdgardn.publicMint(
+          address,
+          amount,
+          { value: pricePer.mul(amount) }
+        ).then((event) => {
+          console.log(event)
+          
+        });
+      } catch (err) {
+          // console.log(err)
+          throw new Error("Transaction failed to initiate.");
+      
+        }
+      return true;
+      }
+      else {
+      return false;
+    }
+  }
 
   const GoQuantity = () => {
 
