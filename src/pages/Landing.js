@@ -75,14 +75,14 @@ const Landing = () => {
                     </a>
                 </div>
                 <div className="m-3">
-                    {/* <a href='/shop'>
+                    <a href='/shop'>
                         <img src={ActionShop} alt='call to action' className="img-fluid rounded"/>
-                    </a> */}
-                    <div onClick={()=>{
+                    </a>
+                    {/* <div onClick={()=>{
                         toast.error('This feature is not currently available.')
                     }}>
                         <img src={ActionShop} alt='call to action' className="img-fluid rounded"/>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

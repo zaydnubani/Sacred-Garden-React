@@ -8,7 +8,6 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCartShopping} from '@fortawesome/free-solid-svg-icons'
 
-import one from '../images/300px/1.png'
 import cactus from '../images/shop/cactus.jpeg'
 import crestedhua from '../images/shop/CrestedHua.PNG'
 import psychedelictoday from '../images/shop/psychedelicToday.png'
@@ -35,6 +34,7 @@ const Shop = () => {
     const [ order, setOrder ] = useState(null)
     const [ finalOrder, setFinalOrder ] = useState(null)
     const [ email, setEmail ] = useState(null)
+    const [ stock, setStock ] = useState([])
     
 
     // // this perpetuates the connection to blocknative
@@ -122,11 +122,15 @@ const Shop = () => {
         if(tokens.length >= 1){
             tokens.map((ret)=>{
                 if(ret.smartContract === MAINNET_CONTRACT_ADDRESS){
-                    client.query(q.Paginate(q.Match(q.Index("Tokens"), ret.tokenId))).then((ref)=>{
+                    client.query(q.Paginate(q.Match(q.Index("claimedTokens"), ret.tokenId))).then((ref)=>{
                         if( ref.data.length >= 1 ){
                             return console.log(`ERC${ret.tokenId} has been used already.`)
                         } else {
-                            setClaimTokens(old=>[...old, ret])
+                            // validates if a redeemable claim token, has to be a tokenId under/equal to 200
+                            if(ret.tokenId <= 200){
+                                return setClaimTokens(old=>[...old, ret])
+                            }
+                            return
                         }
                     }).catch((err) => console.error(
                         'Error: [%s] %s: %s',
@@ -236,6 +240,57 @@ const Shop = () => {
             } 
         })
     })
+
+    // retrives all ordered items then pushes said items to the array stock.
+    useEffect(()=>{
+
+        client.query(q.Paginate(q.Match(q.Index('allOrders')))).then((ret) => {
+            ret.data.map( async (ref) => {
+                await client.query(q.Get(q.Ref(q.Collection('Orders'), ref.value.id))).then((oth) => { 
+                    return oth.data.Items.forEach(it=>setStock(old=>[...old, it.item]))
+                })
+                return 
+            })
+        }).catch((err) => console.error(
+            'Error: [%s] %s: %s',
+            err.name,
+            err.message,
+            err.errors()[0].description,
+        ))
+
+    }, [])
+
+    // this updates all merchandise with usedStock i.e. how much has been bought already--constantly updating
+    useEffect(()=>{
+        if(stock.length >=1 ){
+           client.query(q.Paginate(q.Match(q.Index('allMerch'))))
+            .then((ret) => {
+                ret.data.map( async (ref) => {
+                    await client.query(q.Get(q.Ref(q.Collection('Merchandise'), ref.value.id))).then((oth) => {
+                        client.query(
+                            q.Update(
+                            q.Ref(q.Collection('Merchandise'), ref.value.id),
+                            {
+                                data: {
+                                    usedStock: stock.filter(it=>it === oth.data.item).length 
+                                }
+                            },
+                            )
+                        )
+                    })
+                    return 
+                })
+            }).catch((err) => console.error(
+                'Error: [%s] %s: %s',
+                err.name,
+                err.message,
+                err.errors()[0].description,
+                
+            )) 
+        }
+        return 
+    },[stock])
+
     
     // // render for all filter
     const Merch = () => {
@@ -243,7 +298,7 @@ const Shop = () => {
         const [ merchData, setMerchData ] = useState([])
 
         useEffect(() => {
-            client.query(q.Paginate(q.Match(q.Index('All'))))
+            client.query(q.Paginate(q.Match(q.Index('allMerch'))))
             .then((ret) => {
                 ret.data.map( async (ref) => {
                     await client.query(q.Get(q.Ref(q.Collection('Merchandise'), ref.value.id))).then((oth) => { 
@@ -301,7 +356,7 @@ const Shop = () => {
                         return
 
                     }
-
+                    
                     return( 
                         <div key={ret.item} className="m-3 card Flora-Font" style={{width:'18rem'}}>
                             {
@@ -356,7 +411,13 @@ const Shop = () => {
                                     :
                                     null
                                 }
-                                <button className="btn btn-primary text-uppercase" onClick={(e)=>{
+                                {
+                                    ret.usedStock >= ret.stock ?
+                                    <button className="btn btn-secondary text-uppercase" onClick={()=>{
+                                        toast.error('This item is sold out!')
+                                    }}>Sold Out</button>
+                                    :
+                                    <button className="btn btn-primary text-uppercase" onClick={(e)=>{
                                     if(ret.type === 'clothes'){
                                         if(cart.length >= 1){
                                             duplicate(ret, e.target.parentNode.children[3].value)
@@ -370,7 +431,9 @@ const Shop = () => {
                                             setCart(old => [...old, {item: ret.item, type: ret.type, description: ret.description, quantity: 1}]);
                                         }
                                     }
-                                }}>add to cart</button>
+                                    }}>add to cart</button>
+                                }
+                                
                             </div>
                         </div>
                     )
@@ -443,17 +506,72 @@ const Shop = () => {
 
                     return( 
                         <div key={ret.item} className="m-3 card Flora-Font" style={{width:'18rem'}}>
-                            <img src={one} className="card-img-top" alt=' '/>
+                             {
+                                ret.src === 'seeds'?
+                                <img src={seeds} alt={ret.src}/>
+                                :
+                                    ret.src === 'cactus'?
+                                    <img src={cactus} alt={ret.src}/>
+                                    :
+                                        ret.src === 'crestedhua'?
+                                        <img src={crestedhua} alt={ret.src}/>
+                                        :
+                                            ret.src === 'psychedelictoday'?
+                                            <img src={psychedelictoday} alt={ret.src}/>
+                                            :
+                                            null
+                            
+                            }
                             <div className="card-body d-flex flex-column">
-                                <h5 className="card-title text-uppercase fs-5">{ret.item}</h5>
-                                <p className="card-text text-uppercase">{ret.description}</p>
-                                <button className="btn btn-primary text-uppercase" onClick={()=>{
-                                    if(cart.length >= 1){
-                                        duplicate(ret)
-                                    }else{
-                                        setCart(old => [...old, {item: ret.item, src: ret.src, tags: ret.tags, type: ret.type, description: ret.description, quantity: 1}]);
-                                    }}
-                                }>Add to cart</button>
+                            <span>{ret.item}</span>
+                                <button className="btn d-flex align-items-left w-100" data-bs-toggle="collapse" data-bs-target={`#${ret.src}`} aria-expanded="false" aria-controls={ret.src}>
+                                    <span>details</span>
+                                </button>
+                                <div className="collapse" id={ret.src}>
+                                    <div className="card card-body">
+                                        <div className="d-flex flex-column">
+                                            <label>Description: </label>
+                                            <span>{ret.description}</span>
+                                        </div>
+                                        <div className="d-flex flex-column">
+                                            <label>retail value:</label>
+                                            <span>${ret.retail}</span>
+                                        </div>
+                                        {
+                                            ret.type === 'seeds' | ret.type === 'plants' ?
+                                            <div className="d-flex flex-column">
+                                                <label>Farmer:</label>
+                                                <span>{ret.farmer}</span>
+                                            </div>
+                                            :
+                                            null
+                                        }
+                                    </div>
+                                </div>
+                                { 
+                                    ret.type === 'clothes'?
+                                    <select>
+                                        {ret.size.map((res)=>{
+                                            return <option key={res} value={res} className="flora-font">{res}</option>
+                                        })}
+                                    </select>
+                                    :
+                                    null
+                                }
+                                {
+                                    ret.usedStock >= ret.stock ?
+                                    <button className="btn btn-secondary text-uppercase" onClick={()=>{
+                                        toast.error('This item is sold out!')
+                                    }}>Sold Out</button>
+                                    :
+                                    <button className="btn btn-primary text-uppercase" onClick={(e)=>{
+                                        if(cart.length >= 1){
+                                            duplicate(ret)
+                                        }else{
+                                            setCart(old => [...old, {item: ret.item, src: ret.src, tags: ret.tags, type: ret.type, description: ret.description, quantity: 1}]);
+                                        }}
+                                    }>add to cart</button>
+                                }
                             </div>
                         </div>
                     )
@@ -1012,7 +1130,7 @@ const Shop = () => {
                         <option value='null'>ALL</option>
                         <option value="clothes">clothes</option>
                         <option value="plants">plants</option>
-                        <option value="service">service</option>
+                        <option value="course">courses</option>
                     </select>
                     {type.map((ret)=>{
                         return(<div className="btn btn-primary d-flex flex-row Flora-Font m-1 fs-5 p-2 align-items-center" key={ret}><span className="text-uppercase">{ret}</span><button 

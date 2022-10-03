@@ -7,7 +7,7 @@ import Team from './pages/Team'
 import Partners from './pages/Partners'
 import Mint from './pages/Mint.js'
 import Terms from './pages/Terms'
-// import Shop from './pages/Shop'
+import Shop from './pages/Shop'
 import Dashboard from './pages/dashboard';
 
 function App() {
@@ -31,9 +31,9 @@ function App() {
       <Route exact path="/terms">
         <Terms />
       </Route>
-      {/* <Route exact path="/shop">
+      <Route exact path="/shop">
         <Shop />
-      </Route> */}
+      </Route>
       <Route exact path="/dashboard">
         <Dashboard />
       </Route>
