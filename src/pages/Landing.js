@@ -1,6 +1,6 @@
 import React from 'react';
 import Marquee from "react-fast-marquee";
-import toast, { Toaster } from 'react-hot-toast';
+// import toast, { Toaster } from 'react-hot-toast';
 
 // import sacrd_gardn_neon from '../images/logos/sacrd_gardn_neon.png'
 // import rotate_2100 from '../images/frames/rotate_2100.png'
@@ -47,7 +47,7 @@ const Landing = () => {
     return(
         <div className='row g-5 d-flex'>
 
-            <Toaster />
+            {/* <Toaster /> */}
 
             <div className='col-12 overflow-hidden'>
                 <Marquee gradientWidth={25}  className='rounded'>
