@@ -243,14 +243,15 @@ const Shop = () => {
 
     // retrives all ordered items then pushes said items to the array stock.
     useEffect(()=>{
-
+        let arr = []
         client.query(q.Paginate(q.Match(q.Index('allOrders')))).then((ret) => {
-            ret.data.map( async (ref) => {
-                await client.query(q.Get(q.Ref(q.Collection('Orders'), ref.value.id))).then((oth) => { 
-                    return oth.data.Items.forEach(it=>setStock(old=>[...old, it.item]))
+            ret.data.map((ref) => {
+                client.query(q.Get(q.Ref(q.Collection('Orders'), ref.value.id))).then((oth) => { 
+                    oth.data.Items.forEach(it=>arr.push(it.item))
+                    return 
                 })
-                return 
-            })
+                return setStock(arr)
+            }) 
         }).catch((err) => console.error(
             'Error: [%s] %s: %s',
             err.name,
@@ -262,14 +263,13 @@ const Shop = () => {
 
     // this updates all merchandise with usedStock i.e. how much has been bought already--constantly updating
     useEffect(()=>{
-        if(stock.length >=1 ){
+        if(stock){
            client.query(q.Paginate(q.Match(q.Index('allMerch'))))
             .then((ret) => {
-                ret.data.map( async (ref) => {
-                    await client.query(q.Get(q.Ref(q.Collection('Merchandise'), ref.value.id))).then((oth) => {
-                        client.query(
-                            q.Update(
-                            q.Ref(q.Collection('Merchandise'), ref.value.id),
+                ret.data.map((ref) => {
+                    client.query(q.Get(q.Ref(q.Collection('Merchandise'), ref.value.id))).then((oth) => {
+                        client.query(q.Update(q.Ref(q.Collection('Merchandise'), ref.value.id),
+
                             {
                                 data: {
                                     usedStock: stock.filter(it=>it === oth.data.item).length 
@@ -278,7 +278,7 @@ const Shop = () => {
                             )
                         )
                     })
-                    return 
+                    return stock
                 })
             }).catch((err) => console.error(
                 'Error: [%s] %s: %s',
