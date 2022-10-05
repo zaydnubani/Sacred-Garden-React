@@ -5,7 +5,7 @@ import Landing from './pages/Landing'
 import Faq from './pages/faq'
 import Team from './pages/Team'
 import Partners from './pages/Partners'
-import Mint from './pages/Mint.js'
+// import Mint from './pages/Mint.js'
 import Terms from './pages/Terms'
 import Shop from './pages/Shop'
 import Dashboard from './pages/dashboard';
@@ -25,9 +25,9 @@ function App() {
       <Route exact path="/partners">
         <Partners />
       </Route>
-      <Route exact path="/mint">
+      {/* <Route exact path="/mint">
         <Mint />
-      </Route>
+      </Route> */}
       <Route exact path="/terms">
         <Terms />
       </Route>

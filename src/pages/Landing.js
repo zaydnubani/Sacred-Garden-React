@@ -60,7 +60,7 @@ const Landing = () => {
             <div className="order-2 col-sm-12 col-md-6 col-xxl-4 Flora-Font d-flex text-center flex-column align-items-center justify-content-evenly">
                 
                 <div className="m-3">
-                    <a href='/mint'>
+                    <a href='https://opensea.io/collection/deltaflora'>
                         <img src={ActionNFT} alt='call to action' className="img-fluid rounded"/>
                     </a>
                     {/* <div onClick={()=>{
@@ -95,7 +95,7 @@ const Landing = () => {
                         and education. ΔFLORA
                         is your membership token.
                     </p>
-                    <a  href="/Mint" className="py-4 rounded fs-2 text-decoration-none text-uppercase w-75" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
+                    <a  href="https://opensea.io/collection/deltaflora" className="py-4 rounded fs-2 text-decoration-none text-uppercase w-75" style={{backgroundColor: '#43D3EE', color: '#00544B'}}>
                         <span className="">join our community</span>
                     </a> 
                     {/* <button className="btn py-4 rounded fs-2 text-decoration-none text-uppercase w-75" onClick={()=>{
@@ -107,7 +107,7 @@ const Landing = () => {
             </div>
 
             <div className="order-2 order-sm-2 order-md-4 order-xxl-4  col-sm-12 col-md-12 col-xxl-4 accordion accordion-flush d-flex flex-column justify-content-evenly" id="roadmap">
-                <div className="accordion-item m-2 rounded">
+                {/* <div className="accordion-item m-2 rounded">
                     <h2 className="accordion-header" id="com-head">
                         <button className="accordion-button collapsed rounded Flora-Font fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#com-collapse" aria-expanded="false" aria-controls="com-collapse" style={{backgroundColor: '#04F2AF', color: '#00544B'}}>
                         ∆FLORA MEMBERSHIP TOKEN
@@ -177,7 +177,7 @@ const Landing = () => {
                             </div>                                     
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="accordion-item m-2 rounded">
                     <h2 className="accordion-header" id="flush-headingThree">
                         <button className="accordion-button collapsed rounded Flora-Font fs-1" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" style={{backgroundColor: '#FFAC80', color: '#00544B'}}>

@@ -34,8 +34,7 @@ const Shop = () => {
     const [ order, setOrder ] = useState(null)
     const [ finalOrder, setFinalOrder ] = useState(null)
     const [ email, setEmail ] = useState(null)
-    const [ stock, setStock ] = useState([])
-    
+    const [ stock, setStock ] = useState([])    
 
     // // this perpetuates the connection to blocknative
     useEffect(() => {
@@ -290,7 +289,6 @@ const Shop = () => {
         }
         return 
     },[stock])
-
     
     // // render for all filter
     const Merch = () => {
