@@ -4,7 +4,6 @@ const express = require('express'),
 dotenv = require('dotenv'),
 path = require('path/posix'),
 {client, q} = require('./configuration/fauna.js');
-const { json } = require('sequelize');
 
 dotenv.config();
 
@@ -220,7 +219,7 @@ app.get('/api/shop/checkout/success/recieve', (req, res) => {
 });
 
 app.get('*', (req, res)=>{
-    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))
+    res.sendFile(path.resolve(__dirname, './client/build', 'index.html'))
 })
 
 // This creates ruum_db if it doesn't exist and connects with it
