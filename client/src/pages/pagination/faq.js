@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPlus} from '@fortawesome/free-solid-svg-icons'
-import { q, client } from "../config/fauna.js";
+import { q, client } from "../../config/fauna.js";
 
 
 const Faq = () => {

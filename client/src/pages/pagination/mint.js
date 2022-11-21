@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import { q, client } from "../config/fauna.js";
 
 import mint_2100 from '../images/frames/mint_2100.png'
 import logo_1 from '../images/gifs/Logo_1.gif'
@@ -7,8 +6,8 @@ import logo_1 from '../images/gifs/Logo_1.gif'
 import bouncingSeed from '../images/bouncing-seed.mp4'
 
 import { useConnectWallet } from '@web3-onboard/react';
-import initWeb3Onboard from '../services';
-import { DeltaFloraGenesis__factory } from '../ethers-contracts';
+import initWeb3Onboard from '../../services';
+import { DeltaFloraGenesis__factory } from '../../ethers-contracts';
 import { ethers } from 'ethers';
 import toast, { Toaster } from 'react-hot-toast';
 // for greenList & whitelist mint
@@ -19,7 +18,6 @@ import toast, { Toaster } from 'react-hot-toast';
 // import { WinterCheckout } from '@usewinter/checkout'
 import ReactPlayer from 'react-player'
 import axios from 'axios'
-// import { faLess } from '@fortawesome/free-brands-svg-icons';
 
 const MAINNET_CONTRACT_ADDRESS = "0x21374d22f169849cfd680241f3f37cd61ac2eea5";
 
@@ -316,66 +314,6 @@ const Mint = () => {
     )
   }
 
-  // const GetWeb2 = () =>{
-
-  //   const createWeb2 = (first, age, country, email)=>{
-  //     client.query(
-  //       q.Create(
-  //         q.Collection('Web2_Users'),
-  //         { 
-  //           data: { 
-  //           first: first,
-  //           age: age,
-  //           country: country,
-  //           email: email 
-  //           } 
-  //         }
-  //       )
-  //     )
-  //     .then(() => toast.success('We will send you an email with you token # and art soon!'))
-  //     .catch((err) => console.error(
-  //       'Error: [%s] %s: %s',
-  //       err.name,
-  //       err.message,
-  //       err.errors()[0].description,
-  //     ))
-  //   }
-
-  //   const [ success, setSuccess] = useState(false)
-
-  //   return(
-  //     <div className='w-50'>
-  //       { 
-  //         success === true? 
-  //         <div className='d-flex flex-column text-center p-3 w-100'>
-  //           <span className='Flora-Font fs-3' style={{color: '#00544B'}}>
-  //           Welcome to the SACRΞD GARDΞN! We will send you an e-mail with your art and token information soon
-  //           </span>
-  //         </div>
-  //         :
-  //         <div className='d-flex flex-column text-center p-3 w-100'>
-  //           <label className='Flora-Font fs-3' style={{color: '#00544B'}}>Sign up for your free membership token & psychedelic plant art!</label>
-  //           <div className='d-flex flex-row flex-wrap my-1 justify-content-evenly w-100'>
-  //             <input className='Flora-Font text-uppercase border-0 rounded m-1 p-2 w-100' placeholder='name'/>
-  //             <input className='Flora-Font text-uppercase border-0 rounded p-2 w-100 m-1' placeholder='age'/>
-  //             <input className='Flora-Font text-uppercase border-0 rounded p-2 w-100 m-1' placeholder='country'/>
-  //             <input className='Flora-Font text-uppercase border-0 w-100 rounded m-1 p-2' placeholder='email address'/>
-  //           </div >
-  //           <button className='btn p-2' style={{backgroundColor: '#04F2AF', color: '#00544B'}} onClick={(e)=>{
-  //             const first = e.currentTarget.parentNode.children[1].children[0].value
-  //             const age = e.currentTarget.parentNode.children[1].children[1].value
-  //             const country = e.currentTarget.parentNode.children[1].children[2].value
-  //             const email = e.currentTarget.parentNode.children[1].children[3].value
-  //             createWeb2(first, age, country, email)
-  //             setSuccess(true)
-  //           }}>
-  //             <span className='Flora-Font fs-5 text-uppercase'>sign up</span>
-  //           </button>
-  //         </div>
-  //       }
-  //     </div>
-  //   )
-  // }
 
   const WalletCheckout = () =>{
     return(

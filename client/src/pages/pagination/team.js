@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faPlus} from '@fortawesome/free-solid-svg-icons'
 import {faTwitter} from '@fortawesome/free-brands-svg-icons'
 
-import Amanda from '../images/team/amanda.png'
-import Eli from '../images/team/eli.jpg'
-import Jenna from '../images/team/jenna.jpg'
+import Amanda from '../../images/team/amanda.png'
+import Eli from '../../images/team/eli.jpg'
+import Jenna from '../../images/team/jenna.jpg'
 
 const Team = () => {
     return(

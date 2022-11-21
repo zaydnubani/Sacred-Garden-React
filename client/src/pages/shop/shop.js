@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useConnectWallet } from '@web3-onboard/react';
-import initWeb3Onboard from '../services';
+import initWeb3Onboard from '../../services';
 import toast, { Toaster } from 'react-hot-toast';
-import { q, client } from "../config/fauna.js";
+import { q, client } from "../../config/fauna";
 import axios from 'axios'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -36,13 +36,13 @@ const Shop = () => {
     const [ email, setEmail ] = useState(null)
     const [ stock, setStock ] = useState([])    
 
-    // // this perpetuates the connection to blocknative
+    // // // this perpetuates the connection to blocknative
     useEffect(() => {
         // This initializes bloclknative so that wallets can be connected given custom parameters from '../service'
         setWeb3Onboard(initWeb3Onboard)
     }, []);
 
-    // // when a wallet is present, i.e. coinbase, metamask, etc., useState will perpetuate the wallet's address
+    // when a wallet is present, i.e. coinbase, metamask, etc., useState will perpetuate the wallet's address
     useEffect(() => {
     // Asks IF there ISN'T a wallet connected or a provider then...
         if (wallet != null) {
@@ -58,7 +58,7 @@ const Shop = () => {
         }
     }, [ wallet ]);
 
-    // // when an email is submitted in checkout, usewinter.com will return tokens being held by that address and if any match to FloraGensis
+    // when an email is submitted in checkout, usewinter.com will return tokens being held by that address and if any match to FloraGensis
     useEffect(()=>{
         const api = axios.create({baseURL:'https://winter-api.usewinter.com'})
         const getWinterTokens = (email) => {
@@ -83,7 +83,7 @@ const Shop = () => {
         }
     }, [email])
 
-    // // If a wallet is connected NFTPort will retrieve NFTs held by that wallet's address and filter by FloraGensis
+    // If a wallet is connected NFTPort will retrieve NFTs held by that wallet's address and filter by FloraGensis
     useEffect(()=>{
 
         const api = axios.create()
@@ -115,7 +115,7 @@ const Shop = () => {
 
     }, [ address ])
 
-    // // Validates if the NFTs retrieve match the Mainnet Contract and returns those that do, then validate if a token has been used for a claim
+    // Validates if the NFTs retrieve match the Mainnet Contract and returns those that do, then validate if a token has been used for a claim
     useEffect(()=>{
 
         if(tokens.length >= 1){
@@ -148,7 +148,7 @@ const Shop = () => {
         }
     },[ tokens ])
 
-    // // if the quanitity of an item in the cart is less than 0 then it is removed
+    // if the quanitity of an item in the cart is less than 0 then it is removed
     useEffect(()=>{
         // resets the paramater that renders the information form on checkout
         if (cart.length <= 1){
@@ -167,7 +167,7 @@ const Shop = () => {
         })
     }, [ cart ])
 
-    // // calculates the number of items in the cart based on the quanity of unique items
+    // calculates the number of items in the cart based on the quanity of unique items
     useEffect(()=>{
         const quant = []
         cart.forEach((res)=>{
@@ -176,7 +176,7 @@ const Shop = () => {
         setCartQuant(quant.reduce((partialSum, a) => partialSum + a, 0))
     }, [ cart ])
 
-    // // If there arent any items in the cart disconnects wallet/sets email to null and subsequently sets all tokens to null and user has to restart process
+    // If there arent any items in the cart disconnects wallet/sets email to null and subsequently sets all tokens to null and user has to restart process
     useEffect(()=>{
         if(cartQuant <= 0 && wallet != null && orderSuccess === false){
             disconnect(wallet)
@@ -185,7 +185,7 @@ const Shop = () => {
         }
     }, [ cart, cartQuant, disconnect, wallet, email, orderSuccess ])
 
-    // // Creates an order in the database that can be referred to
+    // Creates an order in the database that can be referred to
     useEffect(()=>{
         const createOrder = (finalOrder) => {client.query(
             q.Create(
@@ -228,7 +228,7 @@ const Shop = () => {
         }
     }, [finalOrder, address])
 
-    // // if cart is open and wallet is connected, or email is set, and the user clicks anywhere that isnt the cart the wallet is disconnected, or the email is set to null.
+    // if cart is open and wallet is connected, or email is set, and the user clicks anywhere that isnt the cart the wallet is disconnected, or the email is set to null.
     useEffect(()=>{
         window.addEventListener('click', (e)=>{
             if (e.target.className === 'offcanvas-backdrop fade' && wallet != null){
@@ -289,6 +289,10 @@ const Shop = () => {
         }
         return 
     },[stock])
+
+    useEffect(()=>{
+        axios.get('/cms/shop').then(data=>console.log(data)).catch(err=>console.log(err))
+    }, [])
     
     // // render for all filter
     const Merch = () => {
@@ -441,7 +445,7 @@ const Shop = () => {
         )
     }
 
-    // // render for unique filter(s)
+    // // // render for unique filter(s)
     const Type = () => {
         const [ typeData, setTypeData ] = useState([])
         useEffect(() => {

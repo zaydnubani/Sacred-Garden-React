@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Chacruna from '../images/Partner Logos/Chacruna-logo-original.png'
-import GrowMedicine from '../images/Partner Logos/GrowMedicine_High Res Logo.png'
-import ICEERS from '../images/Partner Logos/ICEERS1.png'
-import PsychedelicsToday from '../images/Partner Logos/Psychedlics Today Logo Black Words .png'
-import SistersPsychedelics from '../images/Partner Logos/Sisters in Psychedelics.png'
-import TucsonHerpSociety from '../images/Partner Logos/Tucson Herpetological Society_hires.png'
+import Chacruna from '../../images/Partner Logos/Chacruna-logo-original.png'
+import GrowMedicine from '../../images/Partner Logos/GrowMedicine_High Res Logo.png'
+import ICEERS from '../../images/Partner Logos/ICEERS1.png'
+import PsychedelicsToday from '../../images/Partner Logos/Psychedlics Today Logo Black Words .png'
+import SistersPsychedelics from '../../images/Partner Logos/Sisters in Psychedelics.png'
+import TucsonHerpSociety from '../../images/Partner Logos/Tucson Herpetological Society_hires.png'
 
 const Partners = () => {
     return(

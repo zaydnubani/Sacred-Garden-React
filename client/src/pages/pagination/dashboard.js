@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useConnectWallet } from '@web3-onboard/react';
-import initWeb3Onboard from '../services';
-import { q, client } from "../config/fauna.js";
+import initWeb3Onboard from '../../services';
+import { q, client } from "../../config/fauna.js";
 
 const Dashboard = () => {
 
