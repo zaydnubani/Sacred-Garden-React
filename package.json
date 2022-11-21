@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "develop": "npx concurrently \"npm run watch\" \"cd client && npm start\"",
     "install": "cd ./client && npm i",
     "watch": "nodemon",
