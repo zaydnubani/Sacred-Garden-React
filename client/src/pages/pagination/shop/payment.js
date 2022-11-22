@@ -194,16 +194,16 @@ const Payment = () => {
         <div className="container">
             <div className="row">
                 <div className="col-md-6 d-flex flex-column" style={{height: `${HEIGHT}px`}}>
-                    <label className="Flora-Font text-uppercase fs-4 m-2 Sacrd-Grn">Cart</label>
-                    <div className="d-flex flex-row flex-wrap m-2 overflow-auto">
+                    <label className="Flora-Font text-uppercase fs-4 mx-2 Sacrd-Grn">Cart</label>
+                    <div className="d-flex flex-column mx-2 overflow-auto">
                         {   
                             CART.length >= 1?
                             CART.map((ret)=>{
                                 return(
-                                    <div className='d-flex flex-column rounded my-1 flex-fill' style={{backgroundColor: "#FFF5B5", border: "solid 1px #FFE0E0"}} key={CART.indexOf(ret)}>
-                                        <div className="d-flex flex-row mx-2">
+                                    <div className='d-flex flex-column rounded my-1 flex-grow-1' style={{backgroundColor: "#FFF5B5", border: "solid 1px #FFE0E0"}} key={CART.indexOf(ret)}>
+                                        <div className="d-flex flex-row mx-2 my-1">
                                             <img src="" style={{height:"50px", width:"50px"}} alt="something important"/>
-                                            <div className='d-flex flex-column justify-content-end'>
+                                            <div className='d-flex flex-column justify-content-end mx-1'>
                                                 <span className="Flora-Font text-uppercase Sacrd-Grn">{ret.name}</span>
                                             </div>
                                         </div>
@@ -236,19 +236,18 @@ const Payment = () => {
                     </div>  
                 </div>
                 <div id="payment" className="col-md-6 d-flex flex-column">
-                    <div className="d-flex flex-column m-2 Flora-Font Sacrd-Grn">
-                        <label className="fs-4 text-uppercase">discount</label>
-                        {
-                            DISCOUNT?
+                    {
+                        DISCOUNT?
+                        <div className="d-flex flex-column m-2 Flora-Font Sacrd-Grn">
+                            <label className="fs-4 text-uppercase">discount</label>
                             <div className="d-flex flex-row form-control my-1 Flora-Font Sacrd-Grn text-uppercase">
                                 <span >{DISCOUNT.type}</span>
                                 <span className="ms-auto">{DISCOUNT.percent}% off</span>
                             </div>
-                            :
-                            null
-                        }
-                        
-                    </div>
+                        </div>
+                        :
+                        null
+                    }
                     <div className="d-flex flex-column m-2 Flora-Font Sacrd-Grn">
                         <label className="fs-4 text-uppercase">Payment</label>
                         <div className="d-flex flex-column form-control my-1 Flora-Font Sacrd-Grn text-uppercase">
