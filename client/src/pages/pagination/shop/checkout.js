@@ -326,7 +326,7 @@ const Checkout = () => {
                             } else {
                                 await checkoutPOST(CART)  
                             }
-                            return window.location.replace(`${window.location.origin}/shop/checkout/payment`)
+                            return window.location.replace(`${window.location.origin}/payment`)
                         }} > Proceed to payment </button>
                     </div> 
                 </div>

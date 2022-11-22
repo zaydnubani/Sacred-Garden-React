@@ -44,19 +44,19 @@ const router = createBrowserRouter([
       element: <Shop/>
     },
     {
-      path: '/shop/item',
+      path: '/item',
       element: <Item/>
     },
     {
-      path: '/shop/checkout',
+      path: '/checkout',
       element: <Checkout/>
     },
     {
-      path: '/shop/checkout/payment',
+      path: '/payment',
       element: <Payment/>
     },
     {
-      path: '/shop/checkout/success',
+      path: '/success',
       element: <Success/>
     },
     {

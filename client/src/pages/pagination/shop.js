@@ -17,7 +17,7 @@ const Shop2 = () => {
             }
             ).then(res=>{
                 console.log(res.data)
-                window.location.replace(`${window.location.origin}/shop/item`)
+                window.location.replace(`${window.location.origin}/item`)
             }).catch(err=>console.log(err)) 
         } catch (err) {
             console.log(err)

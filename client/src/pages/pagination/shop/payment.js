@@ -186,7 +186,7 @@ const Payment = () => {
 
         await orderPOST(object)
         await successPOST(object)
-        return window.location.replace(`${window.location.origin}/shop/checkout/success`)
+        return window.location.replace(`${window.location.origin}/success`)
 
     }
 

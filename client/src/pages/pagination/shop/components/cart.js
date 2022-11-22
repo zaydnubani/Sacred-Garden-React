@@ -156,7 +156,7 @@ const Cart = () => {
                     <div className="d-flex flex-column text-uppercase Sacrd-Grn my-1">
                         <button className="btn Flora-Font fs-3 text-uppercase" style={{color: "#00544B", backgroundColor: "#04F2AF"}} onClick={async()=>{
                             await cartPOST(CART)
-                            return window.location.replace(`${window.location.origin}/shop/checkout/`)
+                            return window.location.replace(`${window.location.origin}/checkout`)
                         }} > Proceed to Checkout</button>
                     </div> 
                 </div>
