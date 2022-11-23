@@ -391,7 +391,7 @@ const Shop2 = () => {
                                                 style={{height:"200px", width:"200px"}}
                                             />
                                             :
-                                            <img className="rounded img-fluid" src={ret.images.cover} style={{height:"200px", width:"200px"}}/>
+                                            <img className="rounded img-fluid" src={ret.images.cover} style={{height:"200px", width:"200px"}} alt="something"/>
                                         }
                                         {/* absolute positioned badge */}
                                         <div 
