@@ -252,6 +252,7 @@ const Item = () => {
                                 const object = {
                                     name: ITEM.details.name,
                                     quantity: QUANTITY,
+                                    images: ITEM.images,
                                     size: ITEM.selectors[SELECT].size,
                                     price: ITEM.selectors[SELECT].price,
                                     color: null,
@@ -267,6 +268,7 @@ const Item = () => {
                                 const object = {
                                     name: ITEM.details.name,
                                     quantity: QUANTITY,
+                                    images: ITEM.images, 
                                     size: ITEM.selectors[SELECT].size,
                                     price: ITEM.selectors[SELECT].price,
                                     color: null,

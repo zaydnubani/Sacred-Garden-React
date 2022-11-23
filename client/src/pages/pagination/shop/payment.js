@@ -202,7 +202,7 @@ const Payment = () => {
                                 return(
                                     <div className='d-flex flex-column rounded my-1 flex-grow-1' style={{backgroundColor: "#FFF5B5", border: "solid 1px #FFE0E0"}} key={CART.indexOf(ret)}>
                                         <div className="d-flex flex-row mx-2 my-1">
-                                            <img src="" style={{height:"50px", width:"50px"}} alt="something important"/>
+                                            <img src={ret.images.cover} style={{height:"50px", width:"50px"}} alt="something important"/>
                                             <div className='d-flex flex-column justify-content-end mx-1'>
                                                 <span className="Flora-Font text-uppercase Sacrd-Grn">{ret.name}</span>
                                             </div>

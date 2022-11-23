@@ -30,15 +30,12 @@ const Success = () => {
                 SUCCESS?
                 <div className="row">
                     <div className="col-12 d-flex flex-column">
-                        <div className="d-flex flex-column Flora-Font text-uppercase Sacrd-Grn m-2 align-items-center text-center">
-                            <span className="fs-1">order recieved</span>
-                            <div className="d-flex flex-row flex-wrap align-items-center">
-                                <span className="mx-1">order#: {SUCCESS.order}</span>
-                                <span className="mx-1">Date: {SUCCESS.time.date}</span>
+                        <div className="d-flex flex-column m-2 align-items-center">
+                            <span className="fs-1 Flora-Font text-uppercase Sacrd-Grn">order recieved</span>
+                            <div className="d-flex flex-column form-control Flora-Font text-uppercase Sacrd-Grn my-1 justify-content-center align-items-center">
+                                <p>a confirmation email has been sent to <span className="text-decoration-underline">{SUCCESS.email}</span></p>
                             </div>
-                            <p>a confirmation email has been sent to <span className="text-decoration-underline">{SUCCESS.email}</span></p>
                         </div>
-                        
                     </div>
                     <div className="col-sm-6 col-md-6 d-flex flex-column">
                         <div className="d-flex flex-column m-2">
@@ -49,7 +46,7 @@ const Success = () => {
                                         return(
                                             <div className='d-flex flex-column rounded my-1 flex-fill' style={{backgroundColor: "#FFF5B5", border: "solid 1px #FFE0E0"}} key={SUCCESS.items.indexOf(ret)}>
                                                 <div className="d-flex flex-row mx-2">
-                                                    <img src="" style={{height:"50px", width:"50px"}} alt="something"/>
+                                                    <img src={ret.images.cover} style={{height:"50px", width:"50px"}} alt="something"/>
                                                     <div className='d-flex flex-column justify-content-end'>
                                                         <span className="Flora-Font text-uppercase Sacrd-Grn">{ret.name}</span>
                                                     </div>
@@ -82,6 +79,13 @@ const Success = () => {
                         </div>
                     </div>
                     <div id="shipping" className="col-sm-6 col-md-6 d-flex flex-column">
+                        <div className="d-flex flex-column m-2 Flora-Font text-uppercase Sacrd-Grn">
+                            <label className="fs-4 ">Order</label>                 
+                            <div className="d-flex flex-column Flora-Font form-control my-1 Sacrd-Grn">
+                                <span >order#: {SUCCESS.order}</span>
+                                <span>Date: {SUCCESS.time.date}</span>
+                            </div>
+                        </div>
                         <div className="d-flex flex-column m-2">
                             <label className="fs-4 Flora-Font text-uppercase Sacrd-Grn">Contact Infromation</label>                 
                             <span className="form-control Flora-Font text-uppercase Sacrd-Grn my-1">{SUCCESS.email}</span> 

@@ -209,8 +209,8 @@ const Checkout = () => {
                             CART.map((ret)=>{
                                 return(
                                     <div className='d-flex flex-column rounded my-1' style={{backgroundColor: "#FFF5B5", border: "solid 1px #FFE0E0"}} key={CART.indexOf(ret)}>
-                                        <div className="d-flex flex-row w-100 mx-2 my-1">
-                                            <img className="rounded" src="" alt="this is something" style={{height: "100px", width: "100px"}}/>
+                                        <div className="d-flex flex-row w-100 mx-2">
+                                            <img className="rounded mt-1" src={ret.images.cover} alt="this is something" style={{height: "100px", width: "100px"}}/>
                                             <div className='d-flex flex-column justify-content-end'>
                                                 <span className="Flora-Font text-uppercase Sacrd-Grn mx-1 fs-4">{ret.name}</span>
                                             </div>

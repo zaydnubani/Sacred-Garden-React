@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 
 import defIMG1 from '../../images/300px/1.png';
-import defIMG2 from '../../images/300px/2.png';
 
 const Shop2 = () => {  
 
@@ -110,15 +109,53 @@ const Shop2 = () => {
             console.log(err)
         }
     },
-
-    [FAUNA, setFAUNA] = useState([]),
+    
+    [COLLECTION, setCOLLECTION] = useState([]),
 
     // This function retrieves all the shop items from the faunaDB via an api call to the backend server. 
-    faunaFETCH = async () => {
+    collectionFETCH = async () => {
         try{
             await axios.get(`${window.location.origin}/api/shop/collection`)
-            .then((ret)=>{
-                setFAUNA(ret.data)
+            .then(async (fauna_res)=>{
+                const fauna = await fauna_res.data.filter(item=>item.category.toLowerCase()!=='merch')
+                await axios.get(`${window.location.origin}/api/shop/printful/collection`)
+                .then(async(print_res) =>{
+                    const printful = []
+                    await print_res.data.forEach((print_ret)=>{
+                        const object = {
+                            selectors: print_ret.sync_variants.map(variant=>{
+                                const size = [];
+    
+                                if (variant.sku.split('_')[1] === undefined){
+                                    console.log(true)
+                                    size.push('O/S')
+                                } else {
+                                    size.push(variant.sku.split('_')[1])
+                                }
+    
+                                return {
+                                    size: size[0],
+                                    color: ['O/C'],
+                                    price: variant.retail_price,
+                                    stock: null
+                                }
+                            }),
+                            source: 'printful',
+                            variable: null,
+                            data: print_ret.sync_variants
+                        };
+                        fauna_res.data.forEach((fauna_ret)=>{
+                            if(fauna_ret.details.name.toLowerCase() === print_ret.sync_product.name.toLowerCase()){
+                                object.category = fauna_ret.category
+                                object.images = fauna_ret.images
+                                object.details = fauna_ret.details
+                                printful.push(object)
+                            }
+                        })
+                    })
+                    return setCOLLECTION(printful.concat(fauna))
+                })
+                .catch(err=>console.log(err))  
             })
             .catch((err)=>{
                 console.log(err)
@@ -130,77 +167,8 @@ const Shop2 = () => {
 
     // This calls the function that retrieves all the shop items from the faunaDB via an api call to the backend server. 
     useEffect(()=>{
-        faunaFETCH();
+        collectionFETCH();
     },[])
-
-    // Shop items array, category - MERCHANDISE; where all the information related to MERCHANDISE will be held.
-    const [PRINTFUL, setPRINTFUL] = useState([]),
-
-    // This function retrieves all the shop items from the printful via an api call to the backend server. 
-    printfulFETCH = async () => {
-        try{
-            axios.get(`${window.location.origin}/api/shop/printful/collection`)
-            .then(async (res) =>{
-                const data = await res.data,
-                arr = [];
-                data.forEach((ret)=>{
-                    const index = ret.sync_variants[0].files.findIndex(item=>item.type==="preview"),
-                    others = ret.sync_variants[0].files.filter(item=>item.type!=="preview") ,
-                    object = {
-                        category: 'merch',
-                        images: {
-                            cover: ret.sync_variants[0].files[index].preview_url,
-                            hover:  others[0].preview_url,
-                            other: [null]
-                        },
-                        badge: null,
-                        drop: null,
-                        details: {
-                            name: ret.sync_product.name,
-                            location: null,
-                            description: null
-                        },
-                        selectors: ret.sync_variants.map(res=>{
-                            const size = [];
-
-                            if (res.sku.split('_')[1] === undefined){
-                                console.log(true)
-                                size.push('O/S')
-                            } else {
-                                size.push(res.sku.split('_')[1])
-                            }
-
-                            return {
-                                size: size[0],
-                                color: ['O/C'],
-                                price: res.retail_price,
-                                stock: null
-                            }
-                        }),
-                        source: 'printful',
-                        variable: null,
-                        data: ret.sync_variants
-                    }
-                    arr.push(object)
-                })
-                return setPRINTFUL(arr)
-            })
-            .catch(err=>console.log(err))     
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-    // This calls the function that retrieves all the shop items from the faunaDB via an api call to the backend server. 
-    useEffect(()=>{
-        printfulFETCH()
-    }, [setPRINTFUL])
-
-    const [COLLECTION, setCOLLECTION] = useState([]);
-
-    useEffect(()=>{
-        setCOLLECTION(FAUNA.concat(PRINTFUL))
-    }, [PRINTFUL, FAUNA, setCOLLECTION])
 
     return(
         <div className='d-flex flex-row flex-wrap justify-content-center'>
@@ -228,7 +196,7 @@ const Shop2 = () => {
                                         return(
                                             <div className='d-flex flex-column rounded my-1' style={{backgroundColor: "#FFF5B5", border: "solid 1px #FFE0E0"}} key={CART.indexOf(ret)}>
                                                 <div className="d-flex flex-row w-100 mx-2">
-                                                    <img className='img-fluid' src="" alt="this is something" style={{height:"50px", width:"50px"}}/>
+                                                    <img className='img-fluid mt-1' src={ret.images.cover} alt="this is something" style={{height:"50px", width:"50px"}}/>
                                                     <div className='d-flex flex-column justify-content-end'>
                                                         <span className="Flora-Font text-uppercase Sacrd-Grn">{ret.name}</span>
                                                     </div>
@@ -409,17 +377,22 @@ const Shop2 = () => {
 
                             {/* card header */}
                             <div className='d-flex flex-column'>
-                                <div className='d-flex flex-row'>
+                                <div className='d-flex flex-row mt-1'>
                                     {/* img container */}
                                     <div className='d-flex flex-column w-50 position-relative'>
-                                        <img 
-                                            className='img-fluid'
-                                            src={ret.images.cover} 
-                                            onMouseOver={(e)=>{e.currentTarget.src=ret.images.hover}}
-                                            onMouseOut={(e)=>{e.currentTarget.src=ret.images.cover}}
-                                            alt="something"
-                                            style={{height:"200px", width:"200px"}}
-                                        />
+                                        {
+                                            ret.images.hover?
+                                            <img 
+                                                className='rounded img-fluid'
+                                                src={ret.images.cover}
+                                                onMouseOver={(e)=>{e.currentTarget.src=ret.images.hover}}
+                                                onMouseOut={(e)=>{e.currentTarget.src=ret.images.cover}}
+                                                alt="something"
+                                                style={{height:"200px", width:"200px"}}
+                                            />
+                                            :
+                                            <img className="rounded img-fluid" src={ret.images.cover} style={{height:"200px", width:"200px"}}/>
+                                        }
                                         {/* absolute positioned badge */}
                                         <div 
                                             className='rounded position-absolute top-50 px-1' 
@@ -435,7 +408,7 @@ const Shop2 = () => {
                                     </div>
                                     {/* source label container */}
                                     <div className="d-flex w-50 align-items-end Flora-Font Sacrd-Grn text-uppercase fs-5 Sacrd-Grn">
-                                        <span className="Flora-Font Sacrd-Grn text-uppercase fs-5">
+                                        <span className="Flora-Font Sacrd-Grn text-uppercase fs-5 mx-1">
                                         {ret.source}
                                         </span>
                                     </div>

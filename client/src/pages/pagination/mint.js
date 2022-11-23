@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 
 import mint_2100 from '../images/frames/mint_2100.png'
 import logo_1 from '../images/gifs/Logo_1.gif'
-// import web from '../images/gifs/web.gif'
 import bouncingSeed from '../images/bouncing-seed.mp4'
 
 import { useConnectWallet } from '@web3-onboard/react';
