@@ -122,8 +122,8 @@ const Item = () => {
                                     <img className="rounded" src="" alt="" style={{height: "150px", width: "150px"}}/>
                                     {
                                         ITEM.badge?
-                                        <div className="rounded px-1" style={{backgroundColor: "#43D3EE", transform: "rotate(-90deg)", position: "absolute", top: "50%", left: "-40px"}}>
-                                            <span style={{color: "#FFAC80"}}>     
+                                        <div className="rounded px-1" style={{backgroundColor: "#43D3EE", transform: "rotate(-90deg)", position: "absolute", top: "50%", left: "-50px"}}>
+                                            <span className="text-uppercase" style={{color: "#FFAC80"}}>     
                                                 {ITEM.badge}
                                             </span>
                                         </div>
@@ -155,58 +155,97 @@ const Item = () => {
                             </div>
                         </div>
                         <div className="p-1 mx-2 rounded" style={{backgroundColor: "#FFE0E0"}}></div>
-                        <div className="d-flex flex-row py-2 mx-2 Flora-Font Sacrd-Grn fs-5 text-uppercase">
-                            <span>color</span>
-                            <select id="color" className="ms-auto rounded btn Flora-Font text-uppercase" style={{backgroundColor: "#00544B", color: "#FFF5B5", border: "none"}}>
-                                {
-                                    ITEM.selectors[SELECT].color.map((ret)=>{
-                                        return(
-                                            <option key={ITEM.selectors[SELECT].color.indexOf(ret)} value={ret}>{ret}</option>
-                                        )
-                                    })
-                                }
-                            </select>
-                        </div>
-                        <div className="p-1 mx-2 rounded" style={{backgroundColor: "#FFE0E0"}}></div>
-                        <div className="d-flex flex-row py-2 mx-2 Flora-Font Sacrd-Grn fs-5 text-uppercase">
-                            <span>size</span>
-                                <select id="color" className="ms-auto rounded btn Flora-Font text-uppercase" style={{backgroundColor: "#00544B", color: "#FFF5B5", border: "none"}} onChange={((e)=>{
-                                const index = ITEM.selectors.findIndex(ret=>ret.size===e.currentTarget.value);
-                                e.preventDefault()
-                                setSELECT(index)
-                            })}
-                            >    
-                                {
-                                    ITEM.selectors.map((ret)=>{
-                                        console.log(ret.size)
-                                        return(
-                                            <option key={ITEM.selectors.indexOf(ret)} 
-                                            value={ret.size}>
-                                                {ret.size}
-                                            </option>
-                                        )
-                                    })
-                                }
-                            </select>
-                        </div>
-                        <div className="p-1 mx-2 rounded" style={{backgroundColor: "#FFE0E0"}}></div>
-                        <div className="d-flex flex-row py-2 mx-2 Flora-Font Sacrd-Grn fs-5 text-uppercase">
-                            <span>price</span>
-                            <span className="ms-auto">${ITEM.selectors[SELECT].price}</span>
-                        </div>
                         {
-                            ITEM.details.description?
-                            <div className="d-flex flex-column py-2 mx-2 Flora-Font Sacrd-Grn">                        
-                                <div className="p-1 rounded" style={{backgroundColor: "#FFE0E0"}}></div>
-                                <span className="fs-5 text-uppercase">description</span>
-                                <p className="mx-2">
-                                {ITEM.details.description}
-                                </p>
+                            ITEM.selectors[SELECT].color.length >= 2?
+                            <div className="d-flex flex-column">
+                                <div className=" d-flex flex-row Flora-Font Sacrd-Grn fs-5 text-uppercase py-2 mx-2">
+                                    <span>color</span>
+                                    <select id="color" className="ms-auto rounded btn Flora-Font text-uppercase" style={{backgroundColor: "#00544B", color: "#FFF5B5", border: "none"}}>
+                                        {
+                                            ITEM.selectors[SELECT].color.map((ret)=>{
+                                                return(
+                                                    <option key={ITEM.selectors[SELECT].color.indexOf(ret)} value={ret}>{ret}</option>
+                                                )
+                                            })
+                                        }
+                                    </select>  
+                                </div>
+                                <div className="p-1 rounded mx-2" style={{backgroundColor: "#FFE0E0"}}></div>
+                            </div>
+                            :
+                            <div style={{display: "none"}}>
+                                <select id="color">
+                                    <option value={ITEM.selectors[SELECT].color[0]}></option>
+                                </select>
+                            </div>
+                        }
+                        
+                        {
+                            ITEM.selectors.length >= 2?
+                            <div className="d-flex flex-column">
+                                <div className="d-flex flex-row Flora-Font Sacrd-Grn fs-5 text-uppercase py-2 mx-2">
+                                    <span>size</span>
+                                    <select id="size" className="ms-auto rounded btn Flora-Font text-uppercase" style={{backgroundColor: "#00544B", color: "#FFF5B5", border: "none"}} onChange={((e)=>{
+                                        const index = ITEM.selectors.findIndex(ret=>ret.size===e.currentTarget.value);
+                                        e.preventDefault()
+                                        setSELECT(index)
+                                    })}
+                                    >    
+                                        {
+                                            ITEM.selectors.map((ret)=>{
+                                                console.log(ret.size)
+                                                return(
+                                                    <option key={ITEM.selectors.indexOf(ret)} 
+                                                    value={ret.size}>
+                                                        {ret.size}
+                                                    </option>
+                                                )
+                                            })
+                                        }
+                                    </select>
+                                </div>
+                                <div className="p-1 rounded mx-2" style={{backgroundColor: "#FFE0E0"}}></div>
                             </div>
                             :
                             null
                         }
+                        <div className="d-flex flex-row py-2 mx-2 Flora-Font Sacrd-Grn fs-5 text-uppercase">
+                            <span>price</span>
+                            <span className="ms-auto">${ITEM.selectors[SELECT].price}</span>
+                        </div>
                         <div className="p-1 mx-2 rounded" style={{backgroundColor: "#FFE0E0"}}></div>
+                        {
+                            ITEM.details.description?
+                                <div className="d-flex flex-column">
+                                    <div className="d-flex flex-row py-2 mx-2 Flora-Font Sacrd-Grn">
+                                        <span className="fs-5 text-uppercase py-1 my-1">description</span>
+                                        <button className="ms-auto btn fs-5 Sacrd-Grn" type="button"
+                                        onClick={(e)=>{
+                                            console.log(e.currentTarget.className)
+                                            if (e.currentTarget.className === "ms-auto btn fs-5 Sacrd-Grn"){
+                                                console.log('start')
+                                                e.currentTarget.children[0].className = 'fa-regular fa-circle-up'
+                                            } else if (e.currentTarget.className === "ms-auto btn fs-5 Sacrd-Grn collapsed"){
+                                                console.log('finish')
+                                                e.currentTarget.children[0].className = 'fa-regular fa-circle-down'
+                                            } else {
+                                                console.log('somewhere')
+                                            }
+                                        }}
+                                        data-bs-toggle="collapse" data-bs-target={`#collapsesDescription`} aria-expanded="false" aria-controls={`collapsesDescription`}>
+                                            <i className="fa-regular fa-circle-down"></i>
+                                        </button>
+                                    </div>
+                                    <div id={`collapsesDescription`} className="collapse mx-2 Flora-Font Sacrd-Grn">
+                                        <p>
+                                            {ITEM.details.description}
+                                        </p>
+                                    </div>
+                                    {/* <div className="p-1 rounded mx-2" style={{backgroundColor: "#FFE0E0"}}></div> */}
+                                </div>
+                            :
+                            null
+                        }
                         {
                             ITEM.variable?
                                 ITEM.variable.map((ret)=>{

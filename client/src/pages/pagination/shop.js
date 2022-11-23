@@ -148,7 +148,11 @@ const Shop2 = () => {
                             if(fauna_ret.details.name.toLowerCase() === print_ret.sync_product.name.toLowerCase()){
                                 object.category = fauna_ret.category
                                 object.images = fauna_ret.images
-                                object.details = fauna_ret.details
+                                object.details = {
+                                    name: fauna_ret.details.name, 
+                                    description: print_ret.sync_product.description,
+                                    dimensions: print_ret.sync_product.dimensions
+                                }
                                 printful.push(object)
                             }
                         })
@@ -399,7 +403,7 @@ const Shop2 = () => {
                                             style={{backgroundColor: '#43D3EE', transform: 'rotate(-90deg)', left: '-45px'}}
                                         >
                                             <span 
-                                                className="Flora-Font" 
+                                                className="Flora-Font text-uppercase" 
                                                 style={{color: '#FFAC80'}}
                                             >
                                                 {ret.badge}

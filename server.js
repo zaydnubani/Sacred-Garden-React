@@ -83,15 +83,10 @@ app.get('/api/shop/printful/collection', async (req, res) => {
                 Authorization: `Bearer ${process.env.PRINTFUL_API}`
             }
         })
-        .then(async ret => {
+        .then(async products => {
             const arr = []
-
-            // await ret.data.result.forEach(item=>{
-            //     arr.push(item.id);
-            // })
-
-            await ret.data.result.forEach((item)=>{
-                let length = ret.data.result.length
+            await products.data.result.forEach((item)=>{
+                let length = products.data.result.length
                 axios({
                     method: 'GET',
                     url: `https://api.printful.com/store/products/${item.id}`,
@@ -100,12 +95,25 @@ app.get('/api/shop/printful/collection', async (req, res) => {
                         Authorization: `Bearer ${process.env.PRINTFUL_API}`
                     }
                 })
-                .then((ret) => {
-                    // item_data = ret.data.result.
-                    arr.push(ret.data.result)
-                    if(arr.length === length){
-                        res.json(arr);
-                    }
+                .then((item) => {
+                    // console.log(ret.data.result)
+                    axios({
+                        method: 'GET',
+                        url: `https://api.printful.com/products/variant/${item.data.result.sync_variants[0].variant_id}`,
+                        responseType: 'json',
+                        headers: {
+                            Authorization: `Bearer ${process.env.PRINTFUL_API}`
+                        }
+                    })
+                    .then((variant)=>{
+                        item.data.result.sync_product.description = variant.data.result.product.description;
+                        item.data.result.sync_product.dimensions = variant.data.result.product.dimensions;
+                        arr.push(item.data.result)
+                        // arr.push(variant.data.result)
+                        if(arr.length === length){
+                            res.json(arr);
+                        }                    
+                    })
                 })
                 .catch((err)=>{
                     res.json(err)

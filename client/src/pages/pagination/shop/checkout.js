@@ -254,7 +254,7 @@ const Checkout = () => {
                         <div className="input-group my-1">
                             <input type="text" className="form-control Flora-Font text-uppercase" placeholder="discount code" aria-label="discount code" aria-describedby="button-addon2"/>
                             <button className="btn Flora-Font Sacrd-Grn text-uppercase" type="button" id="button-addon2" style={{backgroundColor: "#04F2AF"}} onClick={(e)=>{
-                                if(e.currentTarget.parentNode.children[0].value.toUpperCase() === 'LFGROW22'){
+                                if(e.currentTarget.parentNode.children[0].value.toUpperCase() === 'LFGROW10'){
                                     setDISCOUNT(
                                         [{
                                             total: (TOTAL * 0.10).toFixed(2),
