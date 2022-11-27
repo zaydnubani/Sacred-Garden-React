@@ -75,7 +75,7 @@ const Landing = () => {
                     </a>
                 </div>
                 <div className="m-3">
-                    <a href='/shop'>
+                    <a href='https://shop.sacrdgardn.com'>
                         <img src={ActionShop} alt='call to action' className="img-fluid rounded"/>
                     </a>
                     {/* <div onClick={()=>{
